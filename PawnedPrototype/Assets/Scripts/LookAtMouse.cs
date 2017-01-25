@@ -13,17 +13,22 @@ public class LookAtMouse : MonoBehaviour {
     private GameObject playerObject; //to store the player game object
     private Transform playerTransform; //to store the transform of the player
 
+    private GameObject fakePlane;
+
     // Use this for initialization
     void Start () {
         mainCamera = FindObjectOfType<Camera>(); //Find camera object and set main camera as it
         playerObject = GameObject.Find("Player"); //find player object
         playerTransform = playerObject.GetComponent<Transform>();
+
+        fakePlane = GameObject.Find("FakeFloor");
     }
 	
 	// Update is called once per frame
 	void Update () {
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition); //create a ray from the camera to the mouse
-        Plane groundPlane = new Plane(Vector3.up, Vector3.zero); //create a test plane facing up and on world origin
+        //Plane groundPlane = new Plane(Vector3.up, Vector3.zero); //create a test plane facing up and on world origin
+        Plane groundPlane = new Plane(Vector3.up, fakePlane.transform.position); //create a test plane facing up and on world origin
         float rayLength; //for storing the length of the ray
 
 
