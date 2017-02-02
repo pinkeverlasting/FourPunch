@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class ObjectDetect : MonoBehaviour {
 
-    private GameObject nozzle;
-    private Vector3 nozzlePosition;
+    private GameObject nozzle; //the nozzle on the gun
+    private Vector3 nozzlePosition; //the position of the nozzle
 
-    public float multipplier;
-    public float originalMultiplier;
+    public float multipplier; //used to store the multiplier for the warp gravity
+    public float originalMultiplier; //used to store the original multiplier value
 
 	// Use this for initialization
 	void Start () {
-        nozzle = GameObject.Find("NozzleTrigger");
-        originalMultiplier = multipplier;
+        nozzle = GameObject.Find("NozzleTrigger"); //find the nozzle object
+        originalMultiplier = multipplier; //set original multiplier as the chosen multiplier value
         //nozzlePosition = nozzle.GetComponent<Transform>().position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        nozzlePosition = nozzle.GetComponent<Transform>().position;
+        nozzlePosition = nozzle.GetComponent<Transform>().position; //set nozzle position as the referenced object position
        
     }
 
@@ -44,11 +44,11 @@ public class ObjectDetect : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetMouseButton(1)) //if right click is down
+        if (Input.GetMouseButton(1) && nozzle.GetComponent<EnterNozzleDetect>().stateOfGun == EnterNozzleDetect.GunState.VACUUM) //if right click is down and the gun is in vacuum mode
         {
 
             //Debug.Log("True");
-            if (other.gameObject.tag == "Ammo") //if an ammo or cat enters the trigger
+            if (other.gameObject.tag == "Ammo") //if an ammo or cat enters the trigger ONLY DETECTS AMMO, NO TYPES
             {
                 Rigidbody tempAmmoRigid = other.gameObject.GetComponent<Rigidbody>(); //assign temporary rigid variable as object rigidbody
 

@@ -90,7 +90,7 @@ public class PlayerMovement : MonoBehaviour {
         followingCamera.transform.position = Vector3.Lerp(followingCamera.transform.position, transform.position, Time.deltaTime*moveSpeed); //set camera position to be the lerp of its position and the position of the player times by delta time and the move speed of the player
     }
 
-    public void ResetGravity()
+    public void ResetGravity() //resets gravity back to original settings
     {
         gravity = originalGravity;
     }

@@ -11,14 +11,15 @@ public class RampCharacterDetector : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		//on mouse click and if it's in gun mode: check current cat type, eject it out, switch mode to eject (later will need cool down to switch eject back to vacuum mode)
 	}
 
     private void OnTriggerEnter(Collider col) //when it hits a ramp or stairs turn gravity off. 
     {
+        //Debug.Log(col.gameObject);
         if (col.gameObject.tag == "Player") //if the object is a player
         {
-            //Debug.Log(col.gameObject);
+            Debug.Log(col.gameObject);
             col.gameObject.GetComponent<PlayerMovement>().gravity = -1; //set to low gravity
 
         }
@@ -32,11 +33,11 @@ public class RampCharacterDetector : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter(Collision col) //if object collides with ramp
+   private void OnCollisionEnter(Collision col) //if object collides with ramp
     {
         if (col.gameObject.tag == "Player") //if the object is a player
         {
-            //Debug.Log(col.gameObject);
+            Debug.Log(col.gameObject);
             col.gameObject.GetComponent<PlayerMovement>().gravity = -1; //set to low gravity
 
         }

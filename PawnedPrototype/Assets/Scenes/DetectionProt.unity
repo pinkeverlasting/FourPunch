@@ -1549,7 +1549,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1514560307}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -1744,6 +1744,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b627fe6155bcd47b3430272e727bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  redActual: {fileID: 1125942875821788, guid: 86da6b12c917bb749b907c5c372eafe6, type: 2}
+  blueActual: {fileID: 1022709095879748, guid: ce9c5e51cf65a6e4d98ecf819a47ecf4, type: 2}
+  redBullet: {fileID: 1198150396292200, guid: ef1b18224c908f84eb43329ddbc83461, type: 2}
+  blueBullet: {fileID: 1267045407898478, guid: 42c089f903882304f817c6a94e895c54, type: 2}
+  ejectSpeed: 600
+  fireSpeed: 1000
+  stateOfGun: 0
 --- !u!1001 &1781172050
 Prefab:
   m_ObjectHideFlags: 0
@@ -1801,7 +1808,7 @@ GameObject:
   - component: {fileID: 1829018584}
   m_Layer: 0
   m_Name: FakeFloor
-  m_TagString: test
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1827,7 +1834,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1829018582}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -1956,17 +1963,6 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 4e11ef4f39bc65e44a4b0755ecac6ea1, type: 2}
   m_PrefabInternal: {fileID: 712964126}
---- !u!114 &1995776868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1995776867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaad242ba29cc6d42b0e7ef28471300e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1995776871 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 4e11ef4f39bc65e44a4b0755ecac6ea1, type: 2}
