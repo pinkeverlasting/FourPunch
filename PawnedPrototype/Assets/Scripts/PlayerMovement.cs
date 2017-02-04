@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour {
     //private Camera mainCamera; //to store the main camera object
     private GameObject followingCamera; //to store the main camera object
 
+    public bool canMove;
+
 
 
 
@@ -31,14 +33,20 @@ public class PlayerMovement : MonoBehaviour {
         //mainCamera = FindObjectOfType<Camera>(); //Find camera object and set main camera as it
        followingCamera = GameObject.Find("AngledCamera"); //Find camera object and set main camera as it
        originalGravity = gravity;
+       // canMove = false;
 
 
     }
 	
 	// Update is called once per frame
 	void Update () { //for normal parameter updates
-        //moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")); //grab axis input and assign it to vector 3 to be used as input
-        moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized; //grab axis input and assign it to vector 3 to be used as input
+                     //moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")); //grab axis input and assign it to vector 3 to be used as input
+       // Debug.Log(GameObject.Find("Main Camera"));
+       if (canMove)
+        {
+            moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized; //grab axis input and assign it to vector 3 to be used as input
+        }
+       
        
        // moveVelocity = moveInput * moveSpeed; //set the velocity to be the input direction times by the speed
         moveInput = moveInput * moveSpeed; //multiply the input vector by the speed of the player

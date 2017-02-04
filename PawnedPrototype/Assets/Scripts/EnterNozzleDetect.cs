@@ -16,8 +16,13 @@ public class EnterNozzleDetect : MonoBehaviour
     private GameObject warpZone; //for tracking the warp zone trigger
     private GameObject nozzleObject; //for tracking the nozzle of the gun
 
+    public int blueAmmoCount;
+    private int currentBlueAmmoCount;
+
     [SerializeField] private int ejectSpeed; //for storing the speed with which you eject the ammo
     [SerializeField] private int fireSpeed; //for storing the speed with which you fire the bullet
+
+	bool allowToEject;
 
     public enum GunState //enumirator for storing the different states of the gun
     {
@@ -38,13 +43,17 @@ public class EnterNozzleDetect : MonoBehaviour
         blueAmmo = GameObject.Find("BlueAmmoCont"); //find the blue ammo
         pack = GameObject.Find("Backpack"); //find the backpack
         stateOfGun = GunState.VACUUM;
+
+		allowToEject = false;
+
+        currentBlueAmmoCount = blueAmmoCount;
         //Debug.Log(warpZone.GetComponent<ObjectDetect>().multipplier);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && stateOfGun == GunState.GUN) //if right click and the gun is in gun mode
+		if (Input.GetMouseButtonDown(1) && stateOfGun == GunState.GUN && allowToEject) //if right click and the gun is in gun mode
         {
             //int tempAmmoType;
             //Debug.Log("hit right mouse when GUN");
@@ -54,12 +63,31 @@ public class EnterNozzleDetect : MonoBehaviour
                 EjectAmmo((int)child.GetComponent<AmmoTypeScript>().catType); //check the ammo type and send it to EjectAmmo
                 Destroy(child.gameObject); //destroy the child
             }
+			allowToEject = false;
             Invoke("ResetToVacuum", 5); //set a delay to reseting the gun back to vacuum
             //SET TIMER TO SWITCH BACK TO VACUUM
         } else if (Input.GetMouseButtonDown(0) && stateOfGun == GunState.GUN) //if left click and the gun is in gun mode
         {
-            GameObject tempAmmoObject = Instantiate(currentBullet, nozzleObject.transform.position, nozzleObject.transform.rotation); //set temporary bullet as the instantiated bullet
-            tempAmmoObject.GetComponent<Rigidbody>().AddForce(tempAmmoObject.transform.forward * fireSpeed); //add the fire force to bullet
+            
+            if (currentAmmoType == "BLUE")
+            {
+                if(currentBlueAmmoCount > 0)
+                {
+                    LaunchAmmo(fireSpeed);
+                    currentBlueAmmoCount -= 1;
+                }
+                else
+                {
+                    //Set cat ammo to white cat
+                }
+               
+               
+            }
+            else if(currentAmmoType == "RED")
+            {
+                LaunchAmmo(fireSpeed * 1.5f);
+            }
+            //Debug.Log(currentAmmoType);
         }
     }
 
@@ -83,6 +111,17 @@ public class EnterNozzleDetect : MonoBehaviour
     {
         Debug.Log("Resetting back to Vacuum");
         stateOfGun = GunState.VACUUM; //set gun state to vacuum
+    }
+
+	private void VacuumToEjectCooldown(){
+		Debug.Log("Now allowed to eject");
+		allowToEject = true;
+	}
+
+    private void LaunchAmmo(float fSpeed)
+    {
+        GameObject tempAmmoObject = Instantiate(currentBullet, nozzleObject.transform.position, nozzleObject.transform.rotation); //set temporary bullet as the instantiated bullet
+        tempAmmoObject.GetComponent<Rigidbody>().AddForce(tempAmmoObject.transform.forward * fSpeed); //add the fire force to bullet
     }
 
     private void OnTriggerEnter(Collider other) //detect objects that enter warp trigger
@@ -115,11 +154,14 @@ public class EnterNozzleDetect : MonoBehaviour
                 currentAmmoType = AmmoTypeScript.AmmoType.BLUE.ToString(); //track current ammo as blue
                 Instantiate(blueAmmo, pack.transform.position, pack.transform.rotation, pack.transform); //make new ammo object in backpack
                 currentBullet = blueBullet; //set current bullet type to blue bullet
+                currentBlueAmmoCount = blueAmmoCount;
             }
 
             Destroy(other.gameObject); //destroy the collided object
 
             warpZone.GetComponent<ObjectDetect>().ResetMultiplier(); //reset the gravity multiplier of the gun
+
+			Invoke("VacuumToEjectCooldown", 3);
 
             stateOfGun = GunState.GUN; //set the gun to gun mode
 

@@ -15,17 +15,37 @@ public class LookAtMouse : MonoBehaviour {
 
     private GameObject fakePlane;
 
+    private bool checkControlOnce;
+
     // Use this for initialization
+    private void Awake()
+    {
+        // this.GetComponent<FadeInOut>().Fade();
+        // this.GetComponent<FadeInOut>().SendMessage("OnGUI");
+        //Debug.Log("called fade");
+
+        checkControlOnce = true;
+    }
+
     void Start () {
         mainCamera = FindObjectOfType<Camera>(); //Find camera object and set main camera as it
         playerObject = GameObject.Find("Player"); //find player object
         playerTransform = playerObject.GetComponent<Transform>();
 
         fakePlane = GameObject.Find("FakeFloor");
+
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (this.GetComponent<FadeInOut>().GetAlpha() <= 0.4f && checkControlOnce)
+        {
+            playerObject.GetComponent<PlayerMovement>().canMove = true;
+            checkControlOnce = false;
+            //Debug.Log("can Move");
+        }
+
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition); //create a ray from the camera to the mouse
         //Plane groundPlane = new Plane(Vector3.up, Vector3.zero); //create a test plane facing up and on world origin
         Plane groundPlane = new Plane(Vector3.up, fakePlane.transform.position); //create a test plane facing up and on world origin
