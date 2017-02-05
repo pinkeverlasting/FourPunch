@@ -826,8 +826,7 @@ Prefab:
       propertyPath: m_Name
       value: MutantWithHealth (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 54358745534186940, guid: 05564427da25b254383dfdd2287c9d80,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
@@ -836,6 +835,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: a8e18d011c85a6349a134288471df0ba, type: 2}
+    - target: {fileID: 1307105934447034, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114608926652845734, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
@@ -1069,8 +1072,7 @@ Prefab:
       propertyPath: m_Name
       value: MutantWithHealth (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 54358745534186940, guid: 05564427da25b254383dfdd2287c9d80,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
@@ -1079,6 +1081,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: a8e18d011c85a6349a134288471df0ba, type: 2}
+    - target: {fileID: 1307105934447034, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114608926652845734, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
@@ -2039,8 +2045,7 @@ Prefab:
       propertyPath: m_Name
       value: MutantWithHealth (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 54358745534186940, guid: 05564427da25b254383dfdd2287c9d80,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
@@ -2049,6 +2054,10 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: a8e18d011c85a6349a134288471df0ba, type: 2}
+    - target: {fileID: 1307105934447034, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114608926652845734, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
@@ -2492,6 +2501,10 @@ Prefab:
     - target: {fileID: 100000, guid: bea69480152d5fa4d9ff3adf9654b945, type: 3}
       propertyPath: m_Name
       value: Alien
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bea69480152d5fa4d9ff3adf9654b945, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bea69480152d5fa4d9ff3adf9654b945, type: 3}
@@ -3086,15 +3099,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4363319882359958, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.3396664
+      value: 5.03
       objectReference: {fileID: 0}
     - target: {fileID: 4363319882359958, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.984761
+      value: 1.38
       objectReference: {fileID: 0}
     - target: {fileID: 4363319882359958, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 12.951889
+      value: 12.67
       objectReference: {fileID: 0}
     - target: {fileID: 4363319882359958, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3120,16 +3133,19 @@ Prefab:
       propertyPath: m_Name
       value: MutantWithHealth (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 54358745534186940, guid: 05564427da25b254383dfdd2287c9d80,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_IsKinematic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 23424962273076212, guid: 05564427da25b254383dfdd2287c9d80,
         type: 2}
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: a8e18d011c85a6349a134288471df0ba, type: 2}
+    - target: {fileID: 1307105934447034, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114608926652845734, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
@@ -3177,8 +3193,7 @@ Prefab:
       propertyPath: m_Name
       value: MutantWithHealth (5)
       objectReference: {fileID: 0}
-    - target: {fileID: 54358745534186940, guid: 05564427da25b254383dfdd2287c9d80,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
@@ -3187,10 +3202,13 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: a8e18d011c85a6349a134288471df0ba, type: 2}
-    - target: {fileID: 54358745534186940, guid: 05564427da25b254383dfdd2287c9d80,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Constraints
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307105934447034, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114608926652845734, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
@@ -3362,6 +3380,10 @@ Prefab:
     - target: {fileID: 4363319882359958, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 130.48001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307105934447034, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
@@ -3636,8 +3658,7 @@ Prefab:
       propertyPath: m_Name
       value: MutantWithHealth (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 54358745534186940, guid: 05564427da25b254383dfdd2287c9d80,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
@@ -3646,10 +3667,13 @@ Prefab:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: a8e18d011c85a6349a134288471df0ba, type: 2}
-    - target: {fileID: 54358745534186940, guid: 05564427da25b254383dfdd2287c9d80,
-        type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Constraints
       value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 1307105934447034, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114608926652845734, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
@@ -3902,7 +3926,23 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 136960390046515216, guid: 05564427da25b254383dfdd2287c9d80,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 143111871828521776, guid: 05564427da25b254383dfdd2287c9d80,
+        type: 2}
+      propertyPath: m_StepOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 143111871828521776, guid: 05564427da25b254383dfdd2287c9d80,
+        type: 2}
+      propertyPath: m_SlopeLimit
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 54691540287947680, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 05564427da25b254383dfdd2287c9d80, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &2140469928 stripped
