@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class MuantStalker : MonoBehaviour {
 
-	public CharacterController controller;
+	//public CharacterController controller;
 	public Transform target;
-	public Vector3 targetPostition; 
+	public Vector3 targetPostition;
+	public bool alive; 
 	// Use this for initialization
 	void Start () {
-		controller = GetComponent<CharacterController> ();
+		//controller = GetComponent<CharacterController> ();
+		alive = true;
 		target = GameObject.FindWithTag ("Player").transform;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		targetPostition = new Vector3( target.position.x, 
-			this.transform.position.y, 
-			target.position.z ) ;
-		transform.LookAt (targetPostition);
+		if (alive) { 
+			targetPostition = new Vector3 (target.position.x, 
+				this.transform.position.y, 
+				target.position.z);
+			transform.LookAt (targetPostition);
+		}
 	}
 }

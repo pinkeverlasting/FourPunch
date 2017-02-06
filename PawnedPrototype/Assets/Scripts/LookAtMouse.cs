@@ -57,12 +57,13 @@ public class LookAtMouse : MonoBehaviour {
         if (groundPlane.Raycast(cameraRay, out rayLength)) //if the camera ray intersects with the fictional ground plane, do if statement and save the length to ray length
         {
             Vector3 intersectPoint = cameraRay.GetPoint(rayLength); //find the point intersecting  at by grabing that point from camera ray with the ray length
-            lookAtPoint = new Vector3(intersectPoint.x, playerTransform.position.y, intersectPoint.z); //set the looking point to be the x and z of the intersecting point and the y of the player point
+			lookAtPoint = new Vector3(intersectPoint.x, playerTransform.position.y, intersectPoint.z); //set the looking point to be the x and z of the intersecting point and the y of the player point
 
             Debug.DrawLine(cameraRay.origin, lookAtPoint, Color.blue); //test the point with a draw line from origin (camera) of cameraRay to look point with the color blue
 
             //transform.LookAt(lookAtPoint); //call look at and look at the look at point
             //playerObject.GetComponent<Transform>().LookAt(lookAtPoint);
+			Debug.Log(lookAtPoint);
             playerTransform.LookAt(lookAtPoint);
         }
 
