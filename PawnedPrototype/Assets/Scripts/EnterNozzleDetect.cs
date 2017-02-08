@@ -64,7 +64,7 @@ public class EnterNozzleDetect : MonoBehaviour
                 Destroy(child.gameObject); //destroy the child
             }
 			allowToEject = false;
-            Invoke("ResetToVacuum", 5); //set a delay to reseting the gun back to vacuum
+            Invoke("ResetToVacuum", 3); //set a delay to reseting the gun back to vacuum
             //SET TIMER TO SWITCH BACK TO VACUUM
         } else if (Input.GetMouseButtonDown(0) && stateOfGun == GunState.GUN) //if left click and the gun is in gun mode
         {
@@ -161,7 +161,7 @@ public class EnterNozzleDetect : MonoBehaviour
 
             warpZone.GetComponent<ObjectDetect>().ResetMultiplier(); //reset the gravity multiplier of the gun
 
-			Invoke("VacuumToEjectCooldown", 3);
+			Invoke("VacuumToEjectCooldown", 2);
 
             stateOfGun = GunState.GUN; //set the gun to gun mode
 

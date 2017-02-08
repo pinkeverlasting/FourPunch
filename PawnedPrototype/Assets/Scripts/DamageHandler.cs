@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DamageHandler : MonoBehaviour {
 	//public CharacterController controller;
-	private MuantStalker look;
+	private MutantStalker look;
     int enemyHealth;
 
 	// Use this for initialization
 	void Start () {
         enemyHealth = 100;
-		look = gameObject.GetComponent<MuantStalker>();
+		look = gameObject.GetComponent<MutantStalker>();
 		//controller = GetComponent<CharacterController> ();
 
 	}
@@ -30,7 +30,7 @@ public class DamageHandler : MonoBehaviour {
 		if (col.gameObject.tag == "Bullet") {
 			Debug.Log ("HIT");
 		}
-        if (col.gameObject.GetComponent<BulletDeletion>() != null)
+        if (col.gameObject.GetComponent<BulletDeletion>() != null && enemyHealth > 0)
         {
             //Debug.Log("This is a bullet");
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED)

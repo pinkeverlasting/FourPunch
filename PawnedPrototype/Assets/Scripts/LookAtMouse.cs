@@ -15,6 +15,9 @@ public class LookAtMouse : MonoBehaviour {
 
     private GameObject fakePlane;
 
+    private Transform currentLookAtPoint;
+    [SerializeField] private float lerpSpeed;
+
     private bool checkControlOnce;
 
     // Use this for initialization
@@ -33,6 +36,9 @@ public class LookAtMouse : MonoBehaviour {
         playerTransform = playerObject.GetComponent<Transform>();
 
         fakePlane = GameObject.Find("FakeFloor");
+
+        currentLookAtPoint = GameObject.Find("CurrentLookAt").GetComponent<Transform>();
+        currentLookAtPoint.position = new Vector3(currentLookAtPoint.transform.position.x, playerTransform.position.y, currentLookAtPoint.transform.position.z);
 
         
     }
@@ -63,8 +69,13 @@ public class LookAtMouse : MonoBehaviour {
 
             //transform.LookAt(lookAtPoint); //call look at and look at the look at point
             //playerObject.GetComponent<Transform>().LookAt(lookAtPoint);
-			Debug.Log(lookAtPoint);
-            playerTransform.LookAt(lookAtPoint);
+            //Debug.Log(lookAtPoint);
+
+            // followingCamera.transform.position = Vector3.Lerp(followingCamera.transform.position, transform.position, Time.deltaTime * moveSpeed);
+            currentLookAtPoint.position = Vector3.Lerp(currentLookAtPoint.transform.position, lookAtPoint, Time.deltaTime * lerpSpeed);
+
+            // playerTransform.LookAt(lookAtPoint);
+            playerTransform.LookAt(currentLookAtPoint.position);
         }
 
     }

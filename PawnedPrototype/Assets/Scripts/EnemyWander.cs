@@ -15,19 +15,23 @@ public class EnemyWander : MonoBehaviour {
 	public Vector3 wayPoint = Vector3.zero; 
 	public Vector3 target; 
 	public Vector3 moveDirection;
-	private Vector3 currentWaypoint; 
+    //private Vector3 currentWaypoint; 
+    private int range = 15;
+
 	private float moveTime = 0.0f; 
 	public bool move; 
 
 	// Use this for initialization
 	void Start () {
 		move = true;
-		getwayPoint (); 
+       // wayPoint = new Vector3(Random.Range(transform.position.x - range, transform.position.x + range),
+          //  1, Random.Range(transform.position.z - range, transform.position.z + range));
+          getwayPoint (); 
 
-	}
+    }
 
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update () {
 
 		if (move) {
 
@@ -49,22 +53,42 @@ public class EnemyWander : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter (Collision col)
-	{  
-		if (col.gameObject.tag == "Mutant" || col.gameObject.tag == "Player" ) {
-			getwayPoint ();
+	{
+        //Debug.Log(col.gameObject.tag == "Mutant");
+		if (col.gameObject.tag == "Mutant" || col.gameObject.tag == "Player" || col.gameObject.tag == "test" ) {
+           
+            //getwayPoint ();
+            //Destroy(this.gameObject);
 		}
+       // Debug.Log(col.gameObject);
+        //Destroy(this.gameObject);
 
-	}
+    }
 
-	/*void OnControllerColliderHit(ControllerColliderHit hit) {
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Mutant" || other.gameObject.tag == "test")
+        {
+           // Debug.Log("collision!");
+            getwayPoint();
+        }
+    }
+
+    /*void OnControllerColliderHit(ControllerColliderHit hit) {
 		if (hit.gameObject.tag == "Player" || hit.gameObject.tag == "Mutant" ) {
 			getwayPoint ();
 		}
 	}*/
 
-	void getwayPoint() {
-		currentWaypoint = transform.position; 
-		wayPoint= Random.insideUnitSphere * 10f;
+    void getwayPoint() {
+        //currentWaypoint = transform.position; 
+        //wayPoint = Vector3(Random.Range(transform.position.x - Range, transform.position.x + Range), 1, Random.Range(transform.position.z - Range, transform.position.z + Range));
+
+       // wayPoint = Random.insideUnitSphere * 20f;
+
+        wayPoint = new Vector3(Random.Range(transform.position.x - range, transform.position.x + range),
+            1, Random.Range(transform.position.z - range, transform.position.z + range));
+
 	}
 
 }
