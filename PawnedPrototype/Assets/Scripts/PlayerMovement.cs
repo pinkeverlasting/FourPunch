@@ -6,6 +6,9 @@ public class PlayerMovement : MonoBehaviour {
     //REQUIERMENTS: RIGIDBODY 3D
 
     public float moveSpeed; //how fast you move
+    private float normalWalkingSpeed;
+    private float vacuumWalkingSpeed;
+
     private Rigidbody playerRigidbody; //rigidbody of player
 
     private Vector3 moveInput; //to store the change of movement based on input
@@ -33,6 +36,8 @@ public class PlayerMovement : MonoBehaviour {
         //mainCamera = FindObjectOfType<Camera>(); //Find camera object and set main camera as it
        followingCamera = GameObject.Find("AngledCamera"); //Find camera object and set main camera as it
        originalGravity = gravity;
+        normalWalkingSpeed = moveSpeed;
+        vacuumWalkingSpeed = normalWalkingSpeed / 2;
        // canMove = false;
 
 
@@ -103,5 +108,24 @@ public class PlayerMovement : MonoBehaviour {
         gravity = originalGravity;
     }
 
- 
+    public void SetToWalkingSpeed()
+    {
+        moveSpeed = normalWalkingSpeed;
+    }
+   public void SetToSuckingSpeed()
+    {
+        moveSpeed = vacuumWalkingSpeed;
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Mutant" && col.gameObject.GetComponent<EnemyWander>() != null)
+        {
+            // Debug.Log("Mutant!");
+            col.gameObject.GetComponent<EnemyWander>().SendMessage("getwayPoint");
+        }
+    }
+
+
+
 }

@@ -33,6 +33,7 @@ public class DamageHandler : MonoBehaviour {
         if (col.gameObject.GetComponent<BulletDeletion>() != null && enemyHealth > 0)
         {
             //Debug.Log("This is a bullet");
+            //MORE AMMO TYPES AND CAT DAMAGE
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED)
             {
                 Debug.Log("This is a RED");
@@ -43,7 +44,7 @@ public class DamageHandler : MonoBehaviour {
             {
                 Debug.Log("This is a BLUE");
                 Destroy(col.gameObject);
-                enemyHealth -= 25;
+                enemyHealth -= 34;
             }
         }
     }

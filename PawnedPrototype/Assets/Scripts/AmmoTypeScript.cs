@@ -7,7 +7,9 @@ public class AmmoTypeScript : MonoBehaviour {
     public enum AmmoType //enumirator for storing ammo types
     {
         RED,
-        BLUE
+        BLUE,
+        YELLOW,
+        WHITE
     };
 
     public AmmoType catType; //stores cat ammo types

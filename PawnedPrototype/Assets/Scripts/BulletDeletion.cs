@@ -9,7 +9,9 @@ public class BulletDeletion : MonoBehaviour {
     public enum AmmoType //enumirator for storing ammo types
     {
         RED,
-        BLUE
+        BLUE,
+        YELLOW,
+        WHITE
     };
 
     public AmmoType catType; //stores cat ammo types
@@ -29,4 +31,13 @@ public class BulletDeletion : MonoBehaviour {
 		Debug.Log ("Bullet destroyed");
 		Destroy (this.gameObject); 
 	}
+
+    private void OnCollisionEnter(Collision col)
+    {
+        if (catType == AmmoType.BLUE && col.gameObject.tag != "Mutant" && col.gameObject.tag != "Player")
+        {
+            //Debug.Log(col.gameObject.tag);
+            Destroy(this.gameObject);
+        }
+    }
 }

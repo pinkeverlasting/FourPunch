@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnterNozzleDetect : MonoBehaviour
 {
     //private GameObject backpackObject;
-    GameObject redAmmo, blueAmmo; //stores prebuilt ammo for reference
-    public GameObject redActual, blueActual, redBullet, blueBullet; //stores the reference to in world ammo and the bullets
+    GameObject redAmmo, blueAmmo, yellowAmmo, whiteAmmo; //stores prebuilt ammo for reference
+    public GameObject redActual, blueActual, yellowActual, whiteActual, redBullet, blueBullet; //stores the reference to in world ammo and the bullets
     
     GameObject pack; //stores where the backpack is
     GameObject currentBullet;
@@ -15,6 +15,7 @@ public class EnterNozzleDetect : MonoBehaviour
     // Use this for initialization
     private GameObject warpZone; //for tracking the warp zone trigger
     private GameObject nozzleObject; //for tracking the nozzle of the gun
+    private GameObject player;
 
     public int blueAmmoCount;
     private int currentBlueAmmoCount;
@@ -41,7 +42,11 @@ public class EnterNozzleDetect : MonoBehaviour
 
         redAmmo = GameObject.Find("RedAmmoCont"); //find the red ammo
         blueAmmo = GameObject.Find("BlueAmmoCont"); //find the blue ammo
+        yellowAmmo = GameObject.Find("YellowAmmoCont");
+        whiteAmmo = GameObject.Find("WhiteAmmoCont");
+
         pack = GameObject.Find("Backpack"); //find the backpack
+        player = GameObject.Find("Player");
         stateOfGun = GunState.VACUUM;
 
 		allowToEject = false;
@@ -68,7 +73,7 @@ public class EnterNozzleDetect : MonoBehaviour
             //SET TIMER TO SWITCH BACK TO VACUUM
         } else if (Input.GetMouseButtonDown(0) && stateOfGun == GunState.GUN) //if left click and the gun is in gun mode
         {
-            
+            //ADD MORE AMMO TYPES
             if (currentAmmoType == "BLUE")
             {
                 if(currentBlueAmmoCount > 0)
@@ -87,22 +92,39 @@ public class EnterNozzleDetect : MonoBehaviour
             {
                 LaunchAmmo(fireSpeed * 1.5f);
             }
+            else if (currentAmmoType == "YELLOW")
+            {
+                LaunchAmmo(0);
+            }
             //Debug.Log(currentAmmoType);
         }
     }
 
     private void EjectAmmo(int type) //for ejecting specific ammo types DETECTS AMMO TYPES
     {
+        //ADD MORE AMMO TYPES
         if (type == 0) //ammo is RED
         {
             Debug.Log("Ejecting RED ammo");
             GameObject tempAmmoObject = Instantiate(redActual, nozzleObject.transform.position, nozzleObject.transform.rotation); //set temp ammo as the instantiated ammo
             tempAmmoObject.GetComponent<Rigidbody>().AddForce(tempAmmoObject.transform.forward * ejectSpeed); //add the ejection force to it
         }
-        else if(type == 1) //ammo is blue
+        else if(type == 1) //ammo is BLUE
         {
             Debug.Log("Detected BLUE ammo");
             GameObject tempAmmoObject = Instantiate(blueActual, nozzleObject.transform.position, nozzleObject.transform.rotation); //set temp ammo as the instantiated ammo
+            tempAmmoObject.GetComponent<Rigidbody>().AddForce(tempAmmoObject.transform.forward * ejectSpeed); //add the ejection force to it
+        }
+        else if (type == 2) //ammo is YELLOW
+        {
+            Debug.Log("Detected YELLOW ammo");
+            GameObject tempAmmoObject = Instantiate(yellowActual, nozzleObject.transform.position, nozzleObject.transform.rotation); //set temp ammo as the instantiated ammo
+            tempAmmoObject.GetComponent<Rigidbody>().AddForce(tempAmmoObject.transform.forward * ejectSpeed); //add the ejection force to it
+        }
+        else if (type == 3) //ammo is WHITE
+        {
+            Debug.Log("Detected WHITE ammo");
+            GameObject tempAmmoObject = Instantiate(whiteActual, nozzleObject.transform.position, nozzleObject.transform.rotation); //set temp ammo as the instantiated ammo
             tempAmmoObject.GetComponent<Rigidbody>().AddForce(tempAmmoObject.transform.forward * ejectSpeed); //add the ejection force to it
         }
     }
@@ -156,6 +178,30 @@ public class EnterNozzleDetect : MonoBehaviour
                 currentBullet = blueBullet; //set current bullet type to blue bullet
                 currentBlueAmmoCount = blueAmmoCount;
             }
+            else if (other.gameObject.GetComponent<AmmoTypeScript>().catType == AmmoTypeScript.AmmoType.YELLOW) //if it's blue ammo
+            {
+                foreach (Transform child in pack.transform) //delete all children in backpack
+                {
+                    GameObject.Destroy(child.gameObject);
+                }
+                //Debug.Log("Ammo is RED");
+                currentAmmoType = AmmoTypeScript.AmmoType.YELLOW.ToString(); //track current ammo as blue
+                Instantiate(yellowAmmo, pack.transform.position, pack.transform.rotation, pack.transform); //make new ammo object in backpack
+                currentBullet = redBullet; //set current bullet type to blue bullet
+               
+            }
+            else if (other.gameObject.GetComponent<AmmoTypeScript>().catType == AmmoTypeScript.AmmoType.WHITE) //if it's blue ammo
+            {
+                foreach (Transform child in pack.transform) //delete all children in backpack
+                {
+                    GameObject.Destroy(child.gameObject);
+                }
+                //Debug.Log("Ammo is RED");
+                currentAmmoType = AmmoTypeScript.AmmoType.WHITE.ToString(); //track current ammo as blue
+                Instantiate(whiteAmmo, pack.transform.position, pack.transform.rotation, pack.transform); //make new ammo object in backpack
+                currentBullet = null; //set current bullet type to blue bullet
+
+            }
 
             Destroy(other.gameObject); //destroy the collided object
 
@@ -164,6 +210,8 @@ public class EnterNozzleDetect : MonoBehaviour
 			Invoke("VacuumToEjectCooldown", 2);
 
             stateOfGun = GunState.GUN; //set the gun to gun mode
+
+            player.GetComponent<PlayerMovement>().SetToWalkingSpeed();
 
             Debug.Log("CurrentAmmo: " + currentAmmoType); //log the current ammo type
            

@@ -7,12 +7,15 @@ public class ObjectDetect : MonoBehaviour {
     private GameObject nozzle; //the nozzle on the gun
     private Vector3 nozzlePosition; //the position of the nozzle
 
+    private GameObject player;
+
     public float multipplier; //used to store the multiplier for the warp gravity
     public float originalMultiplier; //used to store the original multiplier value
 
 	// Use this for initialization
 	void Start () {
         nozzle = GameObject.Find("NozzleTrigger"); //find the nozzle object
+        player = GameObject.Find("Player");
         originalMultiplier = multipplier; //set original multiplier as the chosen multiplier value
         //nozzlePosition = nozzle.GetComponent<Transform>().position;
 	}
@@ -20,6 +23,11 @@ public class ObjectDetect : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         nozzlePosition = nozzle.GetComponent<Transform>().position; //set nozzle position as the referenced object position
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            player.GetComponent<PlayerMovement>().SetToWalkingSpeed();
+        }
        
     }
 
@@ -70,6 +78,9 @@ public class ObjectDetect : MonoBehaviour {
 
 
                 other.GetComponent<Rigidbody>().AddForce((nozzlePosition - other.transform.position) * multipplier); //add the vacuum force to the object
+                player.GetComponent<PlayerMovement>().SetToSuckingSpeed();
+
+
 
             }
         }
@@ -88,6 +99,7 @@ public class ObjectDetect : MonoBehaviour {
                 }
                 ResetMultiplier(); //reset the gravity multiplier
             }
+            
         }
 
         
