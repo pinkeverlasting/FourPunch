@@ -54,5 +54,12 @@ public class OneHit : MonoBehaviour {
             this.GetComponent<Rigidbody>().AddForce(Vector3.forward*20);
             //GetComponent<Rigidbody>().isKinematic = false;
         }
-	}
+        if (col.gameObject.tag == "Bullet" && wander.move == false)
+        {
+            if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.BLUE)
+            {
+                Destroy(col.gameObject);
+            }
+        }
+    }
 }

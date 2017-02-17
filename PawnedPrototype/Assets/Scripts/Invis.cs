@@ -19,7 +19,7 @@ public class Invis : MonoBehaviour {
 
 		if ( color.a <= 1.0f && invisObject == false) {
 			color = rend.material.color;
-			color.a += 0.1f;
+			color.a += 0.3f;
 			rend.material.SetColor("_Color", color);
 		}
 		
@@ -27,6 +27,7 @@ public class Invis : MonoBehaviour {
 
 	void OnTriggerStay(Collider other) {
 		if (other.gameObject.tag == "Player") {
+           // Debug.Log("INSIDE");
 			invisObject = true;
 			color = rend.material.color;
 			color.a -= 0.1f;

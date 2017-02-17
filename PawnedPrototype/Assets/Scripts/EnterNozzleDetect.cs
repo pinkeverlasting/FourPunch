@@ -14,6 +14,7 @@ public class EnterNozzleDetect : MonoBehaviour
     string currentAmmoType; //for tracking current ammo type in the gun
     // Use this for initialization
     private GameObject warpZone; //for tracking the warp zone trigger
+    private GameObject warpTexture;
     private GameObject nozzleObject; //for tracking the nozzle of the gun
     private GameObject player;
 
@@ -39,6 +40,7 @@ public class EnterNozzleDetect : MonoBehaviour
         //backpackObject = GameObject.Find("Backpack");
         warpZone = GameObject.Find("WarpTrigger"); //find the warp trigger
         nozzleObject = GameObject.Find("NozzleTrigger");
+        warpTexture = GameObject.Find("SuckingEffect");
 
         redAmmo = GameObject.Find("RedAmmoCont"); //find the red ammo
         blueAmmo = GameObject.Find("BlueAmmoCont"); //find the blue ammo
@@ -202,6 +204,8 @@ public class EnterNozzleDetect : MonoBehaviour
                 currentBullet = null; //set current bullet type to blue bullet
 
             }
+
+            warpTexture.GetComponent<suckingDisplay>().SendMessage("DisableVortex");
 
             Destroy(other.gameObject); //destroy the collided object
 

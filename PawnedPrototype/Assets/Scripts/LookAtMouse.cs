@@ -20,6 +20,8 @@ public class LookAtMouse : MonoBehaviour {
 
     private bool checkControlOnce;
 
+    //public GameObject playerContainer;
+
     // Use this for initialization
     private void Awake()
     {
@@ -51,10 +53,27 @@ public class LookAtMouse : MonoBehaviour {
             checkControlOnce = false;
             //Debug.Log("can Move");
         }
+        RaycastHit groundRayHit; //for storing the ray data of where it hit the ground
+        //float groundRayHit;
+        Vector3 groundRay = playerTransform.TransformDirection(Vector3.down); //the ray itself that goes from the players position down
+
+       /* if (Physics.Raycast(playerTransform.position, groundRay, out groundRayHit)) //if the raycast from the players position, using the ground ray, hits anything, output the results to ground ray hit
+        {
+
+           // float distance = groundRayHit.distance; //set the distance from player to ground to be the rayHit distance
+           // Debug.Log(distance); //show the distance
+            //playerTransform.rotation = Quaternion.FromToRotation(Vector3.up, groundRayHit.normal);
+            //playerTransform.up = groundRayHit.normal;
+            //playerContainer.transform.up = groundRayHit.normal;
+            //playerContainer.transform.rotation = Quaternion.FromToRotation(Vector3.up, groundRayHit.normal);
+
+        }*/
+        Physics.Raycast(playerTransform.position, groundRay, out groundRayHit); //the raycast from the players position, using the ground ray, hits anything, output the results to ground ray hit
 
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition); //create a ray from the camera to the mouse
         //Plane groundPlane = new Plane(Vector3.up, Vector3.zero); //create a test plane facing up and on world origin
-        Plane groundPlane = new Plane(Vector3.up, fakePlane.transform.position); //create a test plane facing up and on world origin
+       //Plane groundPlane = new Plane(Vector3.up, fakePlane.transform.position); //create a test plane facing up and on world origin
+       Plane groundPlane = new Plane(groundRayHit.normal, fakePlane.transform.position); //create a test plane facing to the normal and on the players fake ground origin. GROUND PLANE IS ZEROED TO THE ORIGIN OF THE PLAYER AND IT BENDS DEPENDING ON THE NORMAL OF THE GROUND
         float rayLength; //for storing the length of the ray
 
 
@@ -63,8 +82,8 @@ public class LookAtMouse : MonoBehaviour {
         if (groundPlane.Raycast(cameraRay, out rayLength)) //if the camera ray intersects with the fictional ground plane, do if statement and save the length to ray length
         {
             Vector3 intersectPoint = cameraRay.GetPoint(rayLength); //find the point intersecting  at by grabing that point from camera ray with the ray length
-			lookAtPoint = new Vector3(intersectPoint.x, playerTransform.position.y, intersectPoint.z); //set the looking point to be the x and z of the intersecting point and the y of the player point
-
+			//lookAtPoint = new Vector3(intersectPoint.x, playerTransform.position.y, intersectPoint.z); //set the looking point to be the x and z of the intersecting point and the y of the player point
+            lookAtPoint = new Vector3(intersectPoint.x, intersectPoint.y, intersectPoint.z); //the look at point is a new vector using the intersecting points found from the ray hit. POSITION Y DOESNT MATTER AS IT IS ALWAYS ZEROED ON THE PLAYERS POSITION
             Debug.DrawLine(cameraRay.origin, lookAtPoint, Color.blue); //test the point with a draw line from origin (camera) of cameraRay to look point with the color blue
 
             //transform.LookAt(lookAtPoint); //call look at and look at the look at point
@@ -72,11 +91,32 @@ public class LookAtMouse : MonoBehaviour {
             //Debug.Log(lookAtPoint);
 
             // followingCamera.transform.position = Vector3.Lerp(followingCamera.transform.position, transform.position, Time.deltaTime * moveSpeed);
-            currentLookAtPoint.position = Vector3.Lerp(currentLookAtPoint.transform.position, lookAtPoint, Time.deltaTime * lerpSpeed);
+            currentLookAtPoint.position = Vector3.Lerp(currentLookAtPoint.transform.position, lookAtPoint, Time.deltaTime * lerpSpeed); //the current look at point is a lerp if its current look at and the new look at point with a smooth of lerp speed over time
 
             // playerTransform.LookAt(lookAtPoint);
-            playerTransform.LookAt(currentLookAtPoint.position);
+           
         }
+        //Quaternion rot = Quaternion.FromToRotation(Vector3.up, groundRayHit.normal);
+        // rot = rot * Quaternion.FromToRotation(Vector3.forward, lookAtPoint);
+
+        /*lookAtPoint.y = 0;
+        Quaternion rot = Quaternion.FromToRotation(Vector3.up, groundRayHit.normal);
+        rot = rot * Quaternion.FromToRotation(Vector3.forward, lookAtPoint);
+        //Quaternion rot = Quaternion.FromToRotation(playerTransform.forward, lookAtPoint);
+        Debug.Log(rot);
+        //Quaternion newRot = Quaternion.Slerp(playerTransform.rotation, rot, Time.deltaTime * lerpSpeed);
+
+        playerTransform.rotation = rot;*/
+
+       
+       
+
+
+       // playerTransform.up = groundRayHit.normal;
+        // playerTransform.forward = currentLookAtPoint.position;
+       //playerTransform.LookAt(currentLookAtPoint.position); //set the player to look at the current look at position. ADD NORMAL HERE
+
+       playerTransform.LookAt(currentLookAtPoint.position, groundRayHit.normal); //set the player to look at the current look at position. ADD NORMAL HERE. THE FAKE GROUND PLANE NORMAL ALWAYS FOLLOW THE EYE LEVEL AND SO THE LOOK AT ALWAYS STAYS ALIGNED TO THE NORMAL THE MODEL SHOULD FOLLOW
 
     }
     void FixedUpdate()

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/DetectChristy.unity
+- path: Assets/Scenes/DetectionProt.unity
   isLoaded: 1
   isActive: 1

@@ -42,9 +42,9 @@ public class EnemyWander : MonoBehaviour {
 				moveDirection = Vector3.zero;
 				getwayPoint ();
 			} else {
-				//moveTime = Time.deltaTime * Speed;
-				transform.position = Vector3.MoveTowards (transform.position, target, 4.0f * Time.deltaTime);
-				transform.LookAt (target);
+                //moveTime = Time.deltaTime * Speed;
+                transform.position = Vector3.MoveTowards(transform.position, target, 4.0f * Time.deltaTime);
+                transform.LookAt (target);
 				//transform.position = Vector3.Lerp(currentWaypoint, target, fraction);
 				
 			}

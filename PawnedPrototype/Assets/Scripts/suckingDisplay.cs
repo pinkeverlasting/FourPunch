@@ -19,12 +19,21 @@ public class suckingDisplay : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (1)) {
 			print ("Pressed");
-			rend.enabled = true;
+			//rend.enabled = true;
 		} else if (Input.GetMouseButtonUp (1)) {
 			print ("Released");
-			rend.enabled = false;
+			//rend.enabled = false;
 		}
 
 	}
+    void ShowVortex()
+    {
+        rend.enabled = true;
+    }
+
+    void DisableVortex()
+    {
+       rend.enabled = false;
+    }
 		
 }

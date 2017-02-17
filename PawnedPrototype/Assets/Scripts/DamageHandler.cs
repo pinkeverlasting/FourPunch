@@ -47,5 +47,13 @@ public class DamageHandler : MonoBehaviour {
                 enemyHealth -= 34;
             }
         }
+        if (col.gameObject.tag == "Bullet" && enemyHealth <= 0)
+        {
+            if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.BLUE)
+            {
+                Destroy(col.gameObject);
+            }
+                
+        }
     }
 }
