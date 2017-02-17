@@ -11,8 +11,8 @@ public class ObjectDetect : MonoBehaviour {
 
     public float multipplier; //used to store the multiplier for the warp gravity
     public float originalMultiplier; //used to store the original multiplier value
-	public Color color;
-	public Renderer rend;
+	//public Color color;
+	//public Renderer rend;
 
 
 	// Use this for initialization
@@ -20,10 +20,10 @@ public class ObjectDetect : MonoBehaviour {
         nozzle = GameObject.Find("NozzleTrigger"); //find the nozzle object
         player = GameObject.Find("Player");
         originalMultiplier = multipplier; //set original multiplier as the chosen multiplier value
-		rend = GetComponent<Renderer>();
-		rend.enabled = false;
-		color = GetComponent<Renderer>().material.color;
-		color.a = 0;
+		//rend = GetComponent<Renderer>();
+		//rend.enabled = false;
+		//color = GetComponent<Renderer>().material.color;
+		//color.a = 0;
         //nozzlePosition = nozzle.GetComponent<Transform>().position;
 	}
 	
@@ -59,9 +59,9 @@ public class ObjectDetect : MonoBehaviour {
     private void OnTriggerStay(Collider other)
     {
 		if (Input.GetMouseButton (1) && nozzle.GetComponent<EnterNozzleDetect> ().stateOfGun == EnterNozzleDetect.GunState.VACUUM) { //if right click is down and the gun is in vacuum mode
-			rend.enabled = true;
-			color.a += 0.1f;
-			GetComponent<Renderer> ().material.SetColor ("_Color", color);
+			//rend.enabled = true;
+			//color.a += 0.1f;
+			//GetComponent<Renderer> ().material.SetColor ("_Color", color);
 
 			//Debug.Log("True");
 			if (other.gameObject.tag == "Ammo") { //if an ammo or cat enters the trigger ONLY DETECTS AMMO, NO TYPES
@@ -103,8 +103,8 @@ public class ObjectDetect : MonoBehaviour {
 			}
             
 		} else {
-			color.a -= 0.1f;
-			GetComponent<Renderer>().material.SetColor("_Color", color);
+			//color.a -= 0.1f;
+			//GetComponent<Renderer>().material.SetColor("_Color", color);
 			//rend.enabled = false;
 		}
 
