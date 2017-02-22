@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OneHit : MonoBehaviour {
-	private EnemyWander wander;
+	private EnemyStatePattern wander;
 
     private float force;
 	// Use this for initialization
 	void Start () {
-		wander = gameObject.GetComponent<EnemyWander>();
+		wander = gameObject.GetComponent<EnemyStatePattern>();
+		//enemywander
         force = 1000;
 	}
 	
@@ -29,7 +30,9 @@ public class OneHit : MonoBehaviour {
     {
         if (other.gameObject.tag == "Bullet" && wander.move == true)
         {
+			
             GetComponent<Rigidbody>().isKinematic = true;
+			this.GetComponent<EnemyStatePattern>().enabled = false;
         }
     }
 

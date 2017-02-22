@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DamageHandler : MonoBehaviour {
 	//public CharacterController controller;
-	private MutantStalker look;
+	private EnemyStatePattern look;
     int enemyHealth;
 
 	// Use this for initialization
 	void Start () {
         enemyHealth = 100;
-		look = gameObject.GetComponent<MutantStalker>();
+		look = gameObject.GetComponent<EnemyStatePattern>();
 		//controller = GetComponent<CharacterController> ();
 
 	}
