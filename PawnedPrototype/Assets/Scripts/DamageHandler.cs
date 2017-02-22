@@ -20,6 +20,7 @@ public class DamageHandler : MonoBehaviour {
 		if (enemyHealth <= 0)
         {	
 			look.alive = false; 
+			look.move = false;
             this.GetComponent<Rigidbody>().isKinematic = false;
         }
 	}

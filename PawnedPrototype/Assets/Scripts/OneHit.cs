@@ -20,19 +20,20 @@ public class OneHit : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bullet" && wander.move == true)
+        if (other.gameObject.tag == "Bullet" && wander.alive == true)
         {
+			this.GetComponent<EnemyStatePattern>().enabled = false;
+			wander.move = false;
+			wander.alive = false;
             GetComponent<Rigidbody>().isKinematic = false;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Bullet" && wander.move == true)
+        if (other.gameObject.tag == "Bullet" && wander.alive == true)
         {
-			
             GetComponent<Rigidbody>().isKinematic = true;
-			this.GetComponent<EnemyStatePattern>().enabled = false;
         }
     }
 
