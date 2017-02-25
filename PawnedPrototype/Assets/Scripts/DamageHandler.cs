@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DamageHandler : MonoBehaviour {
 	//public CharacterController controller;
-	private EnemyStatePattern look;
+	private MutantStalker look;
     int enemyHealth;
 
 	// Use this for initialization
 	void Start () {
         enemyHealth = 100;
-		look = gameObject.GetComponent<EnemyStatePattern>();
+		look = gameObject.GetComponent<MutantStalker>();
 		//controller = GetComponent<CharacterController> ();
 
 	}
@@ -20,7 +20,6 @@ public class DamageHandler : MonoBehaviour {
 		if (enemyHealth <= 0)
         {	
 			look.alive = false; 
-			look.move = false;
             this.GetComponent<Rigidbody>().isKinematic = false;
         }
 	}

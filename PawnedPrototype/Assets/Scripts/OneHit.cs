@@ -3,35 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OneHit : MonoBehaviour {
-	private EnemyStatePattern wander;
+	private EnemyWander wander;
 
     private float force;
 	// Use this for initialization
 	void Start () {
-		wander = gameObject.GetComponent<EnemyStatePattern>();
-		//enemywander
+		wander = gameObject.GetComponent<EnemyWander>();
         force = 1000;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		/*if (wander.move == false)
+        {
+            GetComponent<Rigidbody>().isKinematic = false;
+        }*/
 	}
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Bullet" && wander.alive == true)
+        if (other.gameObject.tag == "Bullet" && wander.move == true)
         {
-			this.GetComponent<EnemyStatePattern>().enabled = false;
-			wander.move = false;
-			wander.alive = false;
             GetComponent<Rigidbody>().isKinematic = false;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Bullet" && wander.alive == true)
+        if (other.gameObject.tag == "Bullet" && wander.move == true)
         {
             GetComponent<Rigidbody>().isKinematic = true;
         }
@@ -60,8 +59,10 @@ public class OneHit : MonoBehaviour {
         }
         if (col.gameObject.tag == "Bullet" && wander.move == false)
         {
+            GetComponent<Rigidbody>().isKinematic = false;
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.BLUE)
             {
+
                 Destroy(col.gameObject);
             }
         }

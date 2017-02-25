@@ -6,7 +6,7 @@ public class EnterNozzleDetect : MonoBehaviour
 {
     //private GameObject backpackObject;
     GameObject redAmmo, blueAmmo, yellowAmmo, whiteAmmo; //stores prebuilt ammo for reference
-    public GameObject redActual, blueActual, yellowActual, whiteActual, redBullet, blueBullet; //stores the reference to in world ammo and the bullets
+    public GameObject redActual, blueActual, yellowActual, whiteActual, redBullet, blueBullet, yellowBullet; //stores the reference to in world ammo and the bullets
     
     GameObject pack; //stores where the backpack is
     GameObject currentBullet;
@@ -23,6 +23,7 @@ public class EnterNozzleDetect : MonoBehaviour
 
     [SerializeField] private int ejectSpeed; //for storing the speed with which you eject the ammo
     [SerializeField] private int fireSpeed; //for storing the speed with which you fire the bullet
+    [SerializeField] private float strayFactor;
 
 	bool allowToEject;
 
@@ -90,15 +91,19 @@ public class EnterNozzleDetect : MonoBehaviour
                
                
             }
-            else if(currentAmmoType == "RED")
+           /* else if(currentAmmoType == "RED")
             {
                 LaunchAmmo(fireSpeed * 1.5f);
-            }
+            }*/
             else if (currentAmmoType == "YELLOW")
             {
                 LaunchAmmo(0);
             }
             //Debug.Log(currentAmmoType);
+        }
+        if(Input.GetMouseButton(0) && stateOfGun == GunState.GUN && currentAmmoType == "RED")
+        {
+            LaunchAmmo(fireSpeed * 1.5f);
         }
     }
 
@@ -144,8 +149,23 @@ public class EnterNozzleDetect : MonoBehaviour
 
     private void LaunchAmmo(float fSpeed)
     {
-        GameObject tempAmmoObject = Instantiate(currentBullet, nozzleObject.transform.position, nozzleObject.transform.rotation); //set temporary bullet as the instantiated bullet
-        tempAmmoObject.GetComponent<Rigidbody>().AddForce(tempAmmoObject.transform.forward * fSpeed); //add the fire force to bullet
+        if(currentAmmoType == "RED")
+        {
+            float randomNumberX = Random.Range(-strayFactor, strayFactor);
+            float randomNumberY = Random.Range(-strayFactor, strayFactor);
+
+            GameObject tempAmmoObject = Instantiate(currentBullet, nozzleObject.transform.position, nozzleObject.transform.rotation); //set temporary bullet as the instantiated bullet
+            tempAmmoObject.transform.Rotate(randomNumberX,randomNumberY,0);
+            tempAmmoObject.GetComponent<Rigidbody>().AddForce(tempAmmoObject.transform.forward * fSpeed); //add the fire force to bullet
+            //Debug.Log("SHOOTING RED AMMO");
+
+        }
+        else
+        {
+            GameObject tempAmmoObject = Instantiate(currentBullet, nozzleObject.transform.position, nozzleObject.transform.rotation); //set temporary bullet as the instantiated bullet
+            tempAmmoObject.GetComponent<Rigidbody>().AddForce(tempAmmoObject.transform.forward * fSpeed); //add the fire force to bullet
+        }
+        
     }
 
     private void OnTriggerEnter(Collider other) //detect objects that enter warp trigger
@@ -189,7 +209,7 @@ public class EnterNozzleDetect : MonoBehaviour
                 //Debug.Log("Ammo is RED");
                 currentAmmoType = AmmoTypeScript.AmmoType.YELLOW.ToString(); //track current ammo as blue
                 Instantiate(yellowAmmo, pack.transform.position, pack.transform.rotation, pack.transform); //make new ammo object in backpack
-                currentBullet = redBullet; //set current bullet type to blue bullet
+                currentBullet = yellowBullet; //set current bullet type to blue bullet
                
             }
             else if (other.gameObject.GetComponent<AmmoTypeScript>().catType == AmmoTypeScript.AmmoType.WHITE) //if it's blue ammo

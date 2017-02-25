@@ -122,8 +122,7 @@ public class PlayerMovement : MonoBehaviour {
         if (col.gameObject.tag == "Mutant" && col.gameObject.GetComponent<EnemyWander>() != null)
         {
             // Debug.Log("Mutant!");
-			col.gameObject.GetComponent<EnemyStatePattern>().SendMessage("getwayPoint");
-			//mutantStalker
+            col.gameObject.GetComponent<EnemyWander>().SendMessage("getwayPoint");
         }
     }
 

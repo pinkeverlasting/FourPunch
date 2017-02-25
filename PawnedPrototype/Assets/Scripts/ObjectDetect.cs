@@ -129,6 +129,10 @@ public class ObjectDetect : MonoBehaviour {
                 //multipplier = originalMultiplier;
             }
         }
+        if(other.gameObject.tag == "Bullet" && other.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED)
+        {
+            Destroy(other.gameObject);
+        }
     }
 
     public void ResetMultiplier() //for reseting the gravity multiplier of the warp field
