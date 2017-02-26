@@ -21,28 +21,30 @@ public class EnemyStatePattern : MonoBehaviour
 
 	//Enemy Chase Vars
 	public float sightRange = 20f;
-	public Transform eyes;
+	public bool chase;
 	public Vector3 offset = new Vector3 (0,.5f,0);
 	[HideInInspector] public float speedChasing;
 
 
 	//Script & States 
 	[HideInInspector] public EnemyState currentState;
-	[HideInInspector] public EnemyWander wanderingState;
-	[HideInInspector] public MutantStalker stalkingState;
-	[HideInInspector] public MutantChase chaseState;
+	[HideInInspector] public WanderZone wanderingState;
+	[HideInInspector] public StalkerZone stalkingState;
+	[HideInInspector] public ChaseZone chaseState;
 
 
 	private void Awake()
 	{
-		chaseState = new MutantChase (this);
-		wanderingState = new EnemyWander (this);
-		stalkingState = new MutantStalker (this);
+		chaseState = new ChaseZone (this);
+		wanderingState = new WanderZone (this);
+		stalkingState = new StalkerZone (this);
+		character = GameObject.FindWithTag("Player").transform;
 
 		speedWandering = 2.0f * Time.deltaTime;
 		speedChasing = 5.0f * Time.deltaTime;
 		distance = 0;
 		alive = true;
+		chase = false;
 		 
 		//navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 	}
