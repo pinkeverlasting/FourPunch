@@ -65,6 +65,7 @@ public class EnemyStatePattern : MonoBehaviour
 	private void OnTriggerEnter(Collider other)
 	{
 		currentState.OnTriggerEnter (other);
+
 	}
 
 	private void OnTriggerExit(Collider otherExit)

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class OneHit : MonoBehaviour {
-	private EnemyWander wander;
+	private EnemyStatePattern wander;
 
     private float force;
 	// Use this for initialization
 	void Start () {
-		wander = gameObject.GetComponent<EnemyWander>();
+		wander = gameObject.GetComponent<EnemyStatePattern>();
         force = 1000;
 	}
 	
@@ -20,22 +20,24 @@ public class OneHit : MonoBehaviour {
         }*/
 	}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Bullet" && wander.move == true)
-        {
-            GetComponent<Rigidbody>().isKinematic = false;
-        }
-    }
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Bullet" && wander.alive == true)
+		{
+			wander.move = false;
+			wander.alive = false;
+			this.GetComponent<EnemyStatePattern>().enabled = false;
+			GetComponent<Rigidbody>().isKinematic = false;
+		}
+	}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Bullet" && wander.move == true)
-        {
-            GetComponent<Rigidbody>().isKinematic = true;
-        }
-    }
-
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.gameObject.tag == "Bullet" && wander.move == true)
+		{
+			GetComponent<Rigidbody>().isKinematic = true;
+		}
+	}
     private void OnCollisionEnter (Collision col)
 	{ 
 

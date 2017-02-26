@@ -25,6 +25,10 @@ public class WanderZone : EnemyState {
 				ChaseState ();  //Enter to Zone One which is Chasing Zone\
 		}
 
+		if (other.gameObject.name == "invisWall" || other.gameObject.tag == "Mutant" ) {
+			getwayPoint ();
+		}
+			
 	}
 		
 
