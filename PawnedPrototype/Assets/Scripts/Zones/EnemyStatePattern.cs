@@ -11,8 +11,15 @@ public class EnemyStatePattern : MonoBehaviour
 	[HideInInspector] public Vector3 target; 
 	[HideInInspector] public float speedWandering; 
 	[HideInInspector] public float distance; 
+	public Vector3 myLastPosition; 
 	public int range = 15;
 	public bool move = true;
+	public bool seePlayer;
+
+	//New Enemy Wander Vars
+	public Vector3 direction;
+	public Vector3 lastPosition;
+	public bool hitWall; 
 
 	//Enemy Stalker Vars
 	public Transform character;  //put character gameobject here
@@ -20,8 +27,9 @@ public class EnemyStatePattern : MonoBehaviour
 	public bool alive; 
 
 	//Enemy Chase Vars
-	public float sightRange = 20f;
 	public bool chase;
+	public bool currentlyChasing;
+	public GameObject players;
 	public Vector3 offset = new Vector3 (0,.5f,0);
 	[HideInInspector] public float speedChasing;
 
@@ -38,15 +46,17 @@ public class EnemyStatePattern : MonoBehaviour
 		chaseState = new ChaseZone (this);
 		wanderingState = new WanderZone (this);
 		stalkingState = new StalkerZone (this);
-		character = GameObject.FindWithTag("Player").transform;
+		character = players.transform;
 
 		speedWandering = 2.0f * Time.deltaTime;
 		speedChasing = 5.0f * Time.deltaTime;
+		myLastPosition = Vector3.zero;
+		currentlyChasing = false;
+		seePlayer = false;
 		distance = 0;
 		alive = true;
 		chase = false;
 		 
-		//navMeshAgent = GetComponent<UnityEngine.AI.NavMeshAgent> ();
 	}
 
 	// Use this for initialization
@@ -58,9 +68,12 @@ public class EnemyStatePattern : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (alive) 
-		currentState.UpdateState ();
+		if (alive) {
+			currentState.UpdateState ();
+		}
 	}
+
+	
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -68,8 +81,10 @@ public class EnemyStatePattern : MonoBehaviour
 
 	}
 
+
 	private void OnTriggerExit(Collider otherExit)
 	{
 		currentState.OnTriggerExit (otherExit);
 	}
+		
 }

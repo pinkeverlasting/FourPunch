@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class DamageHandler : MonoBehaviour {
 	//public CharacterController controller;
-	private MutantStalker look;
+	//private MutantStalker look;
     int enemyHealth;
+	private EnemyStatePattern wander;
 
 	// Use this for initialization
 	void Start () {
         enemyHealth = 100;
-		look = gameObject.GetComponent<MutantStalker>();
+		wander = gameObject.GetComponent<EnemyStatePattern>();
+		//look = gameObject.GetComponent<MutantStalker>();
 		//controller = GetComponent<CharacterController> ();
 
 	}
@@ -19,12 +21,14 @@ public class DamageHandler : MonoBehaviour {
 	void Update () {
 		if (enemyHealth <= 0)
         {	
-			look.alive = false; 
+			//look.alive = false; 
+			wander.GetComponent<Rigidbody> ().freezeRotation = false;
             this.GetComponent<Rigidbody>().isKinematic = false;
+			this.GetComponent<EnemyStatePattern>().enabled = false;
         }
 	}
 
-	private void OnCollisionEnter (Collision col)
+	private void OnTriggerEnter (Collider col)
 	{ 
 
 		if (col.gameObject.tag == "Bullet") {

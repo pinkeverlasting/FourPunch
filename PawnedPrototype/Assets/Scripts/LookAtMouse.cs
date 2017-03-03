@@ -14,6 +14,8 @@ public class LookAtMouse : MonoBehaviour {
     private Transform playerTransform; //to store the transform of the player
 
     private GameObject fakePlane;
+	private RaycastHit oldRayHit;
+	private int layerMask;
 
     private Transform currentLookAtPoint;
     [SerializeField] private float lerpSpeed;
@@ -53,6 +55,9 @@ public class LookAtMouse : MonoBehaviour {
             checkControlOnce = false;
             //Debug.Log("can Move");
         }
+
+		layerMask = 1 << 8;
+		layerMask = ~layerMask;
         RaycastHit groundRayHit; //for storing the ray data of where it hit the ground
         //float groundRayHit;
         Vector3 groundRay = playerTransform.TransformDirection(Vector3.down); //the ray itself that goes from the players position down
@@ -68,7 +73,20 @@ public class LookAtMouse : MonoBehaviour {
             //playerContainer.transform.rotation = Quaternion.FromToRotation(Vector3.up, groundRayHit.normal);
 
         }*/
-        Physics.Raycast(playerTransform.position, groundRay, out groundRayHit); //the raycast from the players position, using the ground ray, hits anything, output the results to ground ray hit
+		//Debug.DrawRay(playerTransform.position, groundRay, Color.green, 5f);
+		//oldRayHit = groundRayHit;
+		Physics.Raycast(playerTransform.position, groundRay, out groundRayHit, 5f, layerMask); //the raycast from the players position, using the ground ray, hits anything, output the results to ground ray hit
+
+		//if (Physics.Raycast (playerTransform.position, groundRay, out groundRayHit, 5f)) {
+//		Debug.Log (groundRayHit.collider.gameObject);
+		//}
+
+		//if (groundRayHit.collider.tag == "Mutant") {
+			//groundRayHit = oldRayHit;
+		//} else {
+			//oldRayHit = groundRayHit;
+		//}
+
 
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition); //create a ray from the camera to the mouse
         //Plane groundPlane = new Plane(Vector3.up, Vector3.zero); //create a test plane facing up and on world origin

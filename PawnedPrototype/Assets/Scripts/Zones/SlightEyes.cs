@@ -12,10 +12,19 @@ public class SlightEyes : MonoBehaviour {
 
 	}
 
-	void OnTriggerEnter (Collider other) {
+	void OnTriggerStay (Collider other) {
 		if (other.gameObject.tag == "Player") { 
 			enemy.chase = true;
-			Debug.Log (enemy.chase);
+			//Debug.Log (enemy.chase);
+		}
+	}
+
+	void OnTriggerEnter (Collider other) {
+		if (other.gameObject.tag == "test" || other.gameObject.tag == "Wall" ) { 
+			Debug.Log ("I HIT WALL");
+			enemy.currentState.WanderState ();
+			enemy.wanderingState.getwayPoint ();
+			//Debug.Log (enemy.chase);
 		}
 	}
 }

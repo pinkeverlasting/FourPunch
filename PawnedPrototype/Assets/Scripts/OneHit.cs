@@ -26,8 +26,9 @@ public class OneHit : MonoBehaviour {
 		{
 			wander.move = false;
 			wander.alive = false;
+			wander.GetComponent<Rigidbody> ().freezeRotation = false;
 			this.GetComponent<EnemyStatePattern>().enabled = false;
-			GetComponent<Rigidbody>().isKinematic = false;
+			//GetComponent<Rigidbody>().isKinematic = false;
 		}
 	}
 
@@ -35,7 +36,7 @@ public class OneHit : MonoBehaviour {
 	{
 		if (other.gameObject.tag == "Bullet" && wander.move == true)
 		{
-			GetComponent<Rigidbody>().isKinematic = true;
+			//GetComponent<Rigidbody>().isKinematic = true;
 		}
 	}
     private void OnCollisionEnter (Collision col)

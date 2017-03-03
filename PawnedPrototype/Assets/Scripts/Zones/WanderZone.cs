@@ -4,31 +4,31 @@ using System.Collections;
 public class WanderZone : EnemyState {
 
 	private readonly EnemyStatePattern enemy;
+	public float targetTime = 30.0f;
 
 
 	public WanderZone (EnemyStatePattern statePatternEnemy)
 	{
 		enemy = statePatternEnemy;
+		enemy.GetComponent<Rigidbody> ().freezeRotation = true;
+		enemy.hitWall = false;
 	}
 
 	public void UpdateState()
 	{
 
-		if (enemy.alive) 
+		if (enemy.alive) {
 			Wander ();
-	}
-
-
-	public void OnTriggerEnter (Collider other) {
-		if (other.gameObject.tag == "Player") {	
-			if (enemy.alive && enemy.chase)
-				ChaseState ();  //Enter to Zone One which is Chasing Zone\
-		}
-
-		if (other.gameObject.name == "invisWall" || other.gameObject.tag == "Mutant" ) {
-			getwayPoint ();
 		}
 			
+	}
+		
+	public void OnTriggerEnter (Collider other)
+	{
+		if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Mutant") {
+			enemy.wanderingState.getwayPoint ();
+			Debug.Log ("HITWALL");
+		}
 	}
 		
 
@@ -58,20 +58,54 @@ public class WanderZone : EnemyState {
 	{
 		if (enemy.move) {
 
+
 			enemy.target = enemy.wayPoint;
-			enemy.target.y = 1.06f; 
-			enemy.moveDirection = enemy.target - enemy.transform.position;
-			if (enemy.moveDirection.magnitude < 1) {
-				enemy.moveDirection = Vector3.zero;
-				getwayPoint ();
-			} else {
-				//moveTime = Time.deltaTime * Speed;
-				enemy.transform.position = Vector3.MoveTowards (enemy.transform.position, enemy.target, enemy.speedWandering);
+			//enemy.target.y = 0.92f; 
+
+			if (Vector3.Distance (enemy.transform.position, enemy.target) > 2) {
+				targetTime -= Time.deltaTime;
+				Debug.Log ("Timer: " + targetTime);
 				enemy.transform.LookAt (enemy.target);
-				//transform.position = Vector3.Lerp(currentWaypoint, target, fraction);
+				//direction = enemy.target - enemy.transform.position;
+				enemy.direction = enemy.target - enemy.transform.position;
+				enemy.direction = enemy.direction.normalized;
+				enemy.GetComponent<Rigidbody> ().velocity = (enemy.transform.forward * 3f);
+				//enemy.GetComponent<Rigidbody> ().AddForce(direction * 25f);
+				//enemy.GetComponent<Rigidbody> ().AddForce (enemy.transform.forward * 15f, ForceMode.Force);
+			} else {
+				getwayPoint ();
 
 			}
-		}
+
+			if (targetTime <= 0.0f)
+			{
+				getwayPoint ();
+				//time for preventing AI from being Stuck
+				targetTime = 30.0f;
+			}
+		
+		} 
+
+		/*else if (!enemy.move && enemy.hitWall) {
+			//BOUNCE BACK
+			enemy.lastPosition = enemy.transform.position - enemy.GetComponent<Rigidbody> ().velocity; 
+
+			if (Vector3.Distance (enemy.transform.position, enemy.lastPosition) > 5f) {
+				enemy.GetComponent<Rigidbody> ().velocity = -(enemy.transform.forward * 5f);
+			} else {
+				getwayPoint ();
+				enemy.hitWall = false;
+				enemy.move = true;
+
+			}
+			/*enemy.lastPosition = enemy.transform.position - enemy.GetComponent<Rigidbody> ().velocity; 
+			enemy.GetComponent<Rigidbody> ().AddForce(enemy.lastPosition * 5f);
+			if (Vector3.Distance (enemy.transform.position, enemy.lastPosition) > 0.5f) {
+				getwayPoint ();
+				enemy.hitWall = false;
+			}
+
+		}*/
 
 	}
 
@@ -134,6 +168,23 @@ public class WanderZone : EnemyState {
 //				
 //			}
 //		}
+
+//if (enemy.move) {
+//
+//	enemy.target = enemy.wayPoint;
+//	enemy.target.y = 1.06f; 
+//	enemy.moveDirection = enemy.target - enemy.transform.position;
+//	if (enemy.moveDirection.magnitude < 1) {
+//		enemy.moveDirection = Vector3.zero;
+//		getwayPoint ();
+//	} else {
+//		//moveTime = Time.deltaTime * Speed;
+//		enemy.transform.position = Vector3.MoveTowards (enemy.transform.position, enemy.target, enemy.speedWandering);
+//		enemy.transform.LookAt (enemy.target);
+//		//transform.position = Vector3.Lerp(currentWaypoint, target, fraction);
+//
+//	}
+//}
 //			
 //	}
 //

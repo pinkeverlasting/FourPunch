@@ -30,10 +30,10 @@ public class StalkerZone : EnemyState {
 
 	public void OnTriggerEnter (Collider other)
 	{
-		if (other.gameObject.tag == "Player") {
+		/*if (other.gameObject.tag == "Player") {
 			if (enemy.alive)
 				ChaseState ();
-		}
+		}*/
 	}
 
 	public void OnTriggerExit (Collider otherExit) {
@@ -62,11 +62,14 @@ public class StalkerZone : EnemyState {
 	{
 
 		Debug.Log (enemy.alive);
-		if (enemy.alive == true) { 
+		if (enemy.alive == true && enemy.seePlayer) { 
 			enemy.characterPostition = new Vector3 (enemy.character.position.x, 
 				enemy.transform.position.y, 
 				enemy.character.position.z);
 			enemy.transform.LookAt (enemy.characterPostition);
+		} else {
+
+			WanderState ();
 		}
 
 	}
