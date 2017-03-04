@@ -28,7 +28,7 @@ GameObject:
   - component: {fileID: 135985983432000372}
   - component: {fileID: 114545929251113118}
   - component: {fileID: 114337767108828326}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: New Prefab
   m_TagString: Mutant
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 23596810983320440}
   - component: {fileID: 64838982767668704}
   - component: {fileID: 114903786068852928}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SlightRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 4178267715328760}
   - component: {fileID: 33812854810860570}
   - component: {fileID: 136298334479044238}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +81,7 @@ GameObject:
   - component: {fileID: 4863712550875770}
   - component: {fileID: 33750548777790714}
   - component: {fileID: 136529572020650806}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

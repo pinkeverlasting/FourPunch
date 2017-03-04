@@ -11,15 +11,22 @@ public class BulletDeletion : MonoBehaviour {
         RED,
         BLUE,
         YELLOW,
-        WHITE
+        WHITE,
+        PURPLE,
+        ORANGE,
+        GREEN
     };
 
     public AmmoType catType; //stores cat ammo types
 
     // Use this for initialization
     void Start () {
-		Invoke ("deleteBullet", deathCountdown);
-		Debug.Log ("Bullet created");
+        if(catType != AmmoType.ORANGE)
+        {
+            Invoke("deleteBullet", deathCountdown);
+        }
+		
+		//Debug.Log ("Bullet created");
 	}
 	
 	// Update is called once per frame
@@ -34,10 +41,27 @@ public class BulletDeletion : MonoBehaviour {
 
     private void OnCollisionEnter(Collision col)
     {
+        /*if (col.gameObject.tag == "Bullet")
+        {
+            Physics.IgnoreCollision(col.gameObject.GetComponent<Collider>(), this.GetComponent<Collider>());
+        }*/
+
         if (catType == AmmoType.BLUE && col.gameObject.tag != "Mutant" && col.gameObject.tag != "Player")
         {
             //Debug.Log(col.gameObject.tag);
             Destroy(this.gameObject);
+        } 
+        else if(catType == AmmoType.YELLOW && col.gameObject.tag != "Mutant" && col.gameObject.tag != "Player")
+        {
+            Destroy(this.gameObject);
+
         }
+        else if (catType == AmmoType.PURPLE && col.gameObject.tag != "Mutant" && col.gameObject.tag != "Player")
+        {
+            //Destroy(this.gameObject);
+
+        }
+
+
     }
 }

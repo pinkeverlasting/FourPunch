@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4130238371875578}
   - component: {fileID: 33082329508837618}
   - component: {fileID: 136754865290012122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4371428105762992}
   - component: {fileID: 33868712605335774}
   - component: {fileID: 136414514169284376}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 114641546127573620}
   - component: {fileID: 114033493161008388}
   - component: {fileID: 136871720772803506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MutantOneHit
   m_TagString: Mutant
   m_Icon: {fileID: 0}

@@ -64,7 +64,7 @@ public class WanderZone : EnemyState {
 
 			if (Vector3.Distance (enemy.transform.position, enemy.target) > 2) {
 				targetTime -= Time.deltaTime;
-				Debug.Log ("Timer: " + targetTime);
+				//Debug.Log ("Timer: " + targetTime);
 				enemy.transform.LookAt (enemy.target);
 				//direction = enemy.target - enemy.transform.position;
 				enemy.direction = enemy.target - enemy.transform.position;

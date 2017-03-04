@@ -6,7 +6,7 @@ public class suckingDisplay : MonoBehaviour {
  
 	private Renderer rend;
 
-
+    public bool isExplosion;
 	// Use this for initialization
 	void Start () {
 		rend = GetComponent<Renderer>();
@@ -24,6 +24,11 @@ public class suckingDisplay : MonoBehaviour {
 			print ("Released");
 			//rend.enabled = false;
 		}
+        if (isExplosion && gameObject.name == "GreenBullet")
+        {
+            rend.enabled = true;
+        }
+        
 
 	}
     void ShowVortex()

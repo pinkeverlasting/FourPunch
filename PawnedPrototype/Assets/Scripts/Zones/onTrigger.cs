@@ -35,6 +35,10 @@ public class onTrigger : MonoBehaviour {
 			Debug.Log ("HITWALL");
 
 		}
+        if(other.gameObject.tag == "Bullet")
+        {
+
+        }
 	}
 
 	public void OnTriggerExit (Collider otherExit) {

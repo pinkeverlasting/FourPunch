@@ -9,7 +9,10 @@ public class AmmoTypeScript : MonoBehaviour {
         RED,
         BLUE,
         YELLOW,
-        WHITE
+        WHITE,
+		PURPLE,
+		ORANGE,
+		GREEN
     };
 
     public AmmoType catType; //stores cat ammo types

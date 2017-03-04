@@ -2468,6 +2468,29 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114967099795615518, guid: dad1c8dd94df7425b8d724dd9704f6c9,
+        type: 2}
+      propertyPath: strayFactor
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 114967099795615518, guid: dad1c8dd94df7425b8d724dd9704f6c9,
+        type: 2}
+      propertyPath: yellowBullet
+      value: 
+      objectReference: {fileID: 1890045525757092, guid: 9852f77a5eb0e3846a4db0cd591258a5,
+        type: 2}
+    - target: {fileID: 114967099795615518, guid: dad1c8dd94df7425b8d724dd9704f6c9,
+        type: 2}
+      propertyPath: whiteActual
+      value: 
+      objectReference: {fileID: 1633111967555742, guid: 276c71ee5ebd2c34eb1225236d4f921a,
+        type: 2}
+    - target: {fileID: 114967099795615518, guid: dad1c8dd94df7425b8d724dd9704f6c9,
+        type: 2}
+      propertyPath: yellowActual
+      value: 
+      objectReference: {fileID: 1451811097796638, guid: 143b4b5efe3fdc34dab41a2a8605aa8b,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dad1c8dd94df7425b8d724dd9704f6c9, type: 2}
   m_IsPrefabParent: 0

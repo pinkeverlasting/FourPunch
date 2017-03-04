@@ -72,6 +72,34 @@ public class EnemyStatePattern : MonoBehaviour
 			currentState.UpdateState ();
 		}
 	}
+    public void StunTimer()
+    {
+        Invoke("AliveReset", 5);
+        Debug.Log("Calling aliveReset");
+    }
+    public void ShockTimer()
+    {
+        move = false;
+        alive = false;
+        Invoke("MoveReset", 6);
+        Debug.Log("Calling aliveReset");
+    }
+    void AliveReset()
+    {
+        Debug.Log("Called Reset");
+        if (alive == false)
+        {
+            alive = true;
+        }
+    }
+    void MoveReset()
+    {
+        if (move == false)
+        {
+            move = true;
+            alive = true;
+        }
+    }
 
 	
 
