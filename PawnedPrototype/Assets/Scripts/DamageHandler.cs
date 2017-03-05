@@ -8,6 +8,8 @@ public class DamageHandler : MonoBehaviour {
     int enemyHealth;
    private GameObject mutantObject;
     private EnemyStatePattern wander;
+
+    private int immuneTypeInt;
    
 
     // Use this for initialization
@@ -16,6 +18,8 @@ public class DamageHandler : MonoBehaviour {
 
         mutantObject = transform.parent.gameObject;
        wander = gameObject.GetComponent<EnemyStatePattern>();
+
+        immuneTypeInt = mutantObject.GetComponent<DamageHandler2>().immuneTypeInt;
        // Debug.Log(wander);
         //look = gameObject.GetComponent<MutantStalker>();
         //controller = GetComponent<CharacterController> ();
@@ -101,7 +105,7 @@ public class DamageHandler : MonoBehaviour {
     {
         if (other.gameObject.tag == "Bullet")
         {
-           if (other.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED)
+            if (other.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED && immuneTypeInt != 2)
             {
                 //Debug.Log("RED HAS COLLIDED");
                 //wander.move = false;

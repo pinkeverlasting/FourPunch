@@ -10,14 +10,23 @@ public class DamageHandler2 : MonoBehaviour
     private GameObject mutantObject;
     private EnemyStatePattern wander;
 
+    //IMMUNITIES
+    //public bool isImmune;
+    public int immuneTypeInt; //1 is blue, 2 is red, 3 is yellow
+
 
     // Use this for initialization
     void Start()
     {
         enemyHealth = 100;
+        if(immuneTypeInt == 2)
+        {
+            enemyHealth = 400;
+        }
 
         mutantObject = this.gameObject;
         wander = gameObject.GetComponent<EnemyStatePattern>();
+
         // Debug.Log(wander);
         //look = gameObject.GetComponent<MutantStalker>();
         //controller = GetComponent<CharacterController> ();
@@ -54,7 +63,7 @@ public class DamageHandler2 : MonoBehaviour
         {
             //Debug.Log("This is a bullet");
             //MORE AMMO TYPES AND CAT DAMAGE
-            if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED)
+            if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED && immuneTypeInt != 2)
             {
                 Debug.Log("This is a RED");
                 col.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -63,13 +72,13 @@ public class DamageHandler2 : MonoBehaviour
                 Destroy(col.gameObject);
                 enemyHealth -= 10;
             }
-            else if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.BLUE)
+            else if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.BLUE && immuneTypeInt != 1)
             {
                 Debug.Log("This is a BLUE");
                 Destroy(col.gameObject);
                 enemyHealth -= 34;
             }
-            else if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.YELLOW)
+            else if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.YELLOW && immuneTypeInt != 3)
             {
                 Debug.Log("This is a Yellow");
                 Destroy(col.gameObject);

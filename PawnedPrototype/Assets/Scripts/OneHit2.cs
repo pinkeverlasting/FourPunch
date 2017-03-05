@@ -90,6 +90,7 @@ public class OneHit2 : MonoBehaviour
             Destroy(col.gameObject);
 
             this.GetComponent<Rigidbody>().AddForce(Vector3.forward * 20);
+            this.GetComponent<EnemyStatePattern>().enabled = false;
             //GetComponent<Rigidbody>().isKinematic = false;
         }
         if (col.gameObject.tag == "Bullet" && wander.move == false)
