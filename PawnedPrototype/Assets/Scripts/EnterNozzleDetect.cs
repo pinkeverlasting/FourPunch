@@ -37,6 +37,7 @@ public class EnterNozzleDetect : MonoBehaviour
     public GameObject equipment;
     public GameObject noEquipModel;
 
+    public GameObject testWall;
 
 
     [SerializeField] private int ejectSpeed; //for storing the speed with which you eject the ammo
@@ -336,6 +337,11 @@ public class EnterNozzleDetect : MonoBehaviour
         else
         {
             GameObject tempAmmoObject = Instantiate(currentBullet, nozzleObject.transform.position, nozzleObject.transform.rotation); //set temporary bullet as the instantiated bullet
+            if (testWall != null)
+            {
+                Physics.IgnoreCollision(tempAmmoObject.GetComponent<Collider>(), testWall.GetComponent<Collider>()); //USE THIS TO LET BULLETS THROUGH WALLS
+            }
+           
             tempAmmoObject.GetComponent<Rigidbody>().AddForce(tempAmmoObject.transform.forward * fSpeed); //add the fire force to bullet
           
         }

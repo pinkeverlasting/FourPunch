@@ -6,6 +6,8 @@ public class WanderZone : EnemyState {
 	private readonly EnemyStatePattern enemy;
 	public float targetTime = 30.0f;
 
+    
+
 
 	public WanderZone (EnemyStatePattern statePatternEnemy)
 	{
@@ -60,7 +62,7 @@ public class WanderZone : EnemyState {
 
 
 			enemy.target = enemy.wayPoint;
-			//enemy.target.y = 0.92f; 
+			enemy.target.y = enemy.transform.position.y; 
 
 			if (Vector3.Distance (enemy.transform.position, enemy.target) > 2) {
 				targetTime -= Time.deltaTime;
@@ -110,15 +112,17 @@ public class WanderZone : EnemyState {
 	}
 
 	public void getwayPoint() {
-		//currentWaypoint = transform.position; 
-		//wayPoint = Vector3(Random.Range(transform.position.x - Range, transform.position.x + Range), 1, Random.Range(transform.position.z - Range, transform.position.z + Range));
+        //currentWaypoint = transform.position; 
+        //wayPoint = Vector3(Random.Range(transform.position.x - Range, transform.position.x + Range), 1, Random.Range(transform.position.z - Range, transform.position.z + Range));
 
-		// wayPoint = Random.insideUnitSphere * 20f;
+        // wayPoint = Random.insideUnitSphere * 20f;
 
-		enemy.wayPoint = new Vector3(Random.Range(enemy.transform.position.x - enemy.range, enemy.transform.position.x + enemy.range),
-			1, Random.Range(enemy.transform.position.z - enemy.range, enemy.transform.position.z + enemy.range));
+        /*enemy.wayPoint = new Vector3(Random.Range(enemy.transform.position.x - enemy.range, enemy.transform.position.x + enemy.range),
+			1, Random.Range(enemy.transform.position.z - enemy.range, enemy.transform.position.z + enemy.range));*/
+        enemy.wayPoint = new Vector3(Random.Range(enemy.transform.position.x - enemy.range, enemy.transform.position.x + enemy.range),
+        enemy.startingHeight, Random.Range(enemy.transform.position.z - enemy.range, enemy.transform.position.z + enemy.range));
 
-	}
+    }
 
 }
 

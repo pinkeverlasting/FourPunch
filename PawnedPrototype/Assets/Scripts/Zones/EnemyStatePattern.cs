@@ -40,6 +40,8 @@ public class EnemyStatePattern : MonoBehaviour
 	[HideInInspector] public StalkerZone stalkingState;
 	[HideInInspector] public ChaseZone chaseState;
 
+    public float startingHeight;
+
 
 	private void Awake()
 	{
@@ -56,6 +58,8 @@ public class EnemyStatePattern : MonoBehaviour
 		distance = 0;
 		alive = true;
 		chase = false;
+
+        startingHeight = character.position.y;
 		 
 	}
 

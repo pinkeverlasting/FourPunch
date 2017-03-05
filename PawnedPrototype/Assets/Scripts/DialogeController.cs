@@ -23,6 +23,14 @@ public class DialogeController : MonoBehaviour {
             Invoke("StopDial", 15);
         }
     }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            dialText.SetActive(false);
+            
+        }
+    }
     private void StopDial()
     {
         dialText.SetActive(false);

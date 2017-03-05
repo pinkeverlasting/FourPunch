@@ -145,7 +145,7 @@ public class OneHit2 : MonoBehaviour
         }
         if (col.gameObject.tag == "Ammo" && wander.alive == true && col.gameObject.GetComponent<AmmoTypeScript>() != null)
         {
-            if (col.gameObject.GetComponent<AmmoTypeScript>().catType == AmmoTypeScript.AmmoType.WHITE && col.gameObject.GetComponent<Rigidbody>().velocity != Vector3.zero)
+            if (col.gameObject.GetComponent<AmmoTypeScript>().catType == AmmoTypeScript.AmmoType.WHITE && col.gameObject.transform.position.y > transform.position.y)
             {
                 mutantObject.GetComponent<Rigidbody>().freezeRotation = false;
 
