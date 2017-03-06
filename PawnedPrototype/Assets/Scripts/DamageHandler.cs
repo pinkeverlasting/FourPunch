@@ -20,7 +20,16 @@ public class DamageHandler : MonoBehaviour {
        wander = gameObject.GetComponent<EnemyStatePattern>();
 
         immuneTypeInt = mutantObject.GetComponent<DamageHandler2>().immuneTypeInt;
-       // Debug.Log(wander);
+        enemyHealth = 100;
+        if (immuneTypeInt == 1) //blue
+        {
+            enemyHealth = 600;
+        }
+        else if (immuneTypeInt == 2) //red
+        {
+            enemyHealth = 480;
+        }
+        // Debug.Log(wander);
         //look = gameObject.GetComponent<MutantStalker>();
         //controller = GetComponent<CharacterController> ();
 

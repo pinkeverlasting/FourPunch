@@ -8,6 +8,8 @@ TagManager:
   - test
   - Mutant
   - Bullet
+  - Wall
+  - PickUp
   layers:
   - Default
   - TransparentFX

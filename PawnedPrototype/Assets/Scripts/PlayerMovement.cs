@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour {
     //REQUIERMENTS: RIGIDBODY 3D
@@ -22,7 +23,8 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool canMove;
 
-
+    private int coinAmount;
+    public Text coinText;
 
 
 
@@ -38,6 +40,13 @@ public class PlayerMovement : MonoBehaviour {
        originalGravity = gravity;
         normalWalkingSpeed = moveSpeed;
         vacuumWalkingSpeed = normalWalkingSpeed / 2;
+
+        coinAmount = 0;
+        if(coinText != null)
+        {
+            coinText.text = coinAmount.ToString();
+        }
+        
        // canMove = false;
 
 
@@ -92,7 +101,11 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void FixedUpdate(){ //more physics updates
-        playerRigidbody.velocity = moveVelocity; //set the rigidbody velocity to be the calculated velocity
+        if (canMove)
+        {
+            playerRigidbody.velocity = moveVelocity; //set the rigidbody velocity to be the calculated velocity
+        }
+       
         //Debug.Log(playerRigidbody.velocity.y);
         //Debug.Log(gravity);
         //playerRigidbody.velocity = moveInput; //set the rigidbody velocity to be the calculated velocity
@@ -122,8 +135,16 @@ public class PlayerMovement : MonoBehaviour {
         if (col.gameObject.tag == "Mutant" && col.gameObject.GetComponent<EnemyWander>() != null)
         {
             // Debug.Log("Mutant!");
-            col.gameObject.GetComponent<EnemyWander>().SendMessage("getwayPoint");
+            //col.gameObject.GetComponent<EnemyWander>().SendMessage("getwayPoint");
         }
+
+        if (col.gameObject.tag == "PickUp")
+        {
+            coinAmount += 1;
+            coinText.text = coinAmount.ToString();
+            Destroy(col.gameObject);
+        }
+
     }
 
 

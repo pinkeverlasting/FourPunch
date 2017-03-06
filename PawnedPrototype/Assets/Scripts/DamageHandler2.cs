@@ -19,9 +19,12 @@ public class DamageHandler2 : MonoBehaviour
     void Start()
     {
         enemyHealth = 100;
-        if(immuneTypeInt == 2)
+        if(immuneTypeInt == 1) //blue
         {
-            enemyHealth = 400;
+            enemyHealth = 600;
+        }else if (immuneTypeInt == 2) //red
+        {
+            enemyHealth = 480;
         }
 
         mutantObject = this.gameObject;
