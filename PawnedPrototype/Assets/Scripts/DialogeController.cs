@@ -17,13 +17,13 @@ public class DialogeController : MonoBehaviour {
 	}
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player") //if player approaches, show text
         {
             dialText.SetActive(true);
             Invoke("StopDial", 15);
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other) //turns off text if you leave
     {
         if (other.gameObject.tag == "Player")
         {
@@ -31,7 +31,7 @@ public class DialogeController : MonoBehaviour {
             
         }
     }
-    private void StopDial()
+    private void StopDial() //turns off text if you stay too long
     {
         dialText.SetActive(false);
     }

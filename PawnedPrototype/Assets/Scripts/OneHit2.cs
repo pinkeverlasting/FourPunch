@@ -8,6 +8,9 @@ public class OneHit2 : MonoBehaviour
 
     private float force;
     private GameObject mutantObject;
+
+    private GameObject coin;
+    private bool dropOnce; //to make sure coins are only dropped once
     // Use this for initialization
     void Start()
     {
@@ -15,6 +18,8 @@ public class OneHit2 : MonoBehaviour
         //wander = gameObject.GetComponent<EnemyStatePattern>();
         wander = mutantObject.GetComponent<EnemyStatePattern>();
         force = 1000;
+        coin = GameObject.Find("catCoinPickUp");
+        dropOnce = true;
     }
 
     // Update is called once per frame
@@ -24,6 +29,22 @@ public class OneHit2 : MonoBehaviour
         {
             GetComponent<Rigidbody>().isKinematic = false;
         }*/
+        if (wander.alive == false)
+        {
+            if (dropOnce)
+            {
+                LaunchCoin();
+            }
+        }
+    }
+
+    private void LaunchCoin() //when dead, it launches a coin to collect
+    {
+        GameObject tempCoinObject = Instantiate(coin, this.gameObject.transform.position, this.gameObject.transform.rotation); //set temporary bullet as the instantiated bullet
+        Physics.IgnoreCollision(tempCoinObject.GetComponent<Collider>(), this.gameObject.GetComponent<Collider>()); //USE THIS TO LET BULLETS THROUGH WALLS
+       // tempCoinObject.GetComponent<Rigidbody>().AddForce(tempCoinObject.transform.forward * 600); //add the fire force to bullet
+       // tempCoinObject.GetComponent<Rigidbody>().AddForce(tempCoinObject.transform.up * 300); //add the fire force to bullet
+        dropOnce = !dropOnce;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -105,6 +126,8 @@ public class OneHit2 : MonoBehaviour
             {
                 Debug.Log("YELLOW BULLET ENTERED");
                 Destroy(col.gameObject);
+
+                
             }
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.PURPLE)
             {

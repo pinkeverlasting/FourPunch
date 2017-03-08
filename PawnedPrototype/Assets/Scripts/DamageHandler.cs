@@ -10,7 +10,10 @@ public class DamageHandler : MonoBehaviour {
     private EnemyStatePattern wander;
 
     private int immuneTypeInt;
-   
+
+    private GameObject coin;
+    private bool dropOnce;
+
 
     // Use this for initialization
     void Start () {
@@ -29,6 +32,9 @@ public class DamageHandler : MonoBehaviour {
         {
             enemyHealth = 480;
         }
+
+        coin = GameObject.Find("catCoinPickUp");
+        dropOnce = true;
         // Debug.Log(wander);
         //look = gameObject.GetComponent<MutantStalker>();
         //controller = GetComponent<CharacterController> ();
@@ -47,12 +53,26 @@ public class DamageHandler : MonoBehaviour {
             // this.GetComponent<Rigidbody>().isKinematic = false;
             //this.GetComponent<EnemyStatePattern>().enabled = false;
 
-        mutantObject.GetComponent<EnemyStatePattern>().enabled = false;
+             mutantObject.GetComponent<EnemyStatePattern>().enabled = false;
+            mutantObject.GetComponent<EnemyStatePattern>().enabled = false;
+            if (dropOnce)
+            {
+                LaunchCoin(); //if dead, drop coin
+            }
             //this.GetComponent<Rigidbody>().isKinematic = false;
         }
 	}
 
-	private void OnCollisionEnter (Collision col)
+    private void LaunchCoin()
+    {
+        GameObject tempCoinObject = Instantiate(coin, this.gameObject.transform.position, this.gameObject.transform.rotation); //set temporary bullet as the instantiated bullet
+        Physics.IgnoreCollision(tempCoinObject.GetComponent<Collider>(), this.gameObject.GetComponent<Collider>()); //USE THIS TO LET BULLETS THROUGH WALLS
+       // tempCoinObject.GetComponent<Rigidbody>().AddForce(tempCoinObject.transform.forward * 600); //add the fire force to bullet
+       // tempCoinObject.GetComponent<Rigidbody>().AddForce(tempCoinObject.transform.up * 300); //add the fire force to bullet
+        dropOnce = !dropOnce;
+    }
+
+    private void OnCollisionEnter (Collision col)
 	{ 
 
 		if (col.gameObject.tag == "Bullet") {

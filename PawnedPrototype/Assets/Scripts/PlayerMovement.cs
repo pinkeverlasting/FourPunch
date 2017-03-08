@@ -26,6 +26,8 @@ public class PlayerMovement : MonoBehaviour {
     private int coinAmount;
     public Text coinText;
 
+    public GameObject passObject;
+
 
 
     void Awake(){
@@ -59,6 +61,10 @@ public class PlayerMovement : MonoBehaviour {
        if (canMove)
         {
             moveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized; //grab axis input and assign it to vector 3 to be used as input
+        }
+        else
+        {
+            moveInput = Vector3.zero;
         }
        
        
@@ -140,9 +146,18 @@ public class PlayerMovement : MonoBehaviour {
 
         if (col.gameObject.tag == "PickUp")
         {
-            coinAmount += 1;
-            coinText.text = coinAmount.ToString();
+            if(col.gameObject.name == "passPickUp") //if you pick up a pass
+            {
+
+                passObject.SetActive(true);
+            }
+            else //if it's a coin
+            {
+                coinAmount += 1;
+                coinText.text = coinAmount.ToString(); //track coin ammount
+            }
             Destroy(col.gameObject);
+
         }
 
     }

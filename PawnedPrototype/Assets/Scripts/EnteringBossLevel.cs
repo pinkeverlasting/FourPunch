@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnteringBossLevel : MonoBehaviour {
 
     public GameObject explosiveWall;
-    public Transform explosionLocation;
+    public GameObject explosionObject;
+    private Transform explosionLocation;
     public GameObject bossMutantContainer;
     public GameObject mutantContainer;
 
@@ -16,16 +17,17 @@ public class EnteringBossLevel : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         bossMutantContainer.SetActive(false);
+        explosionLocation = explosionObject.transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player") //if player enters boss area, turn cinematic camera on and turn off player camera and tell all mutants to not move.
         {
             
             player = other.gameObject;
@@ -38,11 +40,11 @@ public class EnteringBossLevel : MonoBehaviour {
             {
                 if (child.gameObject.tag == "Mutant")
                 {
-                    child.GetComponent<EnemyStatePattern>().move = false;
+                    child.GetComponent<EnemyStatePattern>().move = false; //all mutants can't move
                 }
             }
 
-            foreach (Transform child in explosiveWall.transform)
+            foreach (Transform child in explosiveWall.transform) //grab all wall pieces and tell them to explode
             {
                 Rigidbody rb = child.GetComponent<Rigidbody>();
 
@@ -51,51 +53,52 @@ public class EnteringBossLevel : MonoBehaviour {
                 rb.AddExplosionForce(1000, explosionLocation.position, 40, 1f);
 
             }
-            Invoke("ExplodeEnd", 5);
+            Invoke("ExplodeEnd", 5); //countdown to call an end to explosion
 
-            this.GetComponent<Collider>().enabled = false;
+            this.GetComponent<Collider>().enabled = false; //don't detect player presense anymore
             //this.gameObject.SetActive(false);
         }
 
         
      }
 
-    void ExplodeEnd()
+    void ExplodeEnd() //to end the explosion
     {
         Debug.Log("Entered Explosion End");
 
-        cinematicCamera.SetActive(false);
+        cinematicCamera.SetActive(false); //set cameras back to what they were and tell mutants to move
         playerCamera.SetActive(true);
        player.GetComponent<PlayerMovement>().canMove = true;
 
-        foreach (Transform child in mutantContainer.transform) //USE THIS FOR CUTSCENE
+        foreach (Transform t in mutantContainer.transform) //USE THIS FOR CUTSCENE
         {
-            if (child.gameObject.tag == "Mutant")
+            if (t.gameObject.tag == "Mutant")
             {
-                child.GetComponent<EnemyStatePattern>().move = true;
+                t.GetComponent<EnemyStatePattern>().move = true; //mutants can move now
             }
         }
 
-        foreach (Transform child in explosiveWall.transform) //SPAWN BOSSES AFTER EXPLOSION
+        foreach (Transform e in explosiveWall.transform) //SPAWN BOSSES AFTER EXPLOSION
         {
-            Rigidbody rb = child.GetComponent<Rigidbody>();
+            Rigidbody rb = e.GetComponent<Rigidbody>();
 
             rb.isKinematic = true;
-            child.GetComponent<Collider>().enabled = false;
+            e.GetComponent<Collider>().enabled = false;
 
            // rb.AddExplosionForce(500, explosionLocation.position, 7, 6f);
 
         }
+
         this.GetComponent<Collider>().enabled = false;
 
-        bossMutantContainer.SetActive(true);
+       bossMutantContainer.SetActive(true); //spawn boss mutants
 
-        explosiveWall.GetComponent<Collider>().enabled = true;
+       explosiveWall.GetComponent<Collider>().enabled = true; //don't let player go outside the wall
 
-        Invoke("ClearExplosion", 6);
+       Invoke("ClearExplosion", 6); //clear the debris
     }
 
-    void ClearExplosion()
+    void ClearExplosion() //clears debris
     {
         foreach (Transform child in explosiveWall.transform)
         {

@@ -188,7 +188,7 @@ public class EnterNozzleDetect : MonoBehaviour
                         {
                             GameObject mutantBody = hit.gameObject;
 
-                            if (mutantBody != null && mutantBody.tag == "Mutant")
+                            if (mutantBody != null && mutantBody.tag == "Mutant" && mutantBody.GetComponent<EnemyStatePattern>().alive == true)
                             {
                                 //Debug.Log("I'VE HIT A MUTANT");
                                 mutantBody.SendMessage("ShockTimer");

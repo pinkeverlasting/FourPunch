@@ -6,7 +6,7 @@ public class LookAtMouse : MonoBehaviour {
     //REQUIERMENTS: CAMERA
 
 
-    private Camera mainCamera; //to store the main camera object
+   private Camera mainCamera; //to store the main camera object
 
     private Vector3 lookAtPoint; //the point that the player will look at
 

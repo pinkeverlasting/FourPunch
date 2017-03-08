@@ -14,6 +14,9 @@ public class DamageHandler2 : MonoBehaviour
     //public bool isImmune;
     public int immuneTypeInt; //1 is blue, 2 is red, 3 is yellow
 
+    private GameObject coin;
+    private bool dropOnce;
+
 
     // Use this for initialization
     void Start()
@@ -27,8 +30,11 @@ public class DamageHandler2 : MonoBehaviour
             enemyHealth = 480;
         }
 
+        coin = GameObject.Find("catCoinPickUp");
+
         mutantObject = this.gameObject;
         wander = gameObject.GetComponent<EnemyStatePattern>();
+        dropOnce = true;
 
         // Debug.Log(wander);
         //look = gameObject.GetComponent<MutantStalker>();
@@ -50,9 +56,25 @@ public class DamageHandler2 : MonoBehaviour
             //this.GetComponent<EnemyStatePattern>().enabled = false;
 
             mutantObject.GetComponent<EnemyStatePattern>().enabled = false;
+            if (dropOnce)
+            {
+                LaunchCoin(); //if dead, drop coin
+            }
+           
             //wander.alive = false;
             //this.GetComponent<Rigidbody>().isKinematic = false;
         }
+
+        
+    }
+
+    private void LaunchCoin()
+    {
+        GameObject tempCoinObject = Instantiate(coin, this.gameObject.transform.position , this.gameObject.transform.rotation ); //set temporary bullet as the instantiated bullet
+        Physics.IgnoreCollision(tempCoinObject.GetComponent<Collider>(), this.gameObject.GetComponent<Collider>()); //USE THIS TO LET BULLETS THROUGH WALLS
+        //tempCoinObject.GetComponent<Rigidbody>().AddForce(tempCoinObject.transform.forward * 600); //add the fire force to bullet
+        //tempCoinObject.GetComponent<Rigidbody>().AddForce(tempCoinObject.transform.up * 300); //add the fire force to bullet
+        dropOnce = !dropOnce;
     }
 
     private void OnCollisionEnter(Collision col)
@@ -85,7 +107,15 @@ public class DamageHandler2 : MonoBehaviour
             {
                 Debug.Log("This is a Yellow");
                 Destroy(col.gameObject);
-                enemyHealth -= 60; //THIS SHOULDNT KILL THE MUTANT
+                enemyHealth -= 30; //THIS SHOULDNT KILL THE MUTANT
+                if (wander.alive)
+                {
+                    //Debug.Log("I'VE HIT A MUTANT");
+                    this.SendMessage("ShockTimer");
+
+
+                    //mutantBody.SendMessage();
+                }
             }
             else if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.PURPLE)
             {
