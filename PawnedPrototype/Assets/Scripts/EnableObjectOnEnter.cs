@@ -5,9 +5,15 @@ using UnityEngine;
 public class EnableObjectOnEnter : MonoBehaviour {
 
     public GameObject objectToEnable;
-	// Use this for initialization
-	void Start () {
+
+    public GameObject cinematicCamera;
+    public GameObject playerCamera;
+
+    private GameObject player;
+    // Use this for initialization
+    void Start () {
         objectToEnable.SetActive(false);
+        cinematicCamera.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -16,9 +22,15 @@ public class EnableObjectOnEnter : MonoBehaviour {
 	}
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player") //if player enters the gate trigger
         {
-            objectToEnable.SetActive(true);
+            objectToEnable.SetActive(true); //enable the gate
+
+            player = other.gameObject; //save the player object
+
+            cinematicCamera.SetActive(true); //turn on the cinematic camera
+            playerCamera.SetActive(false); //turn off player camera
+            player.GetComponent<PlayerMovement>().canMove = false; //don't let player move
         }
     }
 }

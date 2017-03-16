@@ -79,8 +79,8 @@ public class LookAtMouse : MonoBehaviour {
 
         Ray cameraRay = mainCamera.ScreenPointToRay(Input.mousePosition); //create a ray from the camera to the mouse
         //Plane groundPlane = new Plane(Vector3.up, Vector3.zero); //create a test plane facing up and on world origin
-       //Plane groundPlane = new Plane(Vector3.up, fakePlane.transform.position); //create a test plane facing up and on world origin
-       Plane groundPlane = new Plane(groundRayHit.normal, fakePlane.transform.position); //create a test plane facing to the normal and on the players fake ground origin. GROUND PLANE IS ZEROED TO THE ORIGIN OF THE PLAYER AND IT BENDS DEPENDING ON THE NORMAL OF THE GROUND
+       Plane groundPlane = new Plane(Vector3.up, fakePlane.transform.position); //create a test plane facing up and on world origin
+       //Plane groundPlane = new Plane(groundRayHit.normal, fakePlane.transform.position); //create a test plane facing to the normal and on the players fake ground origin. GROUND PLANE IS ZEROED TO THE ORIGIN OF THE PLAYER AND IT BENDS DEPENDING ON THE NORMAL OF THE GROUND
         float rayLength; //for storing the length of the ray
 
 
@@ -121,9 +121,9 @@ public class LookAtMouse : MonoBehaviour {
 
        // playerTransform.up = groundRayHit.normal;
         // playerTransform.forward = currentLookAtPoint.position;
-       //playerTransform.LookAt(currentLookAtPoint.position); //set the player to look at the current look at position. ADD NORMAL HERE
+       playerTransform.LookAt(currentLookAtPoint.position); //set the player to look at the current look at position. ADD NORMAL HERE
 
-       playerTransform.LookAt(currentLookAtPoint.position, groundRayHit.normal); //set the player to look at the current look at position. ADD NORMAL HERE. THE FAKE GROUND PLANE NORMAL ALWAYS FOLLOW THE EYE LEVEL AND SO THE LOOK AT ALWAYS STAYS ALIGNED TO THE NORMAL THE MODEL SHOULD FOLLOW
+       //playerTransform.LookAt(currentLookAtPoint.position, groundRayHit.normal); //set the player to look at the current look at position. ADD NORMAL HERE. THE FAKE GROUND PLANE NORMAL ALWAYS FOLLOW THE EYE LEVEL AND SO THE LOOK AT ALWAYS STAYS ALIGNED TO THE NORMAL THE MODEL SHOULD FOLLOW
 
     }
     void FixedUpdate()
