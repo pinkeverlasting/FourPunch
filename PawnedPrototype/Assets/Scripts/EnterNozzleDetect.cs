@@ -38,6 +38,7 @@ public class EnterNozzleDetect : MonoBehaviour
     public GameObject noEquipModel;
 
     public GameObject testWall;
+	public AmmoLight light; 
 
 
     [SerializeField] private int ejectSpeed; //for storing the speed with which you eject the ammo
@@ -72,6 +73,8 @@ public class EnterNozzleDetect : MonoBehaviour
 
         pack = GameObject.Find("Backpack"); //find the backpack
         player = GameObject.Find("Player");
+		light = GameObject.Find ("LightUI").GetComponent<AmmoLight>();
+		light.stateOfAmmo = AmmoLight.AmmoState.NONE;
         stateOfGun = GunState.VACUUM;
 
 		allowToEject = false;
@@ -119,9 +122,13 @@ public class EnterNozzleDetect : MonoBehaviour
                         LaunchAmmo(fireSpeed);
                         currentBlueAmmoCount -= 1;
                     }
+					if (currentBlueAmmoCount <= blueAmmoCount * 0.45f) {
+						light.stateOfAmmo = AmmoLight.AmmoState.LOW;
+					}
                     if (currentBlueAmmoCount <= 1)
                     {
                         OutOfAmmo();
+						light.stateOfAmmo = AmmoLight.AmmoState.FLASH;
                     }
 
 
@@ -137,101 +144,124 @@ public class EnterNozzleDetect : MonoBehaviour
                         LaunchAmmo(fireSpeed / 2);
                         currentYellowAmmoCount -= 1;
                     }
-                    if (currentYellowAmmoCount <= 1)
-                    {
-                        OutOfAmmo();
+					if (currentYellowAmmoCount <= yellowAmmoCount * 0.45f) {
+						light.stateOfAmmo = AmmoLight.AmmoState.LOW;
+					}
 
-                    }
+					if (currentYellowAmmoCount <= 1)
+					{
+						OutOfAmmo();
+						light.stateOfAmmo = AmmoLight.AmmoState.FLASH;
+					}
 
-                }
-                else if (currentAmmoType == "PURPLE")
-                {
-                    if (currentPurpleAmmoCount > 0)
-                    {
-                        LaunchAmmo(fireSpeed);
-                        currentPurpleAmmoCount -= 1;
-                    }
-                    if (currentPurpleAmmoCount <= 1)
-                    {
-                        OutOfAmmo();
+				}
+				else if (currentAmmoType == "PURPLE")
+				{
+					if (currentPurpleAmmoCount > 0)
+					{
+						LaunchAmmo(fireSpeed);
+						currentPurpleAmmoCount -= 1;
+					}
+					if (currentPurpleAmmoCount <= purpleAmmoCount * 0.45f) {
+						light.stateOfAmmo = AmmoLight.AmmoState.LOW;
+					}
 
-                    }
+					if (currentPurpleAmmoCount <= 1)
+					{
+						OutOfAmmo();
+						light.stateOfAmmo = AmmoLight.AmmoState.FLASH;
+					}
 
-                }
+				}
 
-                else if (currentAmmoType == "ORANGE")
-                {
-                    if (orangeBullet.active == false)
-                    {
-                        orangeBullet.SetActive(true);
-                        currentOrangeAmmoCount -= 1;
-                        Invoke("TurnOffOrange", 0.5f);
+				else if (currentAmmoType == "ORANGE")
+				{
+					if (orangeBullet.active == false)
+					{
+						orangeBullet.SetActive(true);
+						currentOrangeAmmoCount -= 1;
+						Invoke("TurnOffOrange", 0.5f);
 
-                    }
-                    if (currentOrangeAmmoCount <= 1)
-                    {
-                        OutOfAmmo();
+					}
+					if (currentOrangeAmmoCount <= orangeAmmoCount * 0.45f) {
+						light.stateOfAmmo = AmmoLight.AmmoState.LOW;
+					}
 
-                    }
+					if (currentOrangeAmmoCount <= 1)
+					{
+						OutOfAmmo();
+						light.stateOfAmmo = AmmoLight.AmmoState.FLASH;
+					}
 
-                }
-                else if (currentAmmoType == "GREEN")
-                {
-                    if (greenBullet.active == false && currentGreenAmmoCount > 0)
-                    {
-                        greenBullet.SetActive(true);
-                        currentGreenAmmoCount -= 1;
+				}
+				else if (currentAmmoType == "GREEN")
+				{
+					if (greenBullet.active == false && currentGreenAmmoCount > 0)
+					{
+						greenBullet.SetActive(true);
+						currentGreenAmmoCount -= 1;
 
-                        Invoke("TurnOffGreen", 1);
-                        Collider[] colliders = Physics.OverlapSphere(transform.position, 10);
-                        foreach (Collider hit in colliders)
-                        {
-                            GameObject mutantBody = hit.gameObject;
+						Invoke("TurnOffGreen", 1);
+						Collider[] colliders = Physics.OverlapSphere(transform.position, 10);
+						foreach (Collider hit in colliders)
+						{
+							GameObject mutantBody = hit.gameObject;
 
-                            if (mutantBody != null && mutantBody.tag == "Mutant" && mutantBody.GetComponent<EnemyStatePattern>().alive == true)
-                            {
-                                //Debug.Log("I'VE HIT A MUTANT");
-                                mutantBody.SendMessage("ShockTimer");
+							if (mutantBody != null && mutantBody.tag == "Mutant" && mutantBody.GetComponent<EnemyStatePattern>().alive == true)
+							{
+								//Debug.Log("I'VE HIT A MUTANT");
+								mutantBody.SendMessage("ShockTimer");
 
-                                //mutantBody.SendMessage();
-                            }
-
-
-                        }
-                    }
-                    if (currentGreenAmmoCount <= 1)
-                    {
-                        OutOfAmmo();
-
-                    }
+								//mutantBody.SendMessage();
+							}
 
 
-                }
+						}
+					}
 
-                //Debug.Log(currentAmmoType);
-            }
-            if (Input.GetMouseButton(0) && stateOfGun == GunState.GUN && currentAmmoType == "RED")
-            {
-                if (currentRedAmmoCount > 0)
-                {
-                    LaunchAmmo(fireSpeed * 1.5f);
-                    currentRedAmmoCount -= 1;
-                }
-                else if (currentRedAmmoCount <= 1)
-                {
-                    OutOfAmmo();
-                }
+					if (currentGreenAmmoCount <= greenAmmoCount * 0.45f) {
+						light.stateOfAmmo = AmmoLight.AmmoState.LOW;
+					}
 
-            }
-            if (Input.GetMouseButtonUp(1) && stateOfGun == GunState.VACUUM && currentAmmoType != null)
-            {
-                Invoke("VacuumToEjectCooldown", 2);
-                stateOfGun = GunState.GUN;
-                warpTexture.GetComponent<suckingDisplay>().SendMessage("DisableVortex");
-                player.GetComponent<PlayerMovement>().SetToWalkingSpeed();
-            }
-        }
-    }
+
+					if (currentGreenAmmoCount <= 1)
+					{
+						OutOfAmmo();
+						light.stateOfAmmo = AmmoLight.AmmoState.FLASH;
+					}
+
+
+				}
+
+				//Debug.Log(currentAmmoType);
+			}
+			if (Input.GetMouseButton(0) && stateOfGun == GunState.GUN && currentAmmoType == "RED")
+			{
+				if (currentRedAmmoCount > 0)
+				{
+					LaunchAmmo(fireSpeed * 1.5f);
+					currentRedAmmoCount -= 1;
+				}
+				if (currentRedAmmoCount <= redAmmoCount * 0.45f) {
+					light.stateOfAmmo = AmmoLight.AmmoState.LOW;
+				}
+				else if (currentRedAmmoCount <= 1)
+				{
+					OutOfAmmo();
+					light.stateOfAmmo = AmmoLight.AmmoState.FLASH;
+
+				}
+
+			}
+			if (Input.GetKeyUp(KeyCode.Space) && stateOfGun == GunState.VACUUM && currentAmmoType != null)
+			{
+				Invoke("VacuumToEjectCooldown", 2);
+				stateOfGun = GunState.GUN;
+				warpTexture.GetComponent<suckingDisplay>().SendMessage("DisableVortex");
+				player.GetComponent<PlayerMovement>().SetToWalkingSpeed();
+			}
+		}
+	}
     private void TurnOffOrange()
     {
         orangeBullet.SetActive(false);
