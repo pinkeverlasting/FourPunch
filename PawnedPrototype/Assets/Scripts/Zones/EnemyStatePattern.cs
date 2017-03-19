@@ -5,6 +5,8 @@ public class EnemyStatePattern : MonoBehaviour
 {
 
 
+	public bool foreverChasing;
+
 	//Enemy Wander Vars
 	[HideInInspector] public Vector3 wayPoint = Vector3.zero;
 	[HideInInspector] public Vector3 moveDirection; 
@@ -58,15 +60,16 @@ public class EnemyStatePattern : MonoBehaviour
 		distance = 0;
 		alive = true;
 		chase = false;
-
         startingHeight = character.position.y;
 		 
 	}
 
 	// Use this for initialization
 	void Start () 
-	{	wanderingState.getwayPoint ();
+	{	
+		wanderingState.getwayPoint ();
 		currentState = wanderingState;
+
 	}
 
 	// Update is called once per frame

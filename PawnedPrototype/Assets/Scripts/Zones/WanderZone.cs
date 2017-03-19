@@ -46,14 +46,18 @@ public class WanderZone : EnemyState {
 
 	public void ChaseState()
 	{
-		enemy.currentState = enemy.chaseState;
+		
+			enemy.currentState = enemy.chaseState;
+
 	}
 
 	public void StalkerState()
 	{
-		enemy.move = false;
-		enemy.currentState = enemy.stalkingState;
-		Debug.Log ("RUNSTALKER");
+		
+			enemy.move = false;
+			enemy.currentState = enemy.stalkingState;
+			Debug.Log ("RUNSTALKER");
+
 	}
 
 	void Wander ()

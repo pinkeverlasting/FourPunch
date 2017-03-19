@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChaseZone : EnemyState {
 
 	private readonly EnemyStatePattern enemy;
+	public bool alwaysChase;
 
 	//Raycast Vars 
 	private float distanceBetween; 
@@ -15,6 +16,7 @@ public class ChaseZone : EnemyState {
 	public ChaseZone (EnemyStatePattern statePatternEnemy)
 	{
 		enemy = statePatternEnemy;
+		alwaysChase = false;
 	}
 
 	public void UpdateState()
@@ -23,6 +25,10 @@ public class ChaseZone : EnemyState {
 
 		if (enemy.alive) {
 			Chase ();
+		}
+
+		if (enemy.foreverChasing) {
+			alwaysChase = true;
 		}
 
 
@@ -71,7 +77,7 @@ public class ChaseZone : EnemyState {
 		enemy.currentlyChasing = true;
 
 
-		if (enemy.seePlayer) {
+		if (enemy.seePlayer || alwaysChase) {
 			//get player position
 			enemy.characterPostition = new Vector3 (enemy.character.position.x, 
 				enemy.transform.position.y, 
@@ -90,7 +96,9 @@ public class ChaseZone : EnemyState {
 			}
 		} else { 
 
-			WanderState ();
+			if (alwaysChase == false) {
+				WanderState ();
+			}
 		}
 				
 	}
