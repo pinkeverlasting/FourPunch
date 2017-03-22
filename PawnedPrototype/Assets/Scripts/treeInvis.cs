@@ -42,7 +42,7 @@ public class treeInvis : MonoBehaviour {
 
 	void OnTriggerStay(Collider other) {
 		if (other.gameObject.tag == "Player") {
-			Debug.Log ("PLAYERSADSFASDF");
+			//Debug.Log ("PLAYERSADSFASDF");
 			if (color.a >= 0.1f) {
 				rend.castShadows = false;
 				invisObject = true;
