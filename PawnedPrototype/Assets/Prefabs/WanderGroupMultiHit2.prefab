@@ -774,8 +774,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1857779575335312}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 245, y: 40.12, z: 593.2}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.371521, y: -19.523941, z: 528.1104}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4202239123992196}
@@ -1631,6 +1631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
   attackDamage: 10
+  cameraShake: {fileID: 0}
 --- !u!114 &114229831073668890
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1868,6 +1869,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
   attackDamage: 10
+  cameraShake: {fileID: 0}
 --- !u!135 &135064217287364560
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1890,7 +1892,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.98060006
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135518440413739324
 SphereCollider:

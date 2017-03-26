@@ -4965,6 +4965,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 153
       objectReference: {fileID: 0}
+    - target: {fileID: 135684463168469294, guid: 6b35360547f35ea488f7aef772e9b73b,
+        type: 2}
+      propertyPath: m_Radius
+      value: 1.3558376
+      objectReference: {fileID: 0}
+    - target: {fileID: 135454955699546504, guid: 6b35360547f35ea488f7aef772e9b73b,
+        type: 2}
+      propertyPath: m_Radius
+      value: 1.2361134
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b35360547f35ea488f7aef772e9b73b, type: 2}
   m_IsPrefabParent: 0
@@ -10146,11 +10156,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d03086a476d43709ba5c3844d565d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 200
+  startingHealth: 100
   currentHealth: 0
   damaged: 0
   impact: {fileID: 8300000, guid: e1db4bae62b6c4e2fb5aa8d0826c5bce, type: 3}
   audio: {fileID: 1044897978}
+  health100: {fileID: 2800000, guid: d8341904f9033420992ceea512546bb4, type: 3}
+  health90: {fileID: 2800000, guid: 54685c3d5eeaf4f9db3b53da152aee39, type: 3}
+  health75: {fileID: 2800000, guid: a1c95c8641ed24022884aec513996db1, type: 3}
+  health50: {fileID: 2800000, guid: 42d81a8e019be4f4e98d7d0a62a34d57, type: 3}
+  health25: {fileID: 2800000, guid: d8083ecda7c4e4b38a3e31bc6df62876, type: 3}
+  health0: {fileID: 2800000, guid: 8dccf92f333db4f34a7d8477d2349d5a, type: 3}
+  timeBetweenRegeneration: 1
 --- !u!33 &1044897976
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13851,7 +13868,7 @@ GameObject:
   - component: {fileID: 1398596374}
   m_Layer: 0
   m_Name: Gun
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18206,6 +18223,16 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 161.49101
       objectReference: {fileID: 0}
+    - target: {fileID: 135179077842792210, guid: 28cb8847d8a222a4388f4950dd77e5f7,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.6034479
+      objectReference: {fileID: 0}
+    - target: {fileID: 135763913867560284, guid: 28cb8847d8a222a4388f4950dd77e5f7,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.581599
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28cb8847d8a222a4388f4950dd77e5f7, type: 2}
   m_IsPrefabParent: 0
@@ -18653,6 +18680,13 @@ MonoBehaviour:
   damaged: 0
   impact: {fileID: 8300000, guid: e1db4bae62b6c4e2fb5aa8d0826c5bce, type: 3}
   audio: {fileID: 1838465227}
+  health100: {fileID: 0}
+  health90: {fileID: 0}
+  health75: {fileID: 0}
+  health50: {fileID: 0}
+  health25: {fileID: 0}
+  health0: {fileID: 0}
+  timeBetweenRegeneration: 1
 --- !u!114 &1838465229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19106,6 +19140,7 @@ GameObject:
   - component: {fileID: 1875678356}
   - component: {fileID: 1875678355}
   - component: {fileID: 1875678363}
+  - component: {fileID: 1875678364}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -19296,6 +19331,21 @@ MonoBehaviour:
   adaptionSpeed: 1.5
   tonemapper: {fileID: 4800000, guid: 003377fc2620a44939dadde6fe3f8190, type: 3}
   validRenderTextureFormat: 1
+--- !u!114 &1875678364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1875678353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42e81153ab5ec4558ad19355e60537a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPosition: {fileID: 0}
+  shakeDuration: 0
+  amountOfshaking: 0.03
+  decreaseFactor: 1
 --- !u!1001 &1903509794
 Prefab:
   m_ObjectHideFlags: 0

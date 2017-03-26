@@ -17,6 +17,8 @@ public class OverviewBehavior : MonoBehaviour {
     // Use this for initialization
     void Start () {
         speed = 15;
+		player = GameObject.Find ("Player");
+	
 	}
 	
 	// Update is called once per frame

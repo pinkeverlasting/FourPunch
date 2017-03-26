@@ -13,24 +13,31 @@ public class Biting : MonoBehaviour {
 	EnemyStatePattern enemy; 					 // Enemy's Core Files
 	bool playerInRange;                         // Whether player is within the trigger collider and can be attacked.
 	float timer;                                // Timer for counting up to the next attack.
+	public EnemyStatePattern mutantObject;
 
+	public HealthShake cameraShake;
 
 	void Awake ()
 	{
 		// Setting up the references.
-		player = GameObject.FindGameObjectWithTag ("Player");
+		player = GameObject.Find("Player");
 		playerHealth = player.GetComponent <PlayerHealth> ();
+		cameraShake = GameObject.Find ("Main Camera").GetComponent<HealthShake> ();
+		mutantObject = transform.parent.gameObject.GetComponent<EnemyStatePattern>();
 	}
 
 
 	void OnTriggerEnter (Collider other)
 	{
 		// If the entering collider is the player...
-		if(other.gameObject == player)
+		if(other.gameObject == player && mutantObject.alive == true)
 		{
 			// ... the player is in range.
-			playerInRange = true;
-			Debug.Log ("health");
+
+			if (mutantObject.enabled == true) {
+				playerInRange = true;
+				Debug.Log ("health");
+			}
 		}
 	}
 
@@ -70,6 +77,7 @@ public class Biting : MonoBehaviour {
 		if(playerHealth.currentHealth > 0)
 		{
 			// ... damage the player.
+			cameraShake.shakeDuration = 1.0f;
 			playerHealth.TakeDamage (attackDamage);
 		}
 	}

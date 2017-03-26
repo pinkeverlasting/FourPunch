@@ -19,7 +19,7 @@ public class RampCharacterDetector : MonoBehaviour {
         //Debug.Log(col.gameObject);
         if (col.gameObject.tag == "Player") //if the object is a player
         {
-            Debug.Log(col.gameObject);
+         
             col.gameObject.GetComponent<PlayerMovement>().gravity = -1; //set to low gravity
 
         }

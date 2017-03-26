@@ -10,6 +10,7 @@ TagManager:
   - Bullet
   - Wall
   - PickUp
+  - AngledCamera
   layers:
   - Default
   - TransparentFX

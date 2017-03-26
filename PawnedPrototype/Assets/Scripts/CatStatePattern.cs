@@ -44,7 +44,7 @@ public class CatStatePattern : MonoBehaviour {
 		timer += Time.deltaTime;
 
 		if (IsGrounded () && !first) {
-			Debug.Log ("GROUND");
+
 			getwayPoint ();
 			first = true;
 		} else {

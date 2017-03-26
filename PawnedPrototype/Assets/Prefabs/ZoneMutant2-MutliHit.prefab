@@ -380,7 +380,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1521667224054636}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 243.66, y: 42.48, z: 266.65}
+  m_LocalPosition: {x: 20.164719, y: 11.139999, z: -13.709808}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4002640122909898}
@@ -413,8 +413,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1596816017323538}
-  m_LocalRotation: {x: -0, y: -0, z: 0.32778606, w: 0.94475204}
-  m_LocalPosition: {x: 35.157112, y: 60.93809, z: 176.95357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5102157, y: 1.3290354, z: 1.0170258}
   m_Children: []
   m_Father: {fileID: 4914148624063832}
@@ -622,6 +622,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   immuneTypeInt: 0
+  hitEffect: {fileID: 1657663977643408}
+  timer: 0
+  timerStart: 0
+  timeBetweenEffects: 0.2
 --- !u!114 &114254349732031102
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -668,6 +672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
   attackDamage: 10
+  cameraShake: {fileID: 0}
 --- !u!114 &114762929495096926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -726,7 +731,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.9004627
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &135855043337632074
 SphereCollider:

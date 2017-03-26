@@ -14,6 +14,7 @@ public class EnableObjectOnEnter : MonoBehaviour {
     void Start () {
         objectToEnable.SetActive(false);
         cinematicCamera.SetActive(false);
+		player = GameObject.Find("Player");
 	}
 	
 	// Update is called once per frame
@@ -26,7 +27,6 @@ public class EnableObjectOnEnter : MonoBehaviour {
         {
             objectToEnable.SetActive(true); //enable the gate
 
-            player = other.gameObject; //save the player object
 
             cinematicCamera.SetActive(true); //turn on the cinematic camera
             playerCamera.SetActive(false); //turn off player camera

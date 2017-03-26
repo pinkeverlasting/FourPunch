@@ -72,7 +72,6 @@ public class OneHit : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-		Debug.Log("ENTER " + other.gameObject.tag);
 
 		if (other.gameObject.tag == "Bullet") {
 			hitEffect.SetActive (true);

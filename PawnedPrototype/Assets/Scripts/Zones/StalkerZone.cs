@@ -15,7 +15,7 @@ public class StalkerZone : EnemyState {
 	{
 
 		enemy.distance = Vector3.Distance (enemy.transform.position, enemy.character.transform.position);
-		Debug.Log (enemy.distance);
+
 
 		if (enemy.distance >= 17.0f) {
 			if (enemy.alive) {
@@ -61,7 +61,7 @@ public class StalkerZone : EnemyState {
 	void Stalk()
 	{
 
-		Debug.Log (enemy.alive);
+
 		if (enemy.alive == true && enemy.seePlayer) { 
 			enemy.characterPostition = new Vector3 (enemy.character.position.x, 
 				enemy.transform.position.y, 

@@ -18,6 +18,7 @@ public class EnteringBossLevel : MonoBehaviour {
 	void Start () {
         bossMutantContainer.SetActive(false);
         explosionLocation = explosionObject.transform;
+		player = GameObject.Find ("Player");
 	}
 	
 	// Update is called once per frame
@@ -30,7 +31,7 @@ public class EnteringBossLevel : MonoBehaviour {
         if (other.gameObject.tag == "Player") //if player enters boss area, turn cinematic camera on and turn off player camera and tell all mutants to not move.
         {
             
-            player = other.gameObject;
+           
 
             cinematicCamera.SetActive(true);
             playerCamera.SetActive(false);
