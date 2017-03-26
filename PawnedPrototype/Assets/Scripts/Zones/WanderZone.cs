@@ -29,7 +29,7 @@ public class WanderZone : EnemyState {
 	{
 		if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Mutant") {
 			enemy.wanderingState.getwayPoint ();
-			Debug.Log ("HITWALL");
+
 		}
 	}
 		
@@ -41,7 +41,7 @@ public class WanderZone : EnemyState {
 
 	public void WanderState()
 	{
-		Debug.Log ("Can't transition to same state");
+		
 	}
 
 	public void ChaseState()

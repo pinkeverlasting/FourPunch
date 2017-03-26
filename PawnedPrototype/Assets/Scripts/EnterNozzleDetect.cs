@@ -88,6 +88,12 @@ public class EnterNozzleDetect : MonoBehaviour
         {
             equipment.SetActive(false);
         }
+        else
+        {
+            noEquipModel.SetActive(false);
+            equipment.SetActive(true);
+            hasEquipment = true;
+        }
         //Debug.Log(warpZone.GetComponent<ObjectDetect>().multipplier);
     }
 
@@ -97,11 +103,12 @@ public class EnterNozzleDetect : MonoBehaviour
         if (hasEquipment)
         {
             //Debug.Log(currentAmmoType);
-            if (Input.GetMouseButtonDown(1) && stateOfGun == GunState.GUN && allowToEject) //if right click and the gun is in gun mode
+            if (Input.GetKeyDown(KeyCode.Space) && stateOfGun == GunState.GUN && allowToEject) //if right click and the gun is in gun mode
             {
                 //int tempAmmoType;
                 //Debug.Log("hit right mouse when GUN");
                 stateOfGun = GunState.EJECT; //set gun mode to eject
+				light.stateOfAmmo = AmmoLight.AmmoState.NONE;
                 foreach (Transform child in pack.transform) //check the children of the backpack
                 {
                     EjectAmmo((int)child.GetComponent<AmmoTypeScript>().catType); //check the ammo type and send it to EjectAmmo
@@ -241,19 +248,22 @@ public class EnterNozzleDetect : MonoBehaviour
 				{
 					LaunchAmmo(fireSpeed * 1.5f);
 					currentRedAmmoCount -= 1;
-				}
+				} 
+
 				if (currentRedAmmoCount <= redAmmoCount * 0.45f) {
 					light.stateOfAmmo = AmmoLight.AmmoState.LOW;
 				}
-				else if (currentRedAmmoCount <= 1)
+
+
+				if (currentRedAmmoCount <= 1)
 				{
 					OutOfAmmo();
 					light.stateOfAmmo = AmmoLight.AmmoState.FLASH;
 
-				}
-
+				} 
+					
 			}
-			if (Input.GetKeyUp(KeyCode.Space) && stateOfGun == GunState.VACUUM && currentAmmoType != null)
+			if (Input.GetKeyDown(KeyCode.Space) && stateOfGun == GunState.VACUUM && currentAmmoType != null)
 			{
 				Invoke("VacuumToEjectCooldown", 2);
 				stateOfGun = GunState.GUN;

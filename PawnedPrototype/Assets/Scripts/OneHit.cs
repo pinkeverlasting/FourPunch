@@ -7,15 +7,24 @@ public class OneHit : MonoBehaviour {
 
     private float force;
     private GameObject mutantObject;
+	public float timeBetweenEffects = 0.2f;     // seconds between effects
 
     private GameObject coin;
     private bool dropOnce;
+
+	public GameObject hitEffect; 
+	public float timer;
+	public bool timerStart; 
+
     // Use this for initialization
     void Start () {
         mutantObject = transform.parent.gameObject;
         //wander = gameObject.GetComponent<EnemyStatePattern>();
         wander = mutantObject.GetComponent<EnemyStatePattern>();
         force = 1000;
+
+		timerStart = false;
+		hitEffect.SetActive (false);
 
         coin = GameObject.Find("catCoinPickUp");
         dropOnce = true;
@@ -27,10 +36,26 @@ public class OneHit : MonoBehaviour {
         {
             GetComponent<Rigidbody>().isKinematic = false;
         }*/
+
+		if (timerStart) {
+			timer += Time.deltaTime;
+		} 
+
+		if(timer >= timeBetweenEffects)
+		{
+			hitEffect.SetActive (false);
+			timerStart = false;
+			timer = 0f;
+		}
+
+
         if (wander.alive == false)
         {
+			//hitEffect.SetActive (false);
+
             if (dropOnce)
             {
+				
                 //LaunchCoin();
             }
         }
@@ -47,8 +72,21 @@ public class OneHit : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+		Debug.Log("ENTER " + other.gameObject.tag);
+
+		if (other.gameObject.tag == "Bullet") {
+			hitEffect.SetActive (true);
+			timerStart = true;
+		}
+
         if (other.gameObject.tag == "Bullet" && wander.alive == true)
 		{
+
+			//em.enabled = true;
+			Debug.Log("RED HAS COLLIDEDDD");
+
+
+
             if (other.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED)
             {
                 Debug.Log("RED HAS COLLIDED");
@@ -66,7 +104,7 @@ public class OneHit : MonoBehaviour {
 
             }
             if (other.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.ORANGE)
-            { 
+			{ 
 
                     mutantObject.GetComponent<Rigidbody>().freezeRotation = false;
 

@@ -706,6 +706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   multipplier: 0.1
   originalMultiplier: 0
+  catScript: {fileID: 0}
 --- !u!114 &114558140555545960
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -720,6 +721,8 @@ MonoBehaviour:
   moveSpeed: 12
   gravity: -6
   canMove: 0
+  coinText: {fileID: 0}
+  passObject: {fileID: 0}
 --- !u!114 &114699724253691346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -731,6 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af804b9d72f044560ae1b11729c6fa8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isExplosion: 0
 --- !u!114 &114790484812107954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -761,9 +765,25 @@ MonoBehaviour:
   whiteActual: {fileID: 0}
   redBullet: {fileID: 1198150396292200, guid: ef1b18224c908f84eb43329ddbc83461, type: 2}
   blueBullet: {fileID: 1267045407898478, guid: 42c089f903882304f817c6a94e895c54, type: 2}
+  yellowBullet: {fileID: 0}
+  purpleBullet: {fileID: 0}
+  orangeBullet: {fileID: 0}
+  greenBullet: {fileID: 0}
   blueAmmoCount: 20
+  redAmmoCount: 0
+  yellowAmmoCount: 0
+  purpleAmmoCount: 0
+  orangeAmmoCount: 0
+  greenAmmoCount: 0
+  hasEquipment: 0
+  hasUpgrade: 0
+  equipment: {fileID: 0}
+  noEquipModel: {fileID: 0}
+  testWall: {fileID: 0}
+  light: {fileID: 0}
   ejectSpeed: 600
   fireSpeed: 1000
+  strayFactor: 0
   stateOfGun: 0
 --- !u!136 &136458298659537020
 CapsuleCollider:

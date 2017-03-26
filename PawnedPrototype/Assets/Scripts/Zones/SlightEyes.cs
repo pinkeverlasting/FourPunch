@@ -21,7 +21,7 @@ public class SlightEyes : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other) {
 		if ( (other.gameObject.tag == "test" || other.gameObject.tag == "Wall") && enemy.chaseState.alwaysChase == false ) { 
-			Debug.Log ("I HIT WALL");
+			
 			enemy.currentState.WanderState ();
 			enemy.wanderingState.getwayPoint ();
 			//Debug.Log (enemy.chase);

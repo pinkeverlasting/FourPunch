@@ -10,17 +10,38 @@ public class DamageHandler2 : MonoBehaviour
     private GameObject mutantObject;
     private EnemyStatePattern wander;
 
+	//public ParticleSystem hitParticle; 
+	//public ParticleSystem.EmissionModule effectParticle;
+
+
     //IMMUNITIES
     //public bool isImmune;
     public int immuneTypeInt; //1 is blue, 2 is red, 3 is yellow
 
     private GameObject coin;
     private bool dropOnce;
+	public GameObject hitEffect; 
+	public float timer;
+	public bool timerStart; 
+	public float timeBetweenEffects = 0.2f;     // seconds between effects
 
+
+	void Awake() {
+
+
+		/*hitParticle = GameObject.Find("HitEffect").GetComponent<ParticleSystem> ();
+		var effectParticle = hitParticle.emission;
+		hitParticle.Stop ();
+		effectParticle.enabled = false;*/
+	}
 
     // Use this for initialization
     void Start()
     {
+
+		timerStart = false;
+		hitEffect.SetActive (false);
+
         enemyHealth = 100;
         if(immuneTypeInt == 1) //blue
         {
@@ -48,6 +69,18 @@ public class DamageHandler2 : MonoBehaviour
         //Debug.Log(enemyHealth);
         if (enemyHealth <= 0)
         {
+
+			if (timerStart) {
+				timer += Time.deltaTime;
+			} 
+
+			if(timer >= timeBetweenEffects)
+			{
+				hitEffect.SetActive (false);
+				timerStart = false;
+				timer = 0f;
+			}
+
             //look.alive = false; 
             // wander.GetComponent<Rigidbody>().freezeRotation = false;
 
@@ -83,11 +116,17 @@ public class DamageHandler2 : MonoBehaviour
         if (col.gameObject.tag == "Bullet")
         {
             Debug.Log("HIT");
+		
         }
         if (col.gameObject.GetComponent<BulletDeletion>() != null && enemyHealth > 0)
         {
             //Debug.Log("This is a bullet");
             //MORE AMMO TYPES AND CAT DAMAGE
+			//var effectParticle = hitParticle.emission;
+			//effectParticle.enabled = true;
+			//StartCoroutine (stopEffect ());
+
+
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED && immuneTypeInt != 2)
             {
                 Debug.Log("This is a RED");
@@ -150,6 +189,9 @@ public class DamageHandler2 : MonoBehaviour
 
                 //rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
             }
+
+			hitEffect.SetActive (true);
+			timerStart = true;
         }
         if (col.gameObject.tag == "Bullet" && enemyHealth <= 0)
         {
@@ -215,10 +257,13 @@ public class DamageHandler2 : MonoBehaviour
 
         }
     }
-    private void OnTriggerEnter(Collider other)
+    
+	private void OnTriggerEnter(Collider other)
     {
         
 
 
     }
+
+
 }

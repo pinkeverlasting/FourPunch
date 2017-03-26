@@ -13,6 +13,7 @@ public class ObjectDetect : MonoBehaviour {
     public float originalMultiplier; //used to store the original multiplier value
 
     private GameObject warpTexture;
+	public CatStatePattern catScript;
 
     private bool hasEquipment;
 
@@ -32,7 +33,7 @@ public class ObjectDetect : MonoBehaviour {
 
         nozzlePosition = nozzle.GetComponent<Transform>().position; //set nozzle position as the referenced object position
 
-        if (Input.GetMouseButtonUp(1))
+		if (Input.GetKeyUp(KeyCode.Space))
         {
             player.GetComponent<PlayerMovement>().SetToWalkingSpeed();
         }
@@ -64,13 +65,19 @@ public class ObjectDetect : MonoBehaviour {
     {
         if (hasEquipment)
         {
-            if (Input.GetMouseButton(1) && nozzle.GetComponent<EnterNozzleDetect>().stateOfGun == EnterNozzleDetect.GunState.VACUUM) //if right click is down and the gun is in vacuum mode
-            {
+			if (Input.GetKey(KeyCode.Space) && nozzle.GetComponent<EnterNozzleDetect>().stateOfGun == EnterNozzleDetect.GunState.VACUUM) //if right click is down and the gun is in vacuum mode
+			{
+				warpTexture.GetComponent<suckingDisplay>().SendMessage("ShowVortex");
 
                 //Debug.Log("True");
                 if (other.gameObject.tag == "Ammo") //if an ammo or cat enters the trigger ONLY DETECTS AMMO, NO TYPES
                 {
-                    warpTexture.GetComponent<suckingDisplay>().SendMessage("ShowVortex");
+
+					//other.gameObject.GetComponent<Rigidbody> ().isKinematic = true;
+					catScript = other.gameObject.GetComponent<CatStatePattern> ();
+					other.gameObject.GetComponent<CatStatePattern> ().enabled = false;
+					//catScript.sucked = false;
+                    //warpTexture.GetComponent<suckingDisplay>().SendMessage("ShowVortex");
                     Rigidbody tempAmmoRigid = other.gameObject.GetComponent<Rigidbody>(); //assign temporary rigid variable as object rigidbody
 
                     //Debug.Log(tempAmmo.GetComponent<Rigidbody>().useGravity);
@@ -97,7 +104,7 @@ public class ObjectDetect : MonoBehaviour {
 
                 }
             }
-            else if (Input.GetMouseButtonUp(1)) //if let go of right click
+			else if (Input.GetKeyUp(KeyCode.Space)) //if let go of right click
             {
                 warpTexture.GetComponent<suckingDisplay>().SendMessage("DisableVortex");
                 if (other.gameObject.tag == "Ammo") //if an ammo or cat enters the trigger

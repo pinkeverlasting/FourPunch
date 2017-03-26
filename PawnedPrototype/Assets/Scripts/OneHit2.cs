@@ -9,6 +9,11 @@ public class OneHit2 : MonoBehaviour
     private float force;
     private GameObject mutantObject;
 
+	public float timeBetweenEffects = 0.2f;     // seconds between effects
+	public GameObject hitEffect; 
+	public float timer;
+	public bool timerStart; 
+
     private GameObject coin;
     private bool dropOnce; //to make sure coins are only dropped once
     // Use this for initialization
@@ -20,6 +25,12 @@ public class OneHit2 : MonoBehaviour
         force = 1000;
         coin = GameObject.Find("catCoinPickUp");
         dropOnce = true;
+
+		timerStart = false;
+		hitEffect.SetActive (false);
+
+
+	
     }
 
     // Update is called once per frame
@@ -29,8 +40,24 @@ public class OneHit2 : MonoBehaviour
         {
             GetComponent<Rigidbody>().isKinematic = false;
         }*/
+
+		if (timerStart) {
+			timer += Time.deltaTime;
+		} 
+
+		if(timer >= timeBetweenEffects)
+		{
+			hitEffect.SetActive (false);
+			timerStart = false;
+			timer = 0f;
+		}
+
+
         if (wander.alive == false)
         {
+			hitEffect.SetActive (false);
+
+
             if (dropOnce)
             {
                 LaunchCoin();
@@ -49,8 +76,7 @@ public class OneHit2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-
+   
 
 
     }
@@ -85,6 +111,8 @@ public class OneHit2 : MonoBehaviour
 
         if (col.gameObject.GetComponent<BulletDeletion>() != null && wander.move == true)
         {
+			hitEffect.SetActive (true);
+			timerStart = true;
 
             //GetComponent<Rigidbody>().isKinematic = false;
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.PURPLE)
@@ -112,6 +140,8 @@ public class OneHit2 : MonoBehaviour
 
             this.GetComponent<Rigidbody>().AddForce(Vector3.forward * 20);
             this.GetComponent<EnemyStatePattern>().enabled = false;
+
+
             //GetComponent<Rigidbody>().isKinematic = false;
         }
         if (col.gameObject.tag == "Bullet" && wander.move == false)

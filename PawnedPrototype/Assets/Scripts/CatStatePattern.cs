@@ -8,12 +8,19 @@ public class CatStatePattern : MonoBehaviour {
 	public bool crouching;
 	public float timeBetweenChange;     // seconds between the two states
 	float timer;                         // Timer for change.
+	float distToGround;  //check if grounded 
+	public Raycast hit; 
 
 	//Movement State
-	[HideInInspector] public Vector3 wayPoint = Vector3.zero;
-	[HideInInspector] public Vector3 moveDirection; 
+	public Vector3 wayPoint = Vector3.zero;
+	public Vector3 moveDirection; 
 	[HideInInspector] public Vector3 target; 
 	[HideInInspector] public Vector3 direction;
+	public Transform character;  //put character gameobject here
+	public float startingHeight;
+	public float targetTime = 5.0f;
+	public int range = 15;
+	public bool first; 
 
 	//Crouch State 
 
@@ -21,47 +28,116 @@ public class CatStatePattern : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		sucked = false; 
+		sucked = false;
+		first = false;
+		distToGround = GetComponent<Collider>().bounds.extents.y;
 		timeBetweenChange = Random.Range (7.0f, 12.0f);
 		crouching = false;
+		character = this.transform;
+		startingHeight = character.position.y;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		if(timer >= timeBetweenChange && !sucked)
-		{
-			if (crouching) {
-				crouchingState ();
-			} else {
-				//walking ();
+		// Add the time since Update was last called to the timer.
+		timer += Time.deltaTime;
+
+		if (IsGrounded () && !first) {
+			Debug.Log ("GROUND");
+			getwayPoint ();
+			first = true;
+		} else {
+
+			transform.Rotate(Vector3.right, 40f * Time.deltaTime);
+		}
+
+		if (first) {
+
+			if (!sucked) {
+				if (crouching) {
+					crouchingState ();
+
+				} else {
+					walking ();
+
+				}
+
 			}
+
+			if (timer >= timeBetweenChange && !sucked) {
+				if (crouching) {
+					crouching = false;
+					timeBetweenChange = Random.Range (7.0f, 12.0f);
+					timer = 0;
+				} else {
+					crouching = true;
+					timeBetweenChange = Random.Range (3.0f, 7.0f);
+					timer = 0;
+				}
+			}
+
 		}
 		
 	}
 
-	void crouchingState() {
-		/*timeBetweenAttacks = Random.Range (7.0f, 12.0f);
+	private bool IsGrounded() {
+		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
+	}
+
+	void walking() {
+
 		target = wayPoint;
 		target.y = transform.position.y; 
 
 		if (Vector3.Distance (transform.position, target) > 2) {
 			targetTime -= Time.deltaTime;
-			//Debug.Log ("Timer: " + targetTime);
-			enemy.transform.LookAt (enemy.target);
-			//direction = enemy.target - enemy.transform.position;
-			enemy.direction = enemy.target - enemy.transform.position;
-			enemy.direction = enemy.direction.normalized;
-			enemy.GetComponent<Rigidbody> ().velocity = (enemy.transform.forward * 3f);
-			//enemy.GetComponent<Rigidbody> ().AddForce(direction * 25f);
-			//enemy.GetComponent<Rigidbody> ().AddForce (enemy.transform.forward * 15f, ForceMode.Force);
+			transform.LookAt (target);
+			direction = target - transform.position;
+			direction = direction.normalized;
+			GetComponent<Rigidbody> ().velocity = (transform.forward * 3f);
 		} else {
 			getwayPoint ();
 
-		}*/
+		}
+
+		if (targetTime <= 0.0f)
+		{
+			getwayPoint ();
+			//time for preventing AI from being Stuck
+			targetTime = 5.0f;
+		}
 
 	}
 
+	void crouchingState () {
+
+		GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
+	}
+
+
+	void getwayPoint() {
+
+		wayPoint = new Vector3(Random.Range(transform.position.x - range, transform.position.x + range),
+		startingHeight, Random.Range(transform.position.z - range, transform.position.z + range));
+	}
+
+
+	void OnCollisionEnter(Collision collision) {
+
+		if (!crouching) {
+			getwayPoint ();
+		}
+			
+	}
+
+	void onTriggerEnter(Collider col) {
+		if (col.gameObject.tag == "Wall") {
+			Debug.Log ("CatWall");
+			getwayPoint ();
+		}
+
+	}
 
 }
 

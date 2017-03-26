@@ -27,7 +27,7 @@ public class DetectObject : MonoBehaviour {
 	void Update () {
 		nozzlePosition = nozzle.GetComponent<Transform>().position; //set nozzle position as the referenced object position
 
-		if (Input.GetMouseButtonUp(1))
+		if (Input.GetKeyUp(KeyCode.Space))
 		{
 			player.GetComponent<PlayerZoneMovement>().SetToWalkingSpeed();
 		}
@@ -55,7 +55,7 @@ public class DetectObject : MonoBehaviour {
 
 	private void OnTriggerStay(Collider other)
 	{
-		if (Input.GetMouseButton(1) && nozzle.GetComponent<EnterNozzle>().stateOfGun == EnterNozzle.GunState.VACUUM) //if right click is down and the gun is in vacuum mode
+		if (Input.GetKey(KeyCode.Space) && nozzle.GetComponent<EnterNozzle>().stateOfGun == EnterNozzle.GunState.VACUUM) //if right click is down and the gun is in vacuum mode
 		{
 
 			//Debug.Log("True");
@@ -88,7 +88,7 @@ public class DetectObject : MonoBehaviour {
 
 			}
 		}
-		else if (Input.GetMouseButtonUp(1)) //if let go of right click
+		else if (Input.GetKeyUp(KeyCode.Space)) //if let go of right click
 		{
 			warpTexture.GetComponent<suckingDisplay>().SendMessage("DisableVortex");
 			if (other.gameObject.tag == "Ammo") //if an ammo or cat enters the trigger

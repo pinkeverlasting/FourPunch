@@ -56,6 +56,6 @@ public class Level1Manager : MonoBehaviour {
     }
     private void DoneLevel() //the level is done
     {
-        Application.LoadLevel(3);
+        Application.LoadLevel(5);
     }
 }

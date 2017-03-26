@@ -29,6 +29,8 @@ public class ChaseZone : EnemyState {
 
 		if (enemy.foreverChasing) {
 			alwaysChase = true;
+		} else {
+			alwaysChase = false;
 		}
 
 
@@ -97,7 +99,7 @@ public class ChaseZone : EnemyState {
 		} else { 
 
 			if (alwaysChase == false) {
-				WanderState ();
+				StalkerState ();
 			}
 		}
 				

@@ -17,10 +17,10 @@ public class suckingDisplay : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetMouseButtonDown (1)) {
+		if (Input.GetKeyDown (KeyCode.Space)) {
 			print ("Pressed");
 			//rend.enabled = true;
-		} else if (Input.GetMouseButtonUp (1)) {
+		} else if (Input.GetKeyUp(KeyCode.Space)) {
 			print ("Released");
 			//rend.enabled = false;
 		}

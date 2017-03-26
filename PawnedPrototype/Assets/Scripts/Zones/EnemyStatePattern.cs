@@ -50,6 +50,7 @@ public class EnemyStatePattern : MonoBehaviour
 		chaseState = new ChaseZone (this);
 		wanderingState = new WanderZone (this);
 		stalkingState = new StalkerZone (this);
+		players = GameObject.Find ("Player");
 		character = players.transform;
 
 		speedWandering = 2.0f * Time.deltaTime;

@@ -32,7 +32,7 @@ public class onTrigger : MonoBehaviour {
 	public void OnTriggerEnter (Collider other) { 
 		if (other.gameObject.tag == "Wall") {
 			enemy.wanderingState.getwayPoint ();
-			Debug.Log ("HITWALL");
+		
 
 		}
         if(other.gameObject.tag == "Bullet")
@@ -42,12 +42,13 @@ public class onTrigger : MonoBehaviour {
 	}
 
 	public void OnTriggerExit (Collider otherExit) {
-		Debug.Log ("TriggerExit");
-		if (otherExit.gameObject.tag == "Player" && enemy.currentlyChasing == true && enemy.foreverChasing == false) {
+
+
+		if (otherExit.gameObject.tag == "Player" && enemy.currentlyChasing == true && enemy.foreverChasing != true) {
 			if (enemy.alive) {
 				enemy.chaseState.StalkerState ();
 			}
-		} else if (enemy.foreverChasing) {
+		} else if (otherExit.gameObject.tag == "Player" && enemy.currentlyChasing == true && enemy.foreverChasing == true) {
 			enemy.chaseState.ChaseState ();
 		}
 

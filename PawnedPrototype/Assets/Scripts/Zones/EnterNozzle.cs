@@ -61,7 +61,7 @@ public class EnterNozzle : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetMouseButtonDown(1) && stateOfGun == GunState.GUN && allowToEject) //if right click and the gun is in gun mode
+		if (Input.GetKeyDown(KeyCode.Space) && stateOfGun == GunState.GUN && allowToEject) //if right click and the gun is in gun mode
 		{
 			//int tempAmmoType;
 			//Debug.Log("hit right mouse when GUN");

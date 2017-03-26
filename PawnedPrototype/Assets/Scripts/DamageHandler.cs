@@ -8,11 +8,15 @@ public class DamageHandler : MonoBehaviour {
     int enemyHealth;
    private GameObject mutantObject;
     private EnemyStatePattern wander;
+	public float timeBetweenEffects = 0.2f;     // seconds between effects
 
     private int immuneTypeInt;
 
     private GameObject coin;
     private bool dropOnce;
+	public GameObject hitEffect; 
+	public float timer;
+	public bool timerStart; 
 
 
     // Use this for initialization
@@ -20,7 +24,14 @@ public class DamageHandler : MonoBehaviour {
         enemyHealth = 100;
 
         mutantObject = transform.parent.gameObject;
-       wander = gameObject.GetComponent<EnemyStatePattern>();
+        wander = gameObject.GetComponent<EnemyStatePattern>();
+
+		timerStart = false;
+		hitEffect.SetActive (false);
+		//em = hitParticle.emission;
+		//em.enabled = false;
+
+
 
         immuneTypeInt = mutantObject.GetComponent<DamageHandler2>().immuneTypeInt;
         enemyHealth = 100;
@@ -43,6 +54,17 @@ public class DamageHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (timerStart) {
+			timer += Time.deltaTime;
+		} 
+
+		if(timer >= timeBetweenEffects)
+		{
+			hitEffect.SetActive (false);
+			timerStart = false;
+			timer = 0f;
+		}
         //Debug.Log(enemyHealth);
 		if (enemyHealth <= 0)
         {
@@ -134,6 +156,9 @@ public class DamageHandler : MonoBehaviour {
     {
         if (other.gameObject.tag == "Bullet")
         {
+			hitEffect.SetActive (true);
+			timerStart = true;
+
             if (other.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED && immuneTypeInt != 2)
             {
                 //Debug.Log("RED HAS COLLIDED");
@@ -189,4 +214,11 @@ public class DamageHandler : MonoBehaviour {
 
 
     }
+
+
+	IEnumerator stopEffect() {
+		Debug.Log ("SECONDS");
+		yield return new WaitForSeconds (.2f); 
+		//hitEffect.SetActive (false);
+	}
 }

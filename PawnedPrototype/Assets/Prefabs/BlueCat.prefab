@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 54323815336486956}
   - component: {fileID: 136759369143662318}
   - component: {fileID: 114448768350899660}
+  - component: {fileID: 114711990498508156}
   m_Layer: 0
   m_Name: BlueCat
   m_TagString: Ammo
@@ -399,7 +400,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1570124570279134}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 12.572601, y: 0.26174277, z: -18.17631}
+  m_LocalPosition: {x: 250.98, y: 46.03, z: 258.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4031463763246040}
@@ -731,6 +732,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   catType: 1
+--- !u!114 &114711990498508156
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1570124570279134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4d59fb43650410591fa2df76246a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sucked: 0
+  crouching: 0
+  timeBetweenChange: 0
+  hit: {fileID: 0}
+  wayPoint: {x: 0, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
+  target: {x: 0, y: 0, z: 0}
+  direction: {x: 0, y: 0, z: 0}
+  character: {fileID: 0}
+  startingHeight: 0
+  targetTime: 30
+  range: 15
+  first: 0
 --- !u!136 &136759369143662318
 CapsuleCollider:
   m_ObjectHideFlags: 1
