@@ -66,7 +66,8 @@ public class WanderZone : EnemyState {
 
 
 			enemy.target = enemy.wayPoint;
-			enemy.target.y = enemy.transform.position.y; 
+			enemy.target.y = enemy.transform.position.y;
+				//enemy.transform.position.y; 
 
 			if (Vector3.Distance (enemy.transform.position, enemy.target) > 2) {
 				targetTime -= Time.deltaTime;
@@ -124,7 +125,7 @@ public class WanderZone : EnemyState {
         /*enemy.wayPoint = new Vector3(Random.Range(enemy.transform.position.x - enemy.range, enemy.transform.position.x + enemy.range),
 			1, Random.Range(enemy.transform.position.z - enemy.range, enemy.transform.position.z + enemy.range));*/
         enemy.wayPoint = new Vector3(Random.Range(enemy.transform.position.x - enemy.range, enemy.transform.position.x + enemy.range),
-        enemy.startingHeight, Random.Range(enemy.transform.position.z - enemy.range, enemy.transform.position.z + enemy.range));
+			enemy.startingHeight, Random.Range(enemy.transform.position.z - enemy.range, enemy.transform.position.z + enemy.range));
 
     }
 

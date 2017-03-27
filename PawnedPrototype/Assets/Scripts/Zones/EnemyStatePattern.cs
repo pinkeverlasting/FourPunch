@@ -61,7 +61,7 @@ public class EnemyStatePattern : MonoBehaviour
 		distance = 0;
 		alive = true;
 		chase = false;
-        startingHeight = character.position.y;
+		startingHeight = transform.position.y;
 		 
 	}
 

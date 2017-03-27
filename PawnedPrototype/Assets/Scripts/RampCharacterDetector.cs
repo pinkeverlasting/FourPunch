@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class RampCharacterDetector : MonoBehaviour {
 
+	public GameObject player;
 	// Use this for initialization
 	void Start () {
-		
+		player = GameObject.Find ("Player");
 	}
 	
 	// Update is called once per frame
@@ -20,7 +21,7 @@ public class RampCharacterDetector : MonoBehaviour {
         if (col.gameObject.tag == "Player") //if the object is a player
         {
          
-            col.gameObject.GetComponent<PlayerMovement>().gravity = -1; //set to low gravity
+            player.GetComponent<PlayerMovement>().gravity = -1; //set to low gravity
 
         }
     }
@@ -28,7 +29,7 @@ public class RampCharacterDetector : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player") //if that object is a player
         {
-            col.gameObject.GetComponent<PlayerMovement>().ResetGravity(); //call the reset gravity function of player.
+			player.GetComponent<PlayerMovement>().ResetGravity(); //call the reset gravity function of player.
 
         }
     }
@@ -38,7 +39,7 @@ public class RampCharacterDetector : MonoBehaviour {
         if (col.gameObject.tag == "Player") //if the object is a player
         {
             Debug.Log(col.gameObject);
-            col.gameObject.GetComponent<PlayerMovement>().gravity = -1; //set to low gravity
+			player.GetComponent<PlayerMovement>().gravity = -1; //set to low gravity
 
         }
     }
@@ -47,7 +48,7 @@ public class RampCharacterDetector : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player") //if that object is a player
         {
-            col.gameObject.GetComponent<PlayerMovement>().ResetGravity(); //call the reset gravity function of player.
+			player.GetComponent<PlayerMovement>().ResetGravity(); //call the reset gravity function of player.
 
         }
     }
