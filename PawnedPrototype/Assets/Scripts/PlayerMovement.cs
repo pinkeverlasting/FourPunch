@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour {
 
     public GameObject passObject;
 
+    public bool hasFirstPass;
+
 
 
     void Awake(){
@@ -47,6 +49,11 @@ public class PlayerMovement : MonoBehaviour {
         if(coinText != null)
         {
             coinText.text = coinAmount.ToString();
+        }
+
+        if (hasFirstPass)
+        {
+            passObject.SetActive(true);
         }
         
        // canMove = false;

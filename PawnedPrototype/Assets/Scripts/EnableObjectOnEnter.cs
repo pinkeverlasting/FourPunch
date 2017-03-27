@@ -31,6 +31,8 @@ public class EnableObjectOnEnter : MonoBehaviour {
             cinematicCamera.SetActive(true); //turn on the cinematic camera
             playerCamera.SetActive(false); //turn off player camera
             player.GetComponent<PlayerMovement>().canMove = false; //don't let player move
+
+            this.gameObject.SetActive(false);
         }
     }
 }
