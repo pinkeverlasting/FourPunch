@@ -14,7 +14,9 @@ public class OneHit : MonoBehaviour {
 
 	public GameObject hitEffect; 
 	public float timer;
-	public bool timerStart; 
+	public bool timerStart;
+
+    private bool hasChaseOnWake;
 
     // Use this for initialization
     void Start () {
@@ -28,6 +30,15 @@ public class OneHit : MonoBehaviour {
 
         coin = GameObject.Find("catCoinPickUp");
         dropOnce = true;
+
+      /*  if (this.gameObject.GetComponent<ChaseOnWake>() != null)
+        {
+            hasChaseOnWake = true;
+        }
+        else
+        {
+            hasChaseOnWake = false;
+        }*/
     }
 	
 	// Update is called once per frame

@@ -1181,6 +1181,9 @@ MonoBehaviour:
   canMove: 0
   coinText: {fileID: 0}
   passObject: {fileID: 0}
+  hasFirstPass: 0
+  getCoin: {fileID: 0}
+  audio: {fileID: 0}
 --- !u!114 &114080619014079210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1197,6 +1200,15 @@ MonoBehaviour:
   damaged: 0
   impact: {fileID: 8300000, guid: e1db4bae62b6c4e2fb5aa8d0826c5bce, type: 3}
   audio: {fileID: 0}
+  health100: {fileID: 0}
+  health90: {fileID: 0}
+  health75: {fileID: 0}
+  health50: {fileID: 0}
+  health25: {fileID: 0}
+  health0: {fileID: 0}
+  regenEffect: {fileID: 0}
+  timeBetweenRegeneration: 1.2
+  regen: 0
 --- !u!114 &114113485151297626
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1311,6 +1323,7 @@ MonoBehaviour:
   noEquipModel: {fileID: 0}
   testWall: {fileID: 0}
   light: {fileID: 0}
+  barrel: {fileID: 0}
   ejectSpeed: 600
   fireSpeed: 1000
   strayFactor: 15
