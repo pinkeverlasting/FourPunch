@@ -16,6 +16,8 @@ public class OneHit2 : MonoBehaviour
 
     private GameObject coin;
     private bool dropOnce; //to make sure coins are only dropped once
+
+    private bool hasChaseOnWake;
     // Use this for initialization
     void Start()
     {
@@ -28,6 +30,15 @@ public class OneHit2 : MonoBehaviour
 
 		timerStart = false;
 		hitEffect.SetActive (false);
+
+        if(this.gameObject.GetComponent<ChaseOnWake>() != null)
+        {
+            hasChaseOnWake = true;
+        }
+        else
+        {
+            hasChaseOnWake = false;
+        }
 
 
 	
@@ -56,6 +67,10 @@ public class OneHit2 : MonoBehaviour
         if (wander.alive == false)
         {
 			hitEffect.SetActive (false);
+            if (hasChaseOnWake)
+            {
+                this.GetComponent<ChaseOnWake>().enabled = false;
+            }
 
 
             if (dropOnce)

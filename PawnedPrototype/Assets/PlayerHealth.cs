@@ -75,7 +75,7 @@ public class PlayerHealth : MonoBehaviour
 
 		if (currentHealth == 100) {
 			GUI.DrawTexture(new Rect(0,0, Screen.width, Screen.height), health100);
-			Debug.Log ("Current Health: " + currentHealth);
+			//Debug.Log ("Current Health: " + currentHealth);
 		} else if (currentHealth < 100 && currentHealth >= 80) {
 			GUI.DrawTexture(new Rect(0,0, Screen.width, Screen.height), health90);
 			Debug.Log (currentHealth);
