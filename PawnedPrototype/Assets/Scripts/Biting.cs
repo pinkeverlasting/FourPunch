@@ -36,6 +36,7 @@ public class Biting : MonoBehaviour {
 
 			if (mutantObject.enabled == true) {
 				playerInRange = true;
+				playerHealth.regen = false;
 				Debug.Log ("health");
 			}
 		}
@@ -48,6 +49,7 @@ public class Biting : MonoBehaviour {
 		if(other.gameObject == player)
 		{
 			// ... the player is no longer in range.
+			playerHealth.regen = true;
 			playerInRange = false;
 		}
 	}

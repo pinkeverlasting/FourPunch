@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+
 	public int startingHealth = 100;                            // The amount of health the player starts the game with.
 	public int currentHealth;                                   // The current health the player has.
 	public bool damaged;
@@ -21,9 +22,12 @@ public class PlayerHealth : MonoBehaviour
 
 	public Scene scene;
 
+	public GameObject regenEffect; 
+
 	/*regain health*/
-	public float timeBetweenRegeneration = 1f;     // seconds between regen
-	float timer;                                // Timer for counting up to the next attack.
+	public float timeBetweenRegeneration = 1.2f;     // seconds between regen
+	float timer;                                // Timer
+	public bool regen;			// regening or not 
 
 
 	void Awake ()
@@ -31,7 +35,8 @@ public class PlayerHealth : MonoBehaviour
 		// Set the initial health of the player.
 		currentHealth = startingHealth;
 		damaged = false;
-		scene = SceneManager.GetActiveScene();
+		scene = SceneManager.GetActiveScene ();
+		regenEffect.SetActive (false);
 	}
 
 
@@ -58,6 +63,29 @@ public class PlayerHealth : MonoBehaviour
 			}
 		}
 
+		// Add the time since Update was last called to the timer.
+		timer += Time.deltaTime;
+
+		// If the timer exceeds the time between attacks, the player is in range and this enemy is alive...
+		if(timer >= timeBetweenRegeneration && regen)
+		{
+			if (currentHealth <= 100) {
+				currentHealth = currentHealth + 5;
+				regenEffect.SetActive (true);
+			}
+
+			timer = 0f;
+		}
+
+		if (currentHealth >= 100) {
+
+			regenEffect.SetActive (false);
+
+		}
+
+
+
+
 	}
 
 
@@ -65,7 +93,7 @@ public class PlayerHealth : MonoBehaviour
 	{
 		// Set the damaged flag so the screen will flash.
 		damaged = true;
-
+		regenEffect.SetActive (false);
 		// Reduce the current health by the damage amount.
 		currentHealth -= amount;
 

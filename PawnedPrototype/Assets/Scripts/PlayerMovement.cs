@@ -30,6 +30,9 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool hasFirstPass;
 
+	public AudioClip getCoin; 
+	public AudioSource audio;
+
 
 
     void Awake(){
@@ -160,6 +163,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             else //if it's a coin
             {
+				audio.PlayOneShot(getCoin);
                 coinAmount += 1;
                 coinText.text = coinAmount.ToString(); //track coin ammount
             }
