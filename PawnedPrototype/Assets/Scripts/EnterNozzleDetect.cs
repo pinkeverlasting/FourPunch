@@ -267,13 +267,16 @@ public class EnterNozzleDetect : MonoBehaviour
 				} 
 
 			}
-			if (Input.GetKeyDown (KeyCode.Space) && stateOfGun == GunState.VACUUM && currentAmmoType != null) {
+			if (Input.GetKeyUp (KeyCode.Space) && stateOfGun == GunState.VACUUM && currentAmmoType != null) {
 				Invoke ("VacuumToEjectCooldown", 2);
 
 				stateOfGun = GunState.GUN;
 				warpTexture.GetComponent<suckingDisplay> ().SendMessage ("DisableVortex");
 				player.GetComponent<PlayerMovement> ().SetToWalkingSpeed ();
-			} 
+
+                barrel.stateOfBarrel = BarrelCooldown.BarrelState.COMPLETE;
+                //Invoke("VacuumToEjectCooldown", 2);
+            } 
 		}
 	}
 	private void TurnOffOrange()

@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 54678572123805770}
   - component: {fileID: 136329530039195182}
   - component: {fileID: 114337732917870216}
+  - component: {fileID: 114130890649843650}
   m_Layer: 0
   m_Name: YellowCat
   m_TagString: Ammo
@@ -592,8 +593,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1451811097796638}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 13.477155, y: 0.26174277, z: -18.398275}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -45.32794, y: -5.0219765, z: 93.542725}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4649138253043276}
@@ -719,6 +720,30 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114130890649843650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1451811097796638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e4d59fb43650410591fa2df76246a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sucked: 0
+  crouching: 0
+  timeBetweenChange: 0
+  hit: {fileID: 0}
+  wayPoint: {x: 0, y: 0, z: 0}
+  moveDirection: {x: 0, y: 0, z: 0}
+  target: {x: 0, y: 0, z: 0}
+  direction: {x: 0, y: 0, z: 0}
+  character: {fileID: 0}
+  startingHeight: 0
+  targetTime: 5
+  range: 15
+  first: 0
 --- !u!114 &114337732917870216
 MonoBehaviour:
   m_ObjectHideFlags: 1
