@@ -22,6 +22,7 @@ public class suckingDisplay : MonoBehaviour {
 			//rend.enabled = true;
 		} else if (Input.GetKeyUp(KeyCode.Space)) {
 			print ("Released");
+            DisableVortex();
 			//rend.enabled = false;
 		}
         if (isExplosion && gameObject.name == "GreenBullet")

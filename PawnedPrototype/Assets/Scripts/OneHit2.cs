@@ -18,12 +18,18 @@ public class OneHit2 : MonoBehaviour
     private bool dropOnce; //to make sure coins are only dropped once
 
     private bool hasChaseOnWake;
+	public GameObject animation; 
+	public bool tierOne; 
+
     // Use this for initialization
     void Start()
     {
         mutantObject = this.gameObject;
         //wander = gameObject.GetComponent<EnemyStatePattern>();
         wander = mutantObject.GetComponent<EnemyStatePattern>();
+		if (tierOne) {
+			animation.GetComponent<Animator> ().enabled = true;
+		}
         force = 1000;
         coin = GameObject.Find("catCoinPickUp");
         dropOnce = true;
@@ -67,13 +73,28 @@ public class OneHit2 : MonoBehaviour
         if (wander.alive == false)
         {
 			hitEffect.SetActive (false);
+			if (tierOne) {
+				animation.GetComponent<Animator> ().enabled = false;
+			}
             if (hasChaseOnWake)
             {
                 this.GetComponent<ChaseOnWake>().enabled = false;
             }
 
+            if (GetComponent<UnityEngine.AI.NavMeshAgent>() != null)
+            {
+                GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+                GetComponent<AgentWalkTo>().enabled = false;
+                if(GetComponent<Rigidbody>().isKinematic == true)
+                {
+                    GetComponent<Rigidbody>().isKinematic = false;
+                    this.GetComponent<Rigidbody>().AddForce(Vector3.forward * 500);
+                }
+                Invoke("DeleteMutant", 15);
+            }
 
-            if (dropOnce)
+
+                if (dropOnce)
             {
                 LaunchCoin();
             }
@@ -87,6 +108,11 @@ public class OneHit2 : MonoBehaviour
        // tempCoinObject.GetComponent<Rigidbody>().AddForce(tempCoinObject.transform.forward * 600); //add the fire force to bullet
        // tempCoinObject.GetComponent<Rigidbody>().AddForce(tempCoinObject.transform.up * 300); //add the fire force to bullet
         dropOnce = !dropOnce;
+    }
+
+    private void DeleteMutant()
+    {
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -176,8 +202,20 @@ public class OneHit2 : MonoBehaviour
             }
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.PURPLE)
             {
-               // Debug.Log("This is a Purple");
+                // Debug.Log("This is a Purple");
                 //wander.alive = false;
+                if (GetComponent<UnityEngine.AI.NavMeshAgent>() != null)
+                {
+                    GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+                    GetComponent<AgentWalkTo>().enabled = false;
+                    if (GetComponent<Rigidbody>().isKinematic == true)
+                    {
+                        GetComponent<Rigidbody>().isKinematic = false;
+                        this.GetComponent<Rigidbody>().AddForce(Vector3.forward * 500);
+                    }
+                    Invoke("DeleteMutant", 15);
+                }
+
                 mutantObject.GetComponent<Rigidbody>().AddExplosionForce(500, col.transform.position, 100, 200);
                 Vector3 explosionPos = col.transform.position;
                 Collider[] colliders = Physics.OverlapSphere(explosionPos, 30);
@@ -186,7 +224,7 @@ public class OneHit2 : MonoBehaviour
                     Rigidbody rb = hit.GetComponent<Rigidbody>();
 
                     if (rb != null && rb != this.GetComponent<Rigidbody>())
-                        rb.AddExplosionForce(500, explosionPos, 40, 6f);
+                        rb.AddExplosionForce(150, explosionPos, 40, 2f);
 
                 }
 

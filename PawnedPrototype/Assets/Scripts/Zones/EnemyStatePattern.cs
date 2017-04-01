@@ -36,6 +36,7 @@ public class EnemyStatePattern : MonoBehaviour
 	[HideInInspector] public float speedChasing;
 
 
+
 	//Script & States 
 	[HideInInspector] public EnemyState currentState;
 	[HideInInspector] public WanderZone wanderingState;
@@ -71,10 +72,12 @@ public class EnemyStatePattern : MonoBehaviour
 		wanderingState.getwayPoint ();
 		currentState = wanderingState;
 
+
+
 	}
 
 	// Update is called once per frame
-	void Update () 
+	void Update ()
 	{
 		if (alive) {
 			currentState.UpdateState ();

@@ -16,6 +16,6 @@ public class SceneTransition : MonoBehaviour {
 
     void ChangeScene()
     {
-        Application.LoadLevel(2);
+        Application.LoadLevel(7);
     }
 }

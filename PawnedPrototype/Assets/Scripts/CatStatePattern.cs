@@ -43,18 +43,16 @@ public class CatStatePattern : MonoBehaviour {
 		// Add the time since Update was last called to the timer.
 		timer += Time.deltaTime;
 
-		if (IsGrounded () && !first) {
-
-			getwayPoint ();
-			first = true;
+		if (IsGrounded () == true && !first) {
+			Invoke ("getwayPoint", 5);
 		} else {
 
-			transform.Rotate(Vector3.right, 40f * Time.deltaTime);
+			roll ();
 		}
 
-		if (first) {
+		if (first == true && IsGrounded() == true) {
 
-			if (!sucked) {
+			if (!sucked && first) {
 				if (crouching) {
 					crouchingState ();
 
@@ -79,6 +77,10 @@ public class CatStatePattern : MonoBehaviour {
 
 		}
 		
+	}
+
+	private void roll() {
+		transform.Rotate(Vector3.right, 40f * Time.deltaTime);
 	}
 
 	private bool IsGrounded() {
@@ -117,7 +119,7 @@ public class CatStatePattern : MonoBehaviour {
 
 
 	void getwayPoint() {
-
+		first = true;
 		wayPoint = new Vector3(Random.Range(transform.position.x - range, transform.position.x + range),
 		startingHeight, Random.Range(transform.position.z - range, transform.position.z + range));
 	}

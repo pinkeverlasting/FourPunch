@@ -61,6 +61,10 @@ public class PlayerHealth : MonoBehaviour
 			} else if (scene.name == "Level2") {
 				Application.LoadLevel (2);
 			}
+            else if (scene.name == "Level3")
+            {
+                Application.LoadLevel(7);
+            }
 		}
 
 		// Add the time since Update was last called to the timer.

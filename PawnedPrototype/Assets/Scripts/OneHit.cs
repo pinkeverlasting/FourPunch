@@ -17,12 +17,19 @@ public class OneHit : MonoBehaviour {
 	public bool timerStart;
 
     private bool hasChaseOnWake;
+	public GameObject animation; 
+	public bool tierOne;
 
     // Use this for initialization
     void Start () {
-        mutantObject = transform.parent.gameObject;
-        //wander = gameObject.GetComponent<EnemyStatePattern>();
-        wander = mutantObject.GetComponent<EnemyStatePattern>();
+		mutantObject = transform.parent.gameObject;
+		//wander = gameObject.GetComponent<EnemyStatePattern>();
+		wander = mutantObject.GetComponent<EnemyStatePattern> ();
+
+		if (tierOne) {
+			animation.GetComponent<Animator> ().enabled = true;
+		}
+				
         force = 1000;
 
 		timerStart = false;
@@ -94,7 +101,9 @@ public class OneHit : MonoBehaviour {
 
 			//em.enabled = true;
 			Debug.Log("RED HAS COLLIDEDDD");
-
+			if (tierOne) {
+				animation.GetComponent<Animator> ().enabled = false;
+			}
 
 
             if (other.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED)
