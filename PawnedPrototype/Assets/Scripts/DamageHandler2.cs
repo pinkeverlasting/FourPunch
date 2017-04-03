@@ -9,6 +9,8 @@ public class DamageHandler2 : MonoBehaviour
     int enemyHealth;
     private GameObject mutantObject;
     private EnemyStatePattern wander;
+	public GameObject animation; 
+	public bool tierTwo;
 
 	//public ParticleSystem hitParticle; 
 	//public ParticleSystem.EmissionModule effectParticle;
@@ -51,6 +53,10 @@ public class DamageHandler2 : MonoBehaviour
             enemyHealth = 480;
         }
 
+		if (tierTwo) {
+			animation.GetComponent<Animator> ().enabled = true;
+		}
+
         coin = GameObject.Find("catCoinPickUp");
 
         mutantObject = this.gameObject;
@@ -66,6 +72,8 @@ public class DamageHandler2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         //Debug.Log(enemyHealth);
         if (enemyHealth <= 0)
         {
@@ -92,9 +100,12 @@ public class DamageHandler2 : MonoBehaviour
             if (dropOnce)
             {
                 LaunchCoin(); //if dead, drop coin
+				if (tierTwo) {
+					animation.GetComponent<Animator> ().enabled = false;
+				}
             }
            
-            //wander.alive = false;
+            wander.alive = false;
             //this.GetComponent<Rigidbody>().isKinematic = false;
         }
 

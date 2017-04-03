@@ -16,7 +16,7 @@ public class MutantSpawnerScript : MonoBehaviour
     void Start()
     {
         targetTimer = Random.Range(minRange, maxRange);
-
+        Invoke("IncreaseChallenge", 40);
     }
 
     // Update is called once per frame
@@ -34,5 +34,20 @@ public class MutantSpawnerScript : MonoBehaviour
     {
         Instantiate(mutant, transform.position, Quaternion.identity);
         targetTimer = Random.Range(minRange + 1, maxRange);
+    }
+
+    void IncreaseChallenge()
+    {
+        maxRange = maxRange - minRange;
+        Invoke("IncreaseChallenge2", 50);
+    }
+
+    void IncreaseChallenge2()
+    {
+        maxRange = maxRange - 5;
+        if(maxRange == 5)
+        {
+            maxRange = 6;
+        }
     }
 }

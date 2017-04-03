@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 54423122942748812}
   - component: {fileID: 114594040262090244}
   - component: {fileID: 114812063724160538}
-  - component: {fileID: 114751902372769998}
   m_Layer: 8
   m_Name: MutantMultiHit (1)
   m_TagString: Mutant
@@ -459,7 +458,6 @@ GameObject:
   - component: {fileID: 54089460744808676}
   - component: {fileID: 114508565942037008}
   - component: {fileID: 114639350038190504}
-  - component: {fileID: 114572862551600682}
   m_Layer: 8
   m_Name: MutantMultiHit
   m_TagString: Mutant
@@ -1631,6 +1629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
   attackDamage: 10
+  mutantObject: {fileID: 0}
   cameraShake: {fileID: 0}
 --- !u!114 &114229831073668890
 MonoBehaviour:
@@ -1647,6 +1646,8 @@ MonoBehaviour:
   hitEffect: {fileID: 1842096163024234}
   timer: 0
   timerStart: 0
+  animation: {fileID: 0}
+  tierTwo: 0
 --- !u!114 &114294951952659702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1688,6 +1689,8 @@ MonoBehaviour:
   hitEffect: {fileID: 1649068182797152}
   timer: 0
   timerStart: 0
+  animation: {fileID: 0}
+  tierTwo: 0
 --- !u!114 &114390472892915112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1743,17 +1746,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0.5, z: 0}
   speedChasing: 0
   startingHeight: 0
---- !u!114 &114572862551600682
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1878354150431318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114594040262090244
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1809,6 +1801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca193f61cf13a04e9ed722bf7ef77f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animation: {fileID: 0}
+  tierTwo: 0
   immuneTypeInt: 0
   hitEffect: {fileID: 1842096163024234}
   timer: 0
@@ -1829,17 +1823,6 @@ MonoBehaviour:
   sightRange: 20
   theDistance: 0
   playerCharacter: {fileID: 0}
---- !u!114 &114751902372769998
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1223182320085052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114812063724160538
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1851,6 +1834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca193f61cf13a04e9ed722bf7ef77f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animation: {fileID: 0}
+  tierTwo: 0
   immuneTypeInt: 0
   hitEffect: {fileID: 1649068182797152}
   timer: 0
@@ -1869,6 +1854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
   attackDamage: 10
+  mutantObject: {fileID: 0}
   cameraShake: {fileID: 0}
 --- !u!135 &135064217287364560
 SphereCollider:

@@ -7,6 +7,7 @@ public class FadeInOut : MonoBehaviour {
     private bool isFading;
 
     public bool menuScreen;
+    public bool quickBattle;
 
     public Texture2D fadeTexture;
     float fadeSpeed;
@@ -41,9 +42,13 @@ public class FadeInOut : MonoBehaviour {
             //isFading = true;
         }
 
-        if(alpha == 1 && menuScreen)
+        if(alpha == 1 && menuScreen && !quickBattle)
         {
             Application.LoadLevel(1);
+        }
+        else if(alpha == 1 && quickBattle && menuScreen )
+        {
+            Application.LoadLevel(7);
         }
 	}
     private void OnGUI()

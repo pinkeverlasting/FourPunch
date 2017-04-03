@@ -47,6 +47,11 @@ public class EnterNozzleDetect : MonoBehaviour
 	[SerializeField] private float strayFactor;
 
 	bool allowToEject;
+	bool noAmmo;
+
+	// Audio Area //
+	public AudioSource audio;
+	public AudioClip error; 
 
 	public enum GunState //enumirator for storing the different states of the gun
 	{
@@ -81,6 +86,7 @@ public class EnterNozzleDetect : MonoBehaviour
 		stateOfGun = GunState.VACUUM;
 
 		allowToEject = false;
+		noAmmo = false;
 
 		currentBlueAmmoCount = blueAmmoCount;
 
@@ -273,10 +279,16 @@ public class EnterNozzleDetect : MonoBehaviour
 				stateOfGun = GunState.GUN;
 				warpTexture.GetComponent<suckingDisplay> ().SendMessage ("DisableVortex");
 				player.GetComponent<PlayerMovement> ().SetToWalkingSpeed ();
-
                 barrel.stateOfBarrel = BarrelCooldown.BarrelState.COMPLETE;
                 //Invoke("VacuumToEjectCooldown", 2);
-            } 
+            }
+
+			if (Input.GetKeyUp (KeyCode.Space) && !allowToEject && currentAmmoType != null) {
+				audio.PlayOneShot(error);
+			}
+			if (Input.GetMouseButton(0) && noAmmo && stateOfGun == GunState.GUN) {
+				audio.PlayOneShot(error);
+			}
 		}
 	}
 	private void TurnOffOrange()
@@ -291,6 +303,7 @@ public class EnterNozzleDetect : MonoBehaviour
 
 	private void EjectAmmo(int type) //for ejecting specific ammo types DETECTS AMMO TYPES
 	{
+		noAmmo = false;
 		//ADD MORE AMMO TYPES
 		if (type == 0) //ammo is RED
 		{
@@ -404,6 +417,7 @@ public class EnterNozzleDetect : MonoBehaviour
 			GameObject.Destroy(child.gameObject);
 		}
 		//Debug.Log("Ammo is RED");
+		noAmmo = true;
 		currentAmmoType = AmmoTypeScript.AmmoType.WHITE.ToString(); //track current ammo as blue
 		Instantiate(whiteAmmo, pack.transform.position, pack.transform.rotation, pack.transform); //make new ammo object in backpack
 		currentBullet = null; //set current bullet type to blue bullet

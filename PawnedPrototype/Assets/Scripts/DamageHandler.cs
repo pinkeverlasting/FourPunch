@@ -17,6 +17,8 @@ public class DamageHandler : MonoBehaviour {
 	public GameObject hitEffect; 
 	public float timer;
 	public bool timerStart; 
+	public GameObject animation; 
+	public bool tierTwo; 
 
 
     // Use this for initialization
@@ -25,6 +27,10 @@ public class DamageHandler : MonoBehaviour {
 
         mutantObject = transform.parent.gameObject;
         wander = gameObject.GetComponent<EnemyStatePattern>();
+
+		if (tierTwo) {
+			animation.GetComponent<Animator> ().enabled = true;
+		}
 
 		timerStart = false;
 		hitEffect.SetActive (false);
@@ -70,7 +76,9 @@ public class DamageHandler : MonoBehaviour {
         {
             //look.alive = false; 
             // wander.GetComponent<Rigidbody>().freezeRotation = false;
-
+			if (tierTwo) {
+				animation.GetComponent<Animator> ().enabled = false;
+			}
             mutantObject.GetComponent<Rigidbody>().freezeRotation = false;
             // this.GetComponent<Rigidbody>().isKinematic = false;
             //this.GetComponent<EnemyStatePattern>().enabled = false;
@@ -80,6 +88,9 @@ public class DamageHandler : MonoBehaviour {
             if (dropOnce)
             {
                 LaunchCoin(); //if dead, drop coin
+				if (tierTwo) {
+					animation.GetComponent<Animator> ().enabled = false;
+				}
             }
             //this.GetComponent<Rigidbody>().isKinematic = false;
         }

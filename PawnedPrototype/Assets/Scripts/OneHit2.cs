@@ -11,6 +11,7 @@ public class OneHit2 : MonoBehaviour
 
 	public float timeBetweenEffects = 0.2f;     // seconds between effects
 	public GameObject hitEffect; 
+	public GameObject iceEffect; 
 	public float timer;
 	public bool timerStart; 
 
@@ -36,6 +37,7 @@ public class OneHit2 : MonoBehaviour
 
 		timerStart = false;
 		hitEffect.SetActive (false);
+		iceEffect.SetActive (false);
 
         if(this.gameObject.GetComponent<ChaseOnWake>() != null)
         {
@@ -65,6 +67,7 @@ public class OneHit2 : MonoBehaviour
 		if(timer >= timeBetweenEffects)
 		{
 			hitEffect.SetActive (false);
+			iceEffect.SetActive (false);
 			timerStart = false;
 			timer = 0f;
 		}
@@ -190,7 +193,8 @@ public class OneHit2 : MonoBehaviour
             //GetComponent<Rigidbody>().isKinematic = false;
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.BLUE)
             {
-
+				iceEffect.SetActive (true);
+				timerStart = true;
                 Destroy(col.gameObject);
             }
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.YELLOW)

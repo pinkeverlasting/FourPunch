@@ -41,6 +41,6 @@ public class CatSpawnerScript : MonoBehaviour {
         {
             Instantiate(yellowCat, transform.position, Quaternion.identity);
         }
-        targetTimer = Random.Range(15, 30);
+        targetTimer = Random.Range(25, 40);
     }
 }
