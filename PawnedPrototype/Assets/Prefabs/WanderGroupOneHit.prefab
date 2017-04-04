@@ -78,7 +78,6 @@ GameObject:
   - component: {fileID: 114268673080133990}
   - component: {fileID: 114478408531893014}
   - component: {fileID: 136744925199052824}
-  - component: {fileID: 114265433238413996}
   m_Layer: 8
   m_Name: ZoneMutant2Imp (2)
   m_TagString: Mutant
@@ -638,7 +637,6 @@ GameObject:
   - component: {fileID: 114678871298799844}
   - component: {fileID: 114708704968999498}
   - component: {fileID: 136694216695182716}
-  - component: {fileID: 114518302314523810}
   m_Layer: 8
   m_Name: ZoneMutant2Imp
   m_TagString: Mutant
@@ -2250,6 +2248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
   attackDamage: 10
+  mutantObject: {fileID: 0}
+  cameraShake: {fileID: 0}
 --- !u!114 &114239260180607290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2265,17 +2265,8 @@ MonoBehaviour:
   hitEffect: {fileID: 1071324380603082}
   timer: 0
   timerStart: 0
---- !u!114 &114265433238413996
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1106900573531258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  animation: {fileID: 0}
+  tierOne: 0
 --- !u!114 &114268673080133990
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2335,6 +2326,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a6a65d57ba2b8468ef49003e6829e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenEffects: 0.2
+  hitEffect: {fileID: 0}
+  iceEffect: {fileID: 0}
+  timer: 0
+  timerStart: 0
+  animation: {fileID: 0}
+  tierOne: 0
 --- !u!114 &114478408531893014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2346,6 +2344,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a6a65d57ba2b8468ef49003e6829e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenEffects: 0.2
+  hitEffect: {fileID: 0}
+  iceEffect: {fileID: 0}
+  timer: 0
+  timerStart: 0
+  animation: {fileID: 0}
+  tierOne: 0
 --- !u!114 &114498812482993654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2370,17 +2375,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3187745888e224c56ae8cf335a439880, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114518302314523810
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1835250472496514}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114591736313494036
@@ -2422,6 +2416,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
   attackDamage: 10
+  mutantObject: {fileID: 0}
+  cameraShake: {fileID: 0}
 --- !u!114 &114678871298799844
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2470,6 +2466,8 @@ MonoBehaviour:
   hitEffect: {fileID: 1283214381500434}
   timer: 0
   timerStart: 0
+  animation: {fileID: 0}
+  tierOne: 0
 --- !u!114 &114698290402124614
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2494,6 +2492,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
   attackDamage: 10
+  mutantObject: {fileID: 0}
+  cameraShake: {fileID: 0}
 --- !u!114 &114708704968999498
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2505,6 +2505,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78a6a65d57ba2b8468ef49003e6829e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenEffects: 0.2
+  hitEffect: {fileID: 0}
+  iceEffect: {fileID: 0}
+  timer: 0
+  timerStart: 0
+  animation: {fileID: 0}
+  tierOne: 0
 --- !u!114 &114808340383285798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2553,6 +2560,8 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   timer: 0
   timerStart: 0
+  animation: {fileID: 0}
+  tierOne: 0
 --- !u!135 &135130789580300362
 SphereCollider:
   m_ObjectHideFlags: 1

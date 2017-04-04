@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool hasFirstPass;
 
-	public AudioClip getCoin; 
+	public AudioClip getCoin;  
 	public AudioSource audio;
 
 
@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour {
        followingCamera = GameObject.Find("AngledCamera"); //Find camera object and set main camera as it
        originalGravity = gravity;
         normalWalkingSpeed = moveSpeed;
-        vacuumWalkingSpeed = normalWalkingSpeed / 2;
+        vacuumWalkingSpeed = normalWalkingSpeed - 4;
 
         coinAmount = 0;
         if(coinText != null)

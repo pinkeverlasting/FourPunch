@@ -24,7 +24,7 @@ public class ChaseOnWake : MonoBehaviour {
 			transform.position.y, character.position.z);
 
 		//keep chasing until 2 away from player
-		if (Vector3.Distance (transform.position,characterPostition) > 2) {
+		if (Vector3.Distance (transform.position,characterPostition) > 0) {
 			//look at player
 			transform.LookAt (characterPostition);
 			//direction = enemy.target - enemy.transform.position;

@@ -5,6 +5,8 @@ using UnityEngine;
 public class suckingDisplay : MonoBehaviour {
  
 	private Renderer rend;
+	public AudioClip suckingSound;
+	public AudioSource audio;
 
     public bool isExplosion;
 	// Use this for initialization
@@ -19,9 +21,12 @@ public class suckingDisplay : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			print ("Pressed");
+			audio.PlayOneShot (suckingSound);
 			//rend.enabled = true;
 		} else if (Input.GetKeyUp(KeyCode.Space)) {
 			print ("Released");
+			audio.Stop ();
+            DisableVortex();
 			//rend.enabled = false;
 		}
         if (isExplosion && gameObject.name == "GreenBullet")

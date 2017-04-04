@@ -17,14 +17,23 @@ public class DamageHandler : MonoBehaviour {
 	public GameObject hitEffect; 
 	public float timer;
 	public bool timerStart; 
+	public GameObject animation; 
+	bool tierTwo; 
+	public AudioClip success;
+	public AudioClip notSuccess; 
+	public AudioSource audio;
 
 
     // Use this for initialization
     void Start () {
         enemyHealth = 100;
-
+		tierTwo = true;
         mutantObject = transform.parent.gameObject;
         wander = gameObject.GetComponent<EnemyStatePattern>();
+
+		if (tierTwo) {
+			animation.GetComponent<Animator> ().enabled = true;
+		}
 
 		timerStart = false;
 		hitEffect.SetActive (false);
@@ -70,7 +79,9 @@ public class DamageHandler : MonoBehaviour {
         {
             //look.alive = false; 
             // wander.GetComponent<Rigidbody>().freezeRotation = false;
-
+			if (tierTwo) {
+				animation.GetComponent<Animator> ().enabled = false;
+			}
             mutantObject.GetComponent<Rigidbody>().freezeRotation = false;
             // this.GetComponent<Rigidbody>().isKinematic = false;
             //this.GetComponent<EnemyStatePattern>().enabled = false;
@@ -80,6 +91,9 @@ public class DamageHandler : MonoBehaviour {
             if (dropOnce)
             {
                 LaunchCoin(); //if dead, drop coin
+				if (tierTwo) {
+					animation.GetComponent<Animator> ().enabled = false;
+				}
             }
             //this.GetComponent<Rigidbody>().isKinematic = false;
         }
@@ -106,6 +120,7 @@ public class DamageHandler : MonoBehaviour {
             //MORE AMMO TYPES AND CAT DAMAGE
            if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED)
             {
+				
                 Debug.Log("This is a RED");
                 col.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
                 col.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
@@ -164,6 +179,7 @@ public class DamageHandler : MonoBehaviour {
                 //Debug.Log("RED HAS COLLIDED");
                 //wander.move = false;
                 Destroy(other.gameObject);
+				audio.PlayOneShot(success);
                 enemyHealth -= 5;
                 // GetComponent<Rigidbody>().isKinematic = false;
                 if (enemyHealth <= 0 && mutantObject.GetComponent<EnemyStatePattern>().enabled == true)
@@ -181,7 +197,9 @@ public class DamageHandler : MonoBehaviour {
                 }
                 //this.GetComponent<Rigidbody>().AddForce(Vector3.forward * 200);
 
-            }
+			} else if (other.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED && immuneTypeInt == 2){
+				audio.PlayOneShot(notSuccess);
+			}
            if (other.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.ORANGE)
             {
                // Debug.Log("OrangeInbound");

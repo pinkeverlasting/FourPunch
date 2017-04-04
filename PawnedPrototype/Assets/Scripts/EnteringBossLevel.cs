@@ -14,6 +14,8 @@ public class EnteringBossLevel : MonoBehaviour {
     public GameObject playerCamera;
 
     private GameObject player;
+	public AudioSource audio;
+	public AudioClip loudBang;
 	// Use this for initialization
 	void Start () {
         bossMutantContainer.SetActive(false);
@@ -45,6 +47,7 @@ public class EnteringBossLevel : MonoBehaviour {
                 }
             }
 
+			audio.PlayOneShot (loudBang);
             foreach (Transform child in explosiveWall.transform) //grab all wall pieces and tell them to explode
             {
                 Rigidbody rb = child.GetComponent<Rigidbody>();

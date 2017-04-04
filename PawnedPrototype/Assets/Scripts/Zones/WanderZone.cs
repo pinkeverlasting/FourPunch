@@ -49,6 +49,7 @@ public class WanderZone : EnemyState {
 		
 			enemy.currentState = enemy.chaseState;
 
+
 	}
 
 	public void StalkerState()

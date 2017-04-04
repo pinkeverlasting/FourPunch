@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 54804813126064248}
   - component: {fileID: 114254349732031102}
   - component: {fileID: 114238509414162370}
-  - component: {fileID: 114762929495096926}
   m_Layer: 8
   m_Name: ZoneMutant2-MutliHit
   m_TagString: Mutant
@@ -621,6 +620,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca193f61cf13a04e9ed722bf7ef77f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animation: {fileID: 0}
+  tierTwo: 0
   immuneTypeInt: 0
   hitEffect: {fileID: 1657663977643408}
   timer: 0
@@ -672,18 +673,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 1
   attackDamage: 10
+  mutantObject: {fileID: 0}
   cameraShake: {fileID: 0}
---- !u!114 &114762929495096926
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1521667224054636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114764891184527104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -699,6 +690,8 @@ MonoBehaviour:
   hitEffect: {fileID: 1657663977643408}
   timer: 0
   timerStart: 0
+  animation: {fileID: 0}
+  tierTwo: 0
 --- !u!114 &114773342370661236
 MonoBehaviour:
   m_ObjectHideFlags: 1

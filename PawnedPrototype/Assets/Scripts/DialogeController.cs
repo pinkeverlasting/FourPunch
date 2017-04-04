@@ -6,6 +6,7 @@ public class DialogeController : MonoBehaviour {
 
     public GameObject dialText;
 
+
 	// Use this for initialization
 	void Start () {
         dialText.SetActive(false);

@@ -35,7 +35,8 @@ public class LookAtMouse : MonoBehaviour {
     }
 
     void Start () {
-        mainCamera = FindObjectOfType<Camera>(); //Find camera object and set main camera as it
+        // mainCamera = FindObjectOfType<Camera>(); //Find camera object and set main camera as it
+        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         playerObject = GameObject.Find("Player"); //find player object
         playerTransform = playerObject.GetComponent<Transform>();
 

@@ -9,6 +9,9 @@ public class gunPropHandler : MonoBehaviour {
 	//private float yRotation;
 	private Transform gunTrans;
 	// Use this for initialization
+	public AudioClip getGun;  
+	public AudioSource audio;
+
 	void Start () {
 		gunTrans = this.GetComponent<Transform>();
 	}
@@ -22,6 +25,7 @@ public class gunPropHandler : MonoBehaviour {
         if(other.gameObject.tag == "Player")
         {
             NozzleTrigger.SendMessage("ActivateEquipment");
+			audio.PlayOneShot(getGun);
             Destroy(this.gameObject);
         }
     }
