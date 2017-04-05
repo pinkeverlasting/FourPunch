@@ -44,6 +44,8 @@ public class EnemyStatePattern : MonoBehaviour
 	[HideInInspector] public ChaseZone chaseState;
 
     public float startingHeight;
+	public AudioSource audio;
+	public AudioClip walkingMutant;
 
 
 	private void Awake()
@@ -81,6 +83,13 @@ public class EnemyStatePattern : MonoBehaviour
 	{
 		if (alive) {
 			currentState.UpdateState ();
+		}
+
+		if (currentState == wanderingState) {
+			audio.clip = walkingMutant;
+			audio.Play();
+		} else {
+			audio.Stop ();
 		}
 	}
     public void StunTimer()

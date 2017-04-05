@@ -46,12 +46,21 @@ public class EnterNozzleDetect : MonoBehaviour
 	[SerializeField] private int fireSpeed; //for storing the speed with which you fire the bullet
 	[SerializeField] private float strayFactor;
 
+
 	bool allowToEject;
 	bool noAmmo;
 
 	// Audio Area //
-	public AudioSource audio;
 	public AudioClip error; 
+	public AudioClip iceSound;
+	public AudioClip fireSound;
+	public AudioClip electricitySound;
+	public AudioClip thunderSound;
+    public AudioClip iceLightningSound;
+    public AudioClip gotCat;
+	public AudioClip catGone;
+	public AudioSource audio;
+	public AudioSource audio2;
 
 	public enum GunState //enumirator for storing the different states of the gun
 	{
@@ -85,6 +94,10 @@ public class EnterNozzleDetect : MonoBehaviour
 		barrel.stateOfBarrel = BarrelCooldown.BarrelState.NONE;
 		stateOfGun = GunState.VACUUM;
 
+
+
+
+
 		allowToEject = false;
 		noAmmo = false;
 
@@ -117,6 +130,7 @@ public class EnterNozzleDetect : MonoBehaviour
 				//int tempAmmoType;
 				//Debug.Log("hit right mouse when GUN");
 				stateOfGun = GunState.EJECT; //set gun mode to eject
+				audio2.PlayOneShot(catGone);
 				light.stateOfAmmo = AmmoLight.AmmoState.NONE;
 				foreach (Transform child in pack.transform) //check the children of the backpack
 				{
@@ -136,6 +150,7 @@ public class EnterNozzleDetect : MonoBehaviour
 				{
 					if (currentBlueAmmoCount > 0)
 					{
+						audio.PlayOneShot (iceSound);
 						LaunchAmmo(fireSpeed);
 						currentBlueAmmoCount -= 1;
 					}
@@ -158,6 +173,7 @@ public class EnterNozzleDetect : MonoBehaviour
 				{
 					if (currentYellowAmmoCount > 0)
 					{
+						audio.PlayOneShot (thunderSound);
 						LaunchAmmo(fireSpeed / 2);
 						currentYellowAmmoCount -= 1;
 					}
@@ -176,6 +192,7 @@ public class EnterNozzleDetect : MonoBehaviour
 				{
 					if (currentPurpleAmmoCount > 0)
 					{
+						audio.PlayOneShot (electricitySound);
 						LaunchAmmo(fireSpeed);
 						currentPurpleAmmoCount -= 1;
 					}
@@ -216,7 +233,8 @@ public class EnterNozzleDetect : MonoBehaviour
 					if (greenBullet.active == false && currentGreenAmmoCount > 0)
 					{
 						greenBullet.SetActive(true);
-						currentGreenAmmoCount -= 1;
+                        audio.PlayOneShot(iceLightningSound);
+                        currentGreenAmmoCount -= 1;
 
 						Invoke("TurnOffGreen", 1);
 						Collider[] colliders = Physics.OverlapSphere(transform.position, 10);
@@ -256,6 +274,7 @@ public class EnterNozzleDetect : MonoBehaviour
 			{
 				if (currentRedAmmoCount > 0)
 				{
+					audio.PlayOneShot (fireSound);
 					LaunchAmmo(fireSpeed * 1.5f);
 					currentRedAmmoCount -= 1;
 				} 
@@ -272,10 +291,14 @@ public class EnterNozzleDetect : MonoBehaviour
 
 				} 
 
+			} else if (Input.GetMouseButtonUp(0) && stateOfGun == GunState.GUN && currentAmmoType == "RED") {
+
+				audio.Stop();
 			}
+
 			if (Input.GetKeyUp (KeyCode.Space) && stateOfGun == GunState.VACUUM && currentAmmoType != null) {
 				Invoke ("VacuumToEjectCooldown", 2);
-
+				audio2.PlayOneShot (gotCat);
 				stateOfGun = GunState.GUN;
 				warpTexture.GetComponent<suckingDisplay> ().SendMessage ("DisableVortex");
 				player.GetComponent<PlayerMovement> ().SetToWalkingSpeed ();

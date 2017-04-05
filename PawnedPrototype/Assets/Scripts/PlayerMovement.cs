@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public bool hasFirstPass;
 
-	public AudioClip getCoin; 
+	public AudioClip getCoin;  
 	public AudioSource audio;
 
 

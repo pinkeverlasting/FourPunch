@@ -44,7 +44,7 @@ public class FadeInOut : MonoBehaviour {
 
         if(alpha == 1 && menuScreen && !quickBattle)
         {
-            Application.LoadLevel(1);
+            Application.LoadLevel(8);
         }
         else if(alpha == 1 && quickBattle && menuScreen )
         {

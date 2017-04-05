@@ -106,7 +106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &57540908
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -304,7 +304,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1251891158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66086e078a0f414c93ed59b5bc5ddcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movie: {fileID: 15200000, guid: 98c36cb23b1db456d8a86a17805c7aa5, type: 3}
+  movie: {fileID: 15200000, guid: c057643605a0ce54b94005c1af4c31f7, type: 3}
+  levelIndex: 7
 --- !u!82 &1251891159
 AudioSource:
   m_ObjectHideFlags: 0
@@ -326,9 +327,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c057643605a0ce54b94005c1af4c31f7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -372,7 +373,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -384,7 +385,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -396,7 +397,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!23 &1251891160
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -455,13 +456,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1251891157}
-  m_LocalRotation: {x: 0.006347889, y: 0.70707834, z: -0.70707834, w: -0.006347889}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 1, z: 5.6}
-  m_LocalScale: {x: 3.2347612, y: 1.8522859, z: 1.8522859}
+  m_LocalScale: {x: 3.517236, y: 1.8522859, z: 1.8522859}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: -271.02798, y: -90.00001, z: 90.00001}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 0}
 --- !u!1 &1327695083
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,7 +713,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1898193915}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be9177c018fff5b43b4d81071a20632f, type: 3}
   m_Name: 

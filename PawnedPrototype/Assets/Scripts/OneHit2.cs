@@ -20,11 +20,14 @@ public class OneHit2 : MonoBehaviour
 
     private bool hasChaseOnWake;
 	public GameObject animation; 
-	public bool tierOne; 
+	bool tierOne; 
+	public AudioClip success;
+	public AudioSource audio;
 
     // Use this for initialization
     void Start()
     {
+		tierOne = true;
         mutantObject = this.gameObject;
         //wander = gameObject.GetComponent<EnemyStatePattern>();
         wander = mutantObject.GetComponent<EnemyStatePattern>();
@@ -157,6 +160,7 @@ public class OneHit2 : MonoBehaviour
         {
 			hitEffect.SetActive (true);
 			timerStart = true;
+			audio.PlayOneShot(success);
 
             //GetComponent<Rigidbody>().isKinematic = false;
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.PURPLE)
@@ -194,6 +198,7 @@ public class OneHit2 : MonoBehaviour
             if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.BLUE)
             {
 				iceEffect.SetActive (true);
+
 				timerStart = true;
                 Destroy(col.gameObject);
             }

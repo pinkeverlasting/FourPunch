@@ -10,7 +10,7 @@ public class DamageHandler2 : MonoBehaviour
     private GameObject mutantObject;
     private EnemyStatePattern wander;
 	public GameObject animation; 
-	public bool tierTwo;
+	bool tierTwo;
 
 	//public ParticleSystem hitParticle; 
 	//public ParticleSystem.EmissionModule effectParticle;
@@ -26,6 +26,9 @@ public class DamageHandler2 : MonoBehaviour
 	public float timer;
 	public bool timerStart; 
 	public float timeBetweenEffects = 0.2f;     // seconds between effects
+	public AudioClip success;  
+	public AudioClip notSuccess; 
+	public AudioSource audio;
 
 
 	void Awake() {
@@ -40,7 +43,7 @@ public class DamageHandler2 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+		tierTwo = true;
 		timerStart = false;
 		hitEffect.SetActive (false);
 
@@ -138,68 +141,62 @@ public class DamageHandler2 : MonoBehaviour
 			//StartCoroutine (stopEffect ());
 
 
-            if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.RED && immuneTypeInt != 2)
-            {
-                Debug.Log("This is a RED");
-                col.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
-                col.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-                col.gameObject.GetComponent<Transform>().rotation = Quaternion.identity;
-                Destroy(col.gameObject);
-                enemyHealth -= 10;
-            }
-            else if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.BLUE && immuneTypeInt != 1)
-            {
-                Debug.Log("This is a BLUE");
-                Destroy(col.gameObject);
-                enemyHealth -= 34;
-            }
-            else if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.YELLOW && immuneTypeInt != 3)
-            {
-                Debug.Log("This is a Yellow");
-                Destroy(col.gameObject);
-                enemyHealth -= 30; //THIS SHOULDNT KILL THE MUTANT
-                if (wander.alive)
-                {
-                    //Debug.Log("I'VE HIT A MUTANT");
-                    this.SendMessage("ShockTimer");
+			if (col.gameObject.GetComponent<BulletDeletion> ().catType == BulletDeletion.AmmoType.RED && immuneTypeInt != 2) {
+				audio.PlayOneShot (success);
+				Debug.Log ("This is a RED");
+				col.gameObject.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+				col.gameObject.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
+				col.gameObject.GetComponent<Transform> ().rotation = Quaternion.identity;
+				Destroy (col.gameObject);
+				enemyHealth -= 10;
+			} else if (col.gameObject.GetComponent<BulletDeletion> ().catType == BulletDeletion.AmmoType.BLUE && immuneTypeInt != 1) {
+				audio.PlayOneShot (success);
+				Debug.Log ("This is a BLUE");
+				Destroy (col.gameObject);
+				enemyHealth -= 34;
+			} else if (col.gameObject.GetComponent<BulletDeletion> ().catType == BulletDeletion.AmmoType.YELLOW && immuneTypeInt != 3) {
+				audio.PlayOneShot (success);
+				Debug.Log ("This is a Yellow");
+				Destroy (col.gameObject);
+				enemyHealth -= 30; //THIS SHOULDNT KILL THE MUTANT
+				if (wander.alive) {
+					//Debug.Log("I'VE HIT A MUTANT");
+					this.SendMessage ("ShockTimer");
 
 
-                    //mutantBody.SendMessage();
-                }
-            }
-            else if (col.gameObject.GetComponent<BulletDeletion>().catType == BulletDeletion.AmmoType.PURPLE)
-            {
-                Debug.Log("This is a Purple");
-                wander.alive = false;
-                
+					//mutantBody.SendMessage();
+				}
+			} else if (col.gameObject.GetComponent<BulletDeletion> ().catType == BulletDeletion.AmmoType.PURPLE) {
+				Debug.Log ("This is a Purple");
+				wander.alive = false;
+				audio.PlayOneShot (success);
                
-                mutantObject.GetComponent<Rigidbody>().AddExplosionForce(500, col.transform.position, 100, 200);
-                enemyHealth -= 110; //THIS SHOULDNT KILL THE MUTANT
-                Vector3 explosionPos = col.transform.position;
-                Collider[] colliders = Physics.OverlapSphere(explosionPos, 30);
-                foreach (Collider hit in colliders)
-                {
-                    Rigidbody rb = hit.GetComponent<Rigidbody>();
+				mutantObject.GetComponent<Rigidbody> ().AddExplosionForce (500, col.transform.position, 100, 200);
+				enemyHealth -= 110; //THIS SHOULDNT KILL THE MUTANT
+				Vector3 explosionPos = col.transform.position;
+				Collider[] colliders = Physics.OverlapSphere (explosionPos, 30);
+				foreach (Collider hit in colliders) {
+					Rigidbody rb = hit.GetComponent<Rigidbody> ();
 
-                    if (rb != null && rb != this.GetComponent<Rigidbody>())
-                    {
-                        if (rb.gameObject.tag == "Mutant")
-                        {
-                            rb.gameObject.GetComponent<EnemyStatePattern>().alive = false;
-                            rb.gameObject.SendMessage("StunTimer");
-                        }
-                        rb.AddExplosionForce(500, explosionPos, 40, 6f);
-                    }
+					if (rb != null && rb != this.GetComponent<Rigidbody> ()) {
+						if (rb.gameObject.tag == "Mutant") {
+							rb.gameObject.GetComponent<EnemyStatePattern> ().alive = false;
+							rb.gameObject.SendMessage ("StunTimer");
+						}
+						rb.AddExplosionForce (500, explosionPos, 40, 6f);
+					}
                         
 
-                }
+				}
 
-                // enemyHealth -= 10; //THIS SHOULDNT KILL THE MUTANT
-                Destroy(col.gameObject);
-                //enemyHealth -= 10; //THIS SHOULDNT KILL THE MUTANT
+				// enemyHealth -= 10; //THIS SHOULDNT KILL THE MUTANT
+				Destroy (col.gameObject);
+				//enemyHealth -= 10; //THIS SHOULDNT KILL THE MUTANT
 
-                //rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
-            }
+				//rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+			} else {
+				audio.PlayOneShot (notSuccess);
+			}
 
 			hitEffect.SetActive (true);
 			timerStart = true;

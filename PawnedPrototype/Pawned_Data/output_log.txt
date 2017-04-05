@@ -7,25 +7,297 @@ Direct3D:
     VRAM:     3072 MB
     Driver:   21.21.13.7653
 Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
-Loading C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
-Platform assembly: C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
-Loading C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-Platform assembly: C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-Platform assembly: C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
-Loading C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
-Platform assembly: C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
-Loading C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.045 seconds
-Platform assembly: C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\andre\Desktop\PawnedPrototypeBETA\Pawned_Data\Managed\System.dll (this message is harmless)
+Platform assembly: C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.037 seconds
+Platform assembly: C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\andre\Documents\unity\PawnedGold\Pawned_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.048764 ms
+Setting up 3 worker threads for Enlighten.
+  Thread -> id: 1858 -> priority: 1 
+  Thread -> id: 1f08 -> priority: 1 
+  Thread -> id: 12e0 -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.547445 ms
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 465.
+Total: 1.405506 ms (FindLiveObjects: 0.033901 ms CreateObjectMapping: 0.015862 ms MarkObjects: 0.195632 ms  DeleteObjects: 1.159177 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.819541 ms
+App Running
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 14504.
+Total: 20.117491 ms (FindLiveObjects: 1.087953 ms CreateObjectMapping: 0.405260 ms MarkObjects: 10.653728 ms  DeleteObjects: 7.969614 ms)
+
+Bullet destroyed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Bullet destroyed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+BlueCat (3) (UnityEngine.GameObject)- gravity is OFF
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pressed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CurrentAmmo: BLUE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Released
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Now allowed to eject
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Bullet destroyed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 26.817204 ms
+
+Unloading 950 unused Assets to reduce memory usage. Loaded Objects now: 507.
+Total: 16.402962 ms (FindLiveObjects: 0.046031 ms CreateObjectMapping: 0.053184 ms MarkObjects: 0.245706 ms  DeleteObjects: 16.058039 ms)
+
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.518472 ms
+App Running
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+
+Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 6195.
+Total: 6.652438 ms (FindLiveObjects: 0.419879 ms CreateObjectMapping: 0.218648 ms MarkObjects: 2.173729 ms  DeleteObjects: 3.839560 ms)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+BlueCat (1) (UnityEngine.GameObject)- gravity is OFF
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pressed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+BlueCat (1) (UnityEngine.GameObject)- gravity is ON
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+BlueCat (1) (UnityEngine.GameObject)- gravity is OFF
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CurrentAmmo: BLUE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Released
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Now allowed to eject
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+activating spawners
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Detected WHITE ammo
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pressed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Released
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Pressed
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Resetting back to Vacuum
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+BlueCat(Clone) (UnityEngine.GameObject)- gravity is OFF
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+WhiteCat(Clone) (UnityEngine.GameObject)- gravity is OFF
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+CurrentAmmo: BLUE
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+BlueCat(Clone) (UnityEngine.GameObject)- gravity is ON
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+BlueCat(Clone) (UnityEngine.GameObject)- gravity is OFF
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+WhiteCat(Clone) (UnityEngine.GameObject)- gravity is ON
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Released
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Ammo Leaving
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Now allowed to eject
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+RED HAS COLLIDEDDD
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 23.809004 ms
+
+Unloading 1106 unused Assets to reduce memory usage. Loaded Objects now: 512.
+Total: 15.459322 ms (FindLiveObjects: 0.155199 ms CreateObjectMapping: 0.166085 ms MarkObjects: 0.474618 ms  DeleteObjects: 14.662173 ms)
+

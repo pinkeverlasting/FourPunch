@@ -21,6 +21,8 @@ public class CatStatePattern : MonoBehaviour {
 	public float targetTime = 5.0f;
 	public int range = 15;
 	public bool first; 
+	public GameObject animation;
+
 
 	//Crouch State 
 
@@ -43,6 +45,8 @@ public class CatStatePattern : MonoBehaviour {
 		// Add the time since Update was last called to the timer.
 		timer += Time.deltaTime;
 
+
+
 		if (IsGrounded () == true && !first) {
 			Invoke ("getwayPoint", 5);
 		} else {
@@ -55,6 +59,7 @@ public class CatStatePattern : MonoBehaviour {
 			if (!sucked && first) {
 				if (crouching) {
 					crouchingState ();
+
 
 				} else {
 					walking ();
@@ -83,12 +88,19 @@ public class CatStatePattern : MonoBehaviour {
 		transform.Rotate(Vector3.right, 40f * Time.deltaTime);
 	}
 
+
+
 	private bool IsGrounded() {
 		return Physics.Raycast(transform.position, -Vector3.up, distToGround + 0.1f);
 	}
 
 	void walking() {
 
+        if(animation.GetComponent<Animator>() != null)
+        {
+            animation.GetComponent<Animator>().enabled = true;
+        }
+		
 		target = wayPoint;
 		target.y = transform.position.y; 
 
@@ -113,7 +125,7 @@ public class CatStatePattern : MonoBehaviour {
 	}
 
 	void crouchingState () {
-
+		animation.GetComponent<Animator> ().enabled = false;
 		GetComponent<Rigidbody> ().velocity = new Vector3 (0, 0, 0);
 	}
 

@@ -10,6 +10,8 @@ public class MoviePlayer : MonoBehaviour {
 	private MeshRenderer meshRenderer;
 	private AudioSource audio;
 
+    public int levelIndex;
+
 	// Use this for initialization
 
 	void Start () {
@@ -24,7 +26,7 @@ public class MoviePlayer : MonoBehaviour {
 	void Update() {
 
 		if (!movie.isPlaying)
-			Application.LoadLevel ("Level2");
+			Application.LoadLevel (levelIndex);
 	}
 
 }

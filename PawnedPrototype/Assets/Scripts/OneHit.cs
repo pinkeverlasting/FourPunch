@@ -18,10 +18,13 @@ public class OneHit : MonoBehaviour {
 
     private bool hasChaseOnWake;
 	public GameObject animation; 
-	public bool tierOne;
+	bool tierOne;
+	public AudioClip success;
+	public AudioSource audio;
 
     // Use this for initialization
     void Start () {
+		tierOne = true;
 		mutantObject = transform.parent.gameObject;
 		//wander = gameObject.GetComponent<EnemyStatePattern>();
 		wander = mutantObject.GetComponent<EnemyStatePattern> ();
@@ -94,6 +97,7 @@ public class OneHit : MonoBehaviour {
 		if (other.gameObject.tag == "Bullet") {
 			hitEffect.SetActive (true);
 			timerStart = true;
+			audio.PlayOneShot(success);
 		}
 
         if (other.gameObject.tag == "Bullet" && wander.alive == true)
